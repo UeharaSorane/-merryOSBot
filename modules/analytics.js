@@ -5,7 +5,7 @@ require('fs').readdirSync('./roll/').forEach(function(file) {
 	}
   });
   
-function parseInput(rplyToken, inputStr,UserID,UserN) {
+function parseInput(inputStr,UserID,UserN) {
 	//console.log('InputStr: ' + inputStr);
 	_isNaN = function(obj) 	{
 	return isNaN(parseInt(obj));  
