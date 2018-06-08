@@ -15,6 +15,7 @@ var bot = linebot({
 
 
 var battle;
+var rply = [];
 
 function parseInput(inputStr,UserID,UserN) {
 	//console.log('InputStr: ' + inputStr);
@@ -29,8 +30,9 @@ function parseInput(inputStr,UserID,UserN) {
 ///////////////////////////////////////////////////////
 ////////////////////////開始戰鬥////////////////////////
 ///////////////////////////////////////////////////////
-	console.log(battle);
-	return '測試';
+	rply[0] = 'text';
+	rply[1] = battle;
+	return rply;
 }
 
 function battleON(FightInfo){
