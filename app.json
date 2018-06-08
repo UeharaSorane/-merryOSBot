@@ -1,0 +1,17 @@
+{
+	"name": "MerryOsBot",
+	"description": "梅里歐斯的冒險者-爆裂專用BOT",
+	"repository": "https://github.com/UeharaSorane/-merryOSBot.gitt",
+	"keywords": ["Line Bot", "TRPG"],
+	"env": {
+		"LINE_CHANNEL_SECRET": {
+			"description":"LINE_Channel_Secret"
+		},
+		"LINE_CHANNEL_ACCESSTOKEN": {
+			"description": "LINE_Channel_Accesstoken"
+		},
+		"KEY_WORD": {
+			"description": "上原空音"
+		}
+	}
+}
