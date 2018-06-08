@@ -1,6 +1,7 @@
 var rply = [];
 var linebot = require('linebot');
 var express = require('express');
+var battle = require('../modules/battle.js');
 
 var bot = linebot({
 	channelId: "1568211787",
@@ -37,7 +38,30 @@ function PushTest(UserID,GroupID) {
 
 }
 
+function SimBattle(UserID,GroupID){
+	var FightInfo = [];
+	
+	FightInfo[0] = 0;//是否在群組內遊玩
+	FightInfo[1] = 0;//群組ID
+	FightInfo[2] = 0;//玩家1的ID
+	
+	if(GroupID != null){
+		FightInfo[0] = 1;
+		FightInfo[1] = GroupID;
+	}else{
+		FightInfo[0] = 0;
+	}
+	
+	FightInfo[2] = UserID;
+	
+	battle.battleON(FightInfo);
+	
+	rply[0] = 'battleOn';
+	return rply;
+}
+
 module.exports = {
 	ReplyTest,
-	PushTest
+	PushTest,
+	SimBattle
 };
