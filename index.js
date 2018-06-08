@@ -20,20 +20,29 @@ var server = app.listen(process.env.PORT || 8080, function() {
 });
 
 bot.on('message', function(event) {
+	var msg = event.message.text;
+	
 	event.source.profile().then(function (profile) {
-		console.log(profile);
-		if (event.message.type = 'text') {
-			var msg = profile.displayName + '說：\
-				\n「' + event.message.type + '」';
-			
-			event.reply(msg).then(function(data) {
-				// success 
-				console.log(msg);
-			}).catch(function(error) {
-				// error 
-				console.log('error');
-			});
+		let msgSplitor = (/\S+/ig);	
+		let mainMsg = msg.match(msgSplitor); //定義輸入字串
+		let trigger = mainMsg[0].toString().toLowerCase(); //指定啟動詞在第一個詞&把大階強制轉成細階
+		
+		var rply = null;
+		var UserN = profile.displayName;
+		
+		if(mainMsg[0] == '鸚鵡測試'){
+			if(mainMsg[1] == null){
+				rply = UserN + '你啥都沒說啊...';
+			}else{
+				rply = UserN + '你剛剛說了：' + mainMsg[1];
+			}
 		}
+		event.reply(rply).then(function (data) {
+			  // success
+			}).catch(function (error) {
+			  // error
+			});
+		
 	});
 
 });
