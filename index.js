@@ -31,7 +31,11 @@ bot.on('message', function(event) {
 	var rply;
 	
 	event.source.profile().then(function (profile) {
-		console.log(profile.displayName);
+		event.reply('www').then(function (data) {
+				  // success
+				}).catch(function (error) {
+				  // error
+			});
 		/*if(event.message.type == 'text'){
 			if(battle == 1){
 				if(event.message.text=='強制終止戰鬥'){
