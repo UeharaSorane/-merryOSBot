@@ -5,7 +5,7 @@ require('fs').readdirSync('./roll/').forEach(function(file) {
 	}
   });
   
-function parseInput(inputStr,UserID,UserN) {
+function parseInput(inputStr,UserID,UserN,GroupID) {
 	console.log(UserN);
 	//console.log('InputStr: ' + inputStr);
 	_isNaN = function(obj) 	{
@@ -22,7 +22,7 @@ function parseInput(inputStr,UserID,UserN) {
 	
 ////////////////////////測試用
 	if (trigger.match(/^鸚鵡測試$/) != null) return exports.Testing.ReplyTest(UserN,mainMsg[1]);//測試reply功能用
-	if (trigger.match(/^大聲測試$/) != null) return exports.Testing.PushTest();//測試push功能用
+	if (trigger.match(/^大聲測試$/) != null) return exports.Testing.PushTest(UserID,GroupID);//測試push功能用
 }
 
 module.exports = {
