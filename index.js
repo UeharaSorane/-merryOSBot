@@ -42,6 +42,7 @@ bot.on('message', function(event) {
 				}
 			}else{
 				rply = exports.analytics.parseInput(msg, event.source.userId, profile.displayName);
+				console.log(profile.displayName);
 			}
 			event.reply(rply[1]).then(function (data) {
 				  // success
