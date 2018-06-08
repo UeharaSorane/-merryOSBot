@@ -30,13 +30,7 @@ bot.on('message', function(event) {
 	var msg = event.message.text;
 	var rply;
 	
-	event.source.profile().then(function (profile) {
-		event.reply('www').then(function (data) {
-				  // success
-				}).catch(function (error) {
-				  // error
-			});
-		/*if(event.message.type == 'text'){
+		if(event.message.type == 'text'){
 			if(battle == 1){
 				if(event.message.text=='強制終止戰鬥'){
 					battle = 0;
@@ -54,7 +48,7 @@ bot.on('message', function(event) {
 				}).catch(function (error) {
 				  // error
 			});
-		}*/
+		}
 	});
 
 });
