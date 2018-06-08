@@ -8,10 +8,9 @@ require('fs').readdirSync(__dirname + '/modules/').forEach(function(file) {
 });
 
 var bot = linebot({
-	channelId: "1568211787",
-	channelSecret: "9848b4e4a814dd07e84212da82bad4a3",
-	channelAccessToken: "68lsiTjqwl30Ff6Ik5NH7KYW4FGyRsZYV+NZcVsS85CU3o+QaiLETQNZgaZwYNKkdX71iUjw4pz1OfJCkJeovBzfvF2Eoit0anKv9/Mxxd6OEY06r20Ad6Lxi3rdadSKqE8khBgJZUYxQDbLndtoBQdB04t89/1O/w1cDnyilFU=",
-	verify: true
+	channelId: process.env.LINE_CHANNEL_ID,
+	channelSecret: process.env.LINE_CHANNEL_SECRET,
+	channelAccechannelAccessToken: process.env.LINE_CHANNEL_ACCESSTOKEN,
 });
 
 var app = express();
@@ -25,18 +24,29 @@ var server = app.listen(process.env.PORT || 8080, function() {
 	console.log("基本運轉似乎沒問題");
 });
 
+var battle = 0;
+
 bot.on('message', function(event) {
 	var msg = event.message.text;
 	var rply;
 	
 	event.source.profile().then(function (profile) {
 		if(event.message.type == 'text'){
-			rply = exports.analytics.parseInput(msg, event.source.userId, profile.displayName);
-			
+			if(battle == 1){
+				if(event.message.text=='強制終止戰鬥'){
+					battle = 0;
+					rply = '戰鬥被強制終止了';
+					
+				}else{
+					rply = exports.battle.report();
+				}
+			}else{
+				rply = exports.analytics.parseInput(msg, event.source.userId, profile.displayName);
+			}
 			event.reply(rply).then(function (data) {
-				  // success
-				}).catch(function (error) {
-				  // error
+					  // success
+					}).catch(function (error) {
+					  // error
 			});
 		}
 	});
