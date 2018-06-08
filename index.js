@@ -38,7 +38,7 @@ bot.on('message', function(event) {
 					rply = '戰鬥被強制終止了';
 					
 				}else{
-					rply = exports.battle.report();
+					rply = exports.battle.report(msg, event.source.userId, profile.displayName);
 				}
 			}else{
 				rply = exports.analytics.parseInput(msg, event.source.userId, profile.displayName);
