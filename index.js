@@ -1,6 +1,8 @@
 var linebot = require('linebot');
  
-var bot = linebot({
+console.log('斷');
+
+/*var bot = linebot({
   channelId: process.env.LINE_CHANNEL_ID,
   channelSecret: process.env.LINE_CHANNEL_SECRET,
   channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN
@@ -13,3 +15,4 @@ bot.on('message', function (event) {
     // error
   });
 });
+*/
