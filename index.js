@@ -30,4 +30,5 @@ bot.on('message', function(event) {
 			console.log('error');
 		});
 	}
+	bot.push(event.source.userId, 'Wry!!!');
 });
