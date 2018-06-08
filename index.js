@@ -27,28 +27,17 @@ var server = app.listen(process.env.PORT || 8080, function() {
 
 bot.on('message', function(event) {
 	var msg = event.message.text;
+	var rply;
 	
 	event.source.profile().then(function (profile) {
-		let msgSplitor = (/\S+/ig);	
-		let mainMsg = msg.match(msgSplitor); //定義輸入字串
-		let trigger = mainMsg[0].toString().toLowerCase(); //指定啟動詞在第一個詞&把大階強制轉成細階
-		
-		var rply = null;
-		var UserN = profile.displayName;
-		
-		if(mainMsg[0] == '鸚鵡測試'){
-			if(mainMsg[1] == null){
-				rply = UserN + '你啥都沒說啊...';
-			}else{
-				rply = UserN + '你剛剛說了：' + mainMsg[1];
-			}
+		if(event.message.type == 'text'){
+			rply = exports.analytics.parseInput(msg, event.source.userId, profile.displayName);
+			
 			event.reply(rply).then(function (data) {
 				  // success
 				}).catch(function (error) {
 				  // error
-				});	
-		
-		}else if(mainMsg[0] == '主動對話測試'){
+			});
 		}
 	});
 
