@@ -1,5 +1,11 @@
 var linebot = require('linebot');
 var express = require('express');
+require('fs').readdirSync(__dirname + '/modules/').forEach(function(file) {
+  if (file.match(/\.js$/) !== null && file !== 'index.js') {
+    var name = file.replace('.js', '');
+    exports[name] = require('./modules/' + file);
+  }
+});
 
 var bot = linebot({
 	channelId: "1568211787",
@@ -36,13 +42,14 @@ bot.on('message', function(event) {
 			}else{
 				rply = UserN + '你剛剛說了：' + mainMsg[1];
 			}
-		}
-		event.reply(rply).then(function (data) {
-			  // success
-			}).catch(function (error) {
-			  // error
-			});
+			event.reply(rply).then(function (data) {
+				  // success
+				}).catch(function (error) {
+				  // error
+				});	
 		
+		}else if(mainMsg[0] == '主動對話測試'){
+		}
 	});
 
 });
