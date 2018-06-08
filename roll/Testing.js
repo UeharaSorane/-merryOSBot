@@ -1,8 +1,16 @@
 var rply = [];
+var linebot = require('linebot');
+var express = require('express');
+
+var bot = linebot({
+	channelId: process.env.LINE_CHANNEL_ID,
+	channelSecret: process.env.LINE_CHANNEL_SECRET,
+	channelAccechannelAccessToken: process.env.LINE_CHANNEL_ACCESSTOKEN,
+});
 
 function ReplyTest(UserN,myText) {
 	///確認系統reply功能沒問題用
-	rply[0] = 'reply';
+	rply[0] = 'text';
       
 	if(myText == null){
 		rply[1] = UserN + '\n你啥都沒說啊...';
@@ -17,13 +25,10 @@ function ReplyTest(UserN,myText) {
 }
 
 
-function PushTest(UserN) {
-	///確認系統reply功能沒問題用
-	rply[0] = 'push';
-      
-	rply[1] ='你在大聲什麼啦!!!!!' +  UserN;
+function PushTest(UserID) {
+	///確認系統push功能沒問題用
 				
-	return rply;
+	bot.push(UserID,'你在大聲什麼啦？');
 	
 	///
 
