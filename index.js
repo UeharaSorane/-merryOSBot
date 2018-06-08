@@ -4,7 +4,8 @@ var express = require('express');
 var bot = linebot({
 	channelId: process.env.LINE_CHANNEL_ID,
 	channelSecret: process.env.LINE_CHANNEL_SECRET,
-	channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN
+	channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN,
+	verify: true
 });
 
 var app = express();
