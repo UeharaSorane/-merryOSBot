@@ -22,7 +22,7 @@ bot.on('message', function(event) {
 	console.log(event.message.text); //把收到訊息的 event 印出來看看
 	
 	var mytText = event.source.profile();
-	console.log(mytText);
+	console.log(mytText.displayName);
 	
 	
 	event.reply('Hello, world').then(function (data) {
