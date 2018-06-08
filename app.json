@@ -4,6 +4,9 @@
 	"repository": "https://github.com/UeharaSorane/-merryOSBot.gitt",
 	"keywords": ["Line Bot", "TRPG"],
 	"env": {
+		"LINE_CHANNEL_ID": {
+			"description":"LINE_Channel_ID"
+		},
 		"LINE_CHANNEL_SECRET": {
 			"description":"LINE_Channel_Secret"
 		},
