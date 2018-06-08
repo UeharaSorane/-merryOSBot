@@ -30,7 +30,7 @@ function parseInput(inputStr,UserID,UserN) {
 ////////////////////////開始戰鬥////////////////////////
 ///////////////////////////////////////////////////////
 	console.log(battle);
-	return battle;
+	return '測試';
 }
 
 function battleON(FightInfo){
