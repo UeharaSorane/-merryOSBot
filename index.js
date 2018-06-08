@@ -21,8 +21,9 @@ var server = app.listen(process.env.PORT || 8080, function() {
 bot.on('message', function(event) {
 	console.log(event.message.text); //把收到訊息的 event 印出來看看
 	
-	var mytText = event.source.profile();
-	console.log(mytText.displayName);
+	event.source.profile().then(function (profile) {
+		console.log(profile.displayName);
+	});
 	
 	
 	event.reply('Hello, world').then(function (data) {
