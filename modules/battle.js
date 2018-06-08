@@ -35,7 +35,7 @@ function parseInput(inputStr,UserID,UserN) {
 
 function battleON(FightInfo){
 	battle = '戰鬥模式啟動';
-	
+	console.log(battle);
 	if(FightInfo[0] == 0){
 		bot.push(FightInfo[2],battle);
 	}else{
