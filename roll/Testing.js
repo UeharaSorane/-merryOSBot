@@ -17,7 +17,7 @@ function ReplyTest(UserN,myText) {
 	}else{
 		rply[1] = UserN + '你剛剛說了：' + myText;
 	}
-				
+	console.log(rply);		
 	return rply;
 	
 	///
