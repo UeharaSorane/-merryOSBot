@@ -31,24 +31,26 @@ bot.on('message', function(event) {
 	var rply;
 	
 		if(event.message.type == 'text'){
-			if(battle == 1){
-				if(event.message.text=='強制終止戰鬥'){
-					battle = 0;
-					rply = '戰鬥被強制終止了';
-					
-				}else{
-					rply = exports.battle.parseInput(msg, event.source.userId, profile.displayName);
-				}
-			}else{
-				rply = exports.analytics.parseInput(msg, event.source.userId, profile.displayName);
-				console.log(profile.displayName);
-			}
-			event.reply(rply[1]).then(function (data) {
-				  // success
-				}).catch(function (error) {
-				  // error
-			});
-		}
-	});
+			event.source.profile().then(function (profile) {
+				if(battle == 1){
+					if(event.message.text=='強制終止戰鬥'){
+						battle = 0;
+						rply = '戰鬥被強制終止了';
 
+					}else{
+						rply = exports.battle.parseInput(msg, event.source.userId, profile.displayName);
+					}
+				}else{
+					rply = exports.analytics.parseInput(msg, event.source.userId, profile.displayName);
+					console.log(profile.displayName);
+				}
+				event.reply(rply[1]).then(function (data) {
+					  // success
+					}).catch(function (error) {
+					  // error
+				});
+				
+			});
+			
+		}
 }
