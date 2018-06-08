@@ -15,7 +15,10 @@ var bot = linebot({
 
 
 var battle;
+var info = [];
 var rply = [];
+
+var timer1,timer2;
 
 function parseInput(inputStr,UserID,UserN) {
 	//console.log('InputStr: ' + inputStr);
@@ -38,6 +41,8 @@ function parseInput(inputStr,UserID,UserN) {
 function battleON(FightInfo){
 	battle = '戰鬥模式啟動';
 	console.log(battle);
+	info = FightInfo;
+	
 	if(FightInfo[0] == 0){
 		bot.push(FightInfo[2],battle);
 	}else{
