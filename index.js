@@ -25,9 +25,9 @@ bot.on('message', function(event) {
 		var UserInformation;
 		
 		event.source.profile().then(function (profile) {
-			 UserInformation = profile.displayName;
+			UserInformation = profile.displayName;
+			console.log(UserInformation);
 		});
-		console.log(UserInformation);
 		
 		
 		event.reply(msg).then(function(data) {
