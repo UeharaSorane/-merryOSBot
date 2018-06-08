@@ -25,11 +25,14 @@ function ReplyTest(UserN,myText) {
 }
 
 
-function PushTest(UserID) {
+function PushTest(UserID,GroupID) {
 	///確認系統push功能沒問題用
-				
-	bot.push('Ca06e35d5eefc0162348764ce8bdb52b5','你在大聲什麼啦？');
 	
+	if(GroupID != null){
+		bot.push(GroupID,'你在大聲什麼啦？');
+	}else{
+		bot.push(UserID,'你在大聲什麼啦？');
+	}
 	///
 
 }
