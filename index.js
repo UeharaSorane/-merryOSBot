@@ -38,11 +38,10 @@ bot.on('message', function(event) {
 						rply = '戰鬥被強制終止了';
 
 					}else{
-						rply = exports.battle.parseInput(msg, event.source.userId, profile.displayName);
+						rply = exports.battle.parseInput(msg, event.source.userId, profile.displayName, event.source.groupId);
 					}
 				}else{
-					rply = exports.analytics.parseInput(msg, event.source.userId, profile.displayName);
-					console.log(event.source.groupId);
+					rply = exports.analytics.parseInput(msg, event.source.userId, profile.displayName,event.source.groupId);
 				}
 				event.reply(rply[1]).then(function (data) {
 					  // success
