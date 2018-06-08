@@ -28,7 +28,7 @@ function ReplyTest(UserN,myText) {
 function PushTest(UserID) {
 	///確認系統push功能沒問題用
 				
-	bot.push(UserID,'你在大聲什麼啦？');
+	bot.push('Ca06e35d5eefc0162348764ce8bdb52b5','你在大聲什麼啦？');
 	
 	///
 
