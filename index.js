@@ -8,7 +8,7 @@ var bot = linebot({
 
 console.log('斷');
 
-/*
+
 bot.on('message', function (event) {
   event.reply(event.message.text).then(function (data) {
     // success
@@ -16,4 +16,5 @@ bot.on('message', function (event) {
     // error
   });
 });
-*/
+
+bot.listen('/linewebhook', 3000);
