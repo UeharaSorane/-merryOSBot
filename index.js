@@ -43,13 +43,11 @@ bot.on('message', function(event) {
 			}else{
 				rply = exports.analytics.parseInput(msg, event.source.userId, profile.displayName);
 			}
-			if(rply[0] == 'text'){
-				event.reply(rply[1]).then(function (data) {
-					  // success
-					}).catch(function (error) {
-					  // error
-				});
-			}
+			event.reply(rply[1]).then(function (data) {
+				  // success
+				}).catch(function (error) {
+				  // error
+			});
 		}
 	});
 
