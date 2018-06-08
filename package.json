@@ -1,0 +1,22 @@
+{
+  "name": "Sorane",
+  "version": "1.0.0",
+  "description": "A TRPG Line Bot",
+  "engines": {
+    "node": "6.9.1"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "4.13.3",
+    "body-parser": "1.15.2",
+    "google-spreadsheet": "2.0.3"
+  },
+  "keywords": [
+    "Sorane",
+    "Line"
+  ],
+  "license": "MIT"
+}
