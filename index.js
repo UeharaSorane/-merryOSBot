@@ -23,6 +23,9 @@ bot.on('message', function(event) {
 	event.source.profile().then(function (profile) {
 		console.log(profile);
 		if (event.message.type = 'text') {
+			var msg = profile.displayName + '說：\
+				\n「' + event.message.type + '」';
+			
 			event.reply(msg).then(function(data) {
 				// success 
 				console.log(msg);
