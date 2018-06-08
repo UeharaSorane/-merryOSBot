@@ -20,13 +20,14 @@ var server = app.listen(process.env.PORT || 8080, function() {
 });
 
 bot.on('message', function(event) {
-	if(event.message.type == 'text') {
-		console.log(event.message.text); //把收到訊息的 event 印出來看看
-		event.reply('Hello, world').then(function (data) {
-			// success
-		}).catch(function (error) {
-			// error
+	if (event.message.type = 'text') {
+		var msg = event.message.text;
+		event.reply(msg).then(function(data) {
+			// success 
+			console.log(msg);
+		}).catch(function(error) {
+			// error 
+			console.log('error');
 		});
-		
 	}
 });
