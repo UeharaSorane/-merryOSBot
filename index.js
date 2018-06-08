@@ -21,7 +21,12 @@ var server = app.listen(process.env.PORT || 8080, function() {
 
 bot.on('message', function(event) {
 	if (event.message.type = 'text') {
-		var msg = event.message.text;
+		var msg = event.message;
+		
+		var UserInformation = event.source.profile();
+		console.log(UserInformation);
+		
+		
 		event.reply(msg).then(function(data) {
 			// success 
 			console.log(msg);
