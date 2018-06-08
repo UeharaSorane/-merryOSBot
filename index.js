@@ -19,18 +19,13 @@ var server = app.listen(process.env.PORT || 8080, function() {
 });
 
 bot.on('message', function(event) {
-	console.log(event.message.text); //把收到訊息的 event 印出來看看
-	
-	event.source.profile().then(function (profile) {
-		console.log(profile.displayName);
-	});
-	
-	
-	event.reply('Hello, world').then(function (data) {
-	  // success
-	}).catch(function (error) {
-	  // error
-	});
-  
-  
+	if(event.message.type == 'text') {
+		console.log(event.message.text); //把收到訊息的 event 印出來看看
+		event.reply('Hello, world').then(function (data) {
+			// success
+		}).catch(function (error) {
+			// error
+		});
+		
+	}
 });
