@@ -20,19 +20,17 @@ var server = app.listen(process.env.PORT || 8080, function() {
 });
 
 bot.on('message', function(event) {
-	if (event.message.type = 'text') {
-		var msg = event.message;
-		var UserInformation = bot.getUserProfile(event.source.userId).displayName;
-		console.log(UserInformation);
-		
-		
-		event.reply(msg).then(function(data) {
-			// success 
-			console.log(msg);
-		}).catch(function(error) {
-			// error 
-			console.log('error');
-		});
-	}
-	bot.push(event.source.userId, 'Wry!!!');
+	event.source.profile().then(function (profile) {
+		console.log(profile);
+		if (event.message.type = 'text') {
+			event.reply(msg).then(function(data) {
+				// success 
+				console.log(msg);
+			}).catch(function(error) {
+				// error 
+				console.log('error');
+			});
+		}
+	});
+
 });
