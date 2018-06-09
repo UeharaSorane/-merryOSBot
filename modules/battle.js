@@ -1,7 +1,7 @@
 require('fs').readdirSync('./roll/').forEach(function(file) {
 	if (file.match(/\.js$/) !== null && file !== 'index.js') {
 	  var name = file.replace('.js', '');
-	  exports[name] = require('../roll/' + file);
+	  exports[name] = require('../battlesys/' + file);
 	}
 });
 var linebot = require('linebot');
@@ -38,9 +38,17 @@ function parseInput(inputStr,UserID,UserN) {
 ///////////////////////////////////////////////////////
 ////////////////////////開始戰鬥////////////////////////
 ///////////////////////////////////////////////////////
+	
+////////////////////////管理用指令
+	if (trigger.match(/^強制終止戰鬥$/) != null) return battleOff();//強制終止戰鬥
+////////////////////////
+	
+	
+////////////////////////無效指令時，直接回覆戰況
 	rply[0] = 'text';
 	rply[1] = battle;
 	return rply;
+////////////////////////
 }
 
 function battleON(FightInfo){
