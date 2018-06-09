@@ -11,7 +11,7 @@ var bot = linebot({
 
 function ReplyTest(UserN,myText) {
 	///確認系統reply功能沒問題用
-	rply[0] = 'text';
+	rply[0] = 'rply';
       
 	if(myText == null){
 		rply[1] = UserN + '\n你啥都沒說啊...';
@@ -28,6 +28,7 @@ function ReplyTest(UserN,myText) {
 
 function PushTest(UserID,GroupID) {
 	///確認系統push功能沒問題用
+	rply[0] = 'push';
 	
 	if(GroupID != null){
 		bot.push(GroupID,'你在大聲什麼啦？');
