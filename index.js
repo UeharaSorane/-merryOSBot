@@ -33,12 +33,9 @@ bot.on('message', function(event) {
 		if(event.message.type == 'text'){
 			event.source.profile().then(function (profile) {
 				if(battle == 1){
-					if(event.message.text=='強制終止戰鬥'){
+					rply = exports.battle.parseInput(msg, event.source.userId, profile.displayName, event.source.groupId);
+					if(rply[0] == 'battleOff'){
 						battle = 0;
-						rply[1] = '戰鬥被強制終止了';
-
-					}else{
-						rply = exports.battle.parseInput(msg, event.source.userId, profile.displayName, event.source.groupId);
 					}
 				}else{
 					rply = exports.analytics.parseInput(msg, event.source.userId, profile.displayName,event.source.groupId);
