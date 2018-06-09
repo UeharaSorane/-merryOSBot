@@ -17,7 +17,7 @@ var bot = linebot({
 var battle;
 var info = [];
 
-info[0] = = 0;//是否在群組內遊玩
+info[0] = 0;//是否在群組內遊玩
 info[1] = 0;//群組ID
 info[2] = 0;//玩家1的ID
 
