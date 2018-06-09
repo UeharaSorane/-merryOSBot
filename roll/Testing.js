@@ -40,7 +40,7 @@ function PushTest(UserID,GroupID) {
 
 }
 
-function SimBattle(UserID,GroupID){
+function SimBattle(UserID,GroupID,UserN){
 	var FightInfo = [];
 	
 	FightInfo[0] = 0;//是否在群組內遊玩
@@ -65,6 +65,12 @@ function SimBattle(UserID,GroupID){
 	FightInfo[8] = 10;//電腦的Atk
 	
 	FightInfo[9] = 0;//經過回合數
+
+	FightInfo[16] = UserN;//玩家1的line名稱
+	FightInfo[17] = '測試用玩家';//玩家1的腳色名稱
+	
+	FightInfo[18] = 0;//戰鬥類型
+	FightInfo[19] = '測試用電腦';//電腦的腳色名稱
 	
 	battle.battleON(FightInfo);
 	
