@@ -45,7 +45,7 @@ function parseInput(inputStr,UserID,UserN) {
 	
 	
 ////////////////////////無效指令時，直接回覆戰況
-	rply[0] = 'text';
+	rply[0] = 'rply';
 	rply[1] = battle;
 	return rply;
 ////////////////////////
