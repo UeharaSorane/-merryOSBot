@@ -61,14 +61,14 @@ function battleON(FightInfo){
 	}else{
 		bot.push(FightInfo[1],battle);
 	}
-	
+	rply[0] = 'push';
+	return rply;
 }
 
 
 function battleOff(){
 	battle = '戰鬥模式關閉';
 	console.log(battle);
-	info = FightInfo;
 	
 	if(info[0] == 0){
 		bot.push(info[2],battle);
