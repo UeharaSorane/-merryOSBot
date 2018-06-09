@@ -44,6 +44,7 @@ bot.on('message', function(event) {
 					}
 				}
 				
+				console.log(rply[0]);
 				if(rply[0] == 'rply'){
 					event.reply(rply[1]).then(function (data) {
 					  // success
