@@ -132,18 +132,14 @@ function battlesys(command){
 				battle += '|';
 			}
 			
-			battle += info[10] + '/' + info[3] +'(' + info[10]/info[3]*100 + '\
-
-			\nMp:';
+			battle += info[10] + '/' + info[3] +'(' + info[10]/info[3]*100 + ')\nMp:';
 			
 			var Pmpbar = info[12]/info[5]*20;
 			for(var i = 0;i<Pmpbar;i++){
 				battle += '|';
 			}
 		
-			battle += info[12] + '/' + info[5] +'(' + info[12]/info[5]*100 + '\
-
-			\nAtk:' + info[14] + '=======VS=======\
+			battle += info[12] + '/' + info[5] +'(' + info[12]/info[5]*100 + ')\nAtk:' + info[14] + '=======VS=======\
 			\n電腦腳色名:' + info[19] + '\
 			\nHp:';
 			var Chpbar = info[11]/info[4]*20;
@@ -151,17 +147,14 @@ function battlesys(command){
 				battle += '|';
 			}
 			
-			battle += info[11] + '/' + info[4] +'(' + info[11]/info[4]*100 + '\
-
-			\nMp:';
+			battle += info[11] + '/' + info[4] +'(' + info[11]/info[4]*100 + ')\nMp:';
 			
 			var Cmpbar = info[13]/info[6]*20;
 			for(var i = 0;i<Cmpbar;i++){
 				battle += '|';
 			}
 			
-			battle += info[13] + '/' + info[6] +'(' + info[13]/info[6]*100 + '\
-			\nAtk:' + info[15];
+			battle += info[13] + '/' + info[6] +'(' + info[13]/info[6]*100 + ')\nAtk:' + info[15];
 			
 			
 			
