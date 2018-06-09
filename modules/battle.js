@@ -122,7 +122,7 @@ function battlesys(command){
 			info[14] = info[7];
 			info[15] = info[8];
 			
-			battle = '[測試戰鬥進行中]\
+			battle = '[測試戰鬥進行中] 回合數:' + info[9] + '\
 			\n玩家名:' + info[16] + '\
 			\n玩家腳色名:' + info[17] + '\
 			\nHp:[';
@@ -135,7 +135,7 @@ function battlesys(command){
 				battle += ' ';
 			}
 			
-			battle += ']' + info[10] + '/' + info[3] +'(' + Math.ceil(info[10]/info[3]*100) + ')\nMp:[';
+			battle += ']' + info[10] + '/' + info[3] +'(' + Math.ceil(info[10]/info[3]*100) + '%)\nMp:[';
 			
 			var Pmpbar = info[12]/info[5]*20;
 			for(var i = 0;i<Pmpbar;i++){
@@ -146,7 +146,7 @@ function battlesys(command){
 				battle += ' ';
 			}
 		
-			battle += ']' + info[12] + '/' + info[5] +'(' + Math.ceil(info[12]/info[5]*100) + ')\nAtk:' + info[14] + '\n=======VS=======\
+			battle += ']' + info[12] + '/' + info[5] +'(' + Math.ceil(info[12]/info[5]*100) + '%)\nAtk:' + info[14] + '\n=======VS=======\
 			\n電腦腳色名:' + info[19] + '\
 			\nHp:[';
 			var Chpbar = info[11]/info[4]*20;
@@ -158,7 +158,7 @@ function battlesys(command){
 				battle += ' ';
 			}
 			
-			battle += ']' + info[11] + '/' + info[4] +'(' + Math.ceil(info[11]/info[4]*100) + ')\nMp:[';
+			battle += ']' + info[11] + '/' + info[4] +'(' + Math.ceil(info[11]/info[4]*100) + '%)\nMp:[';
 			
 			var Cmpbar = info[13]/info[6]*20;
 			for(var i = 0;i<Cmpbar;i++){
@@ -169,7 +169,7 @@ function battlesys(command){
 				battle += ' ';
 			}
 			
-			battle += ']' + info[13] + '/' + info[6] +'(' + Math.ceil(info[13]/info[6]*100) + ')\nAtk:' + info[15];
+			battle += ']' + info[13] + '/' + info[6] +'(' + Math.ceil(info[13]/info[6]*100) + '%)\nAtk:' + info[15];
 			
 			
 			
