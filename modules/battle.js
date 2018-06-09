@@ -16,6 +16,11 @@ var bot = linebot({
 
 var battle;
 var info = [];
+
+info[0] = = 0;//是否在群組內遊玩
+info[1] = 0;//群組ID
+info[2] = 0;//玩家1的ID
+
 var rply = [];
 
 var timer1,timer2;
@@ -51,7 +56,26 @@ function battleON(FightInfo){
 	
 }
 
+
+function battleOff(){
+	battle = '戰鬥模式關閉';
+	console.log(battle);
+	info = FightInfo;
+	
+	if(info[0] == 0){
+		bot.push(info[2],battle);
+	}else{
+		bot.push(info[1],battle);
+	}
+	
+	rply[0] = 'battleOff';
+	rply[1] = '戰鬥系統關閉';
+	return rply;
+	
+}
+
 module.exports = {
 	parseInput:parseInput,
-	battleON
+	battleON,
+	battleOff
 };
