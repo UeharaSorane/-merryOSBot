@@ -55,6 +55,16 @@ function SimBattle(UserID,GroupID){
 	}
 	
 	FightInfo[2] = UserID;
+	FightInfo[3] = 10;//玩家1的Hp
+	FightInfo[4] = 10;//電腦的Hp
+
+	FightInfo[5] = 10;//玩家1的Mp
+	FightInfo[6] = 10;//電腦的Mp
+
+	FightInfo[7] = 10;//玩家1的Atk
+	FightInfo[8] = 10;//電腦的Atk
+	
+	FightInfo[9] = 0;//經過回合數
 	
 	battle.battleON(FightInfo);
 	
