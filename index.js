@@ -43,11 +43,14 @@ bot.on('message', function(event) {
 						battle = 1;
 					}
 				}
-				event.reply(rply[1]).then(function (data) {
+				
+				if(rply[0] == 'rply'){
+					event.reply(rply[1]).then(function (data) {
 					  // success
 					}).catch(function (error) {
 					  // error
 				});
+				}
 				
 			});
 			
