@@ -132,7 +132,7 @@ function battlesys(command){
 				battle += '|';
 			}
 			
-			battle += info[10] + '/' + info[3] +'(' + Math.ceil(info[10]/info[3]*100) + '%)\
+			battle += info[10] + '/' + info[3] +'(' + Math.ceil(info[10]/info[3]*100 + '%)\
 
 			\nMp:';
 			
@@ -141,7 +141,7 @@ function battlesys(command){
 				battle += '|';
 			}
 			
-			battle += info[12] + '/' + info[5] +'(' + Math.ceil(info[12]/info[5]*100) + '%)\
+			battle += info[12] + '/' + info[5] +'(' + Math.ceil(info[12]/info[5]*100 + '%)\
 
 			\nAtk:' + info[14] + '=======VS=======\
 			\n電腦腳色名:' + info[19] + '\
@@ -151,7 +151,7 @@ function battlesys(command){
 				battle += '|';
 			}
 			
-			battle += info[11] + '/' + info[4] +'(' + Math.ceil(info[11]/info[4]*100) + '%)\
+			battle += info[11] + '/' + info[4] +'(' + Math.ceil(info[11]/info[4]*100 + '%)\
 
 			\nMp:';
 			
@@ -160,7 +160,7 @@ function battlesys(command){
 				battle += '|';
 			}
 			
-			battle += info[13] + '/' + info[6] +'(' + Math.ceil(info[13]/info[6]*100) + '%)\
+			battle += info[13] + '/' + info[6] +'(' + Math.ceil(info[13]/info[6]*100 + '%)\
 			\nAtk:' + info[15];
 			
 			
