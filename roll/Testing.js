@@ -35,6 +35,8 @@ function PushTest(UserID,GroupID) {
 		bot.push(UserID,'你在大聲什麼啦？');
 	}
 	///
+	
+	return rply;
 
 }
 
