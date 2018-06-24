@@ -90,7 +90,7 @@ function battleON(FightInfo){
 
 	bot.push(info[1],battle);
 	
-	setTimeout(function(){battlesys('Move'); }, 2000);
+	setTimeout(function(){battlesys('MoveRequest'); }, 2000);
 
 }
 
