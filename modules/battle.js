@@ -5,7 +5,7 @@ require('fs').readdirSync('./roll/').forEach(function(file) {
 	}
 });
 var BattileUI = require('../battlesys/battleUI.js');
-var BattlrInfo = BattileUI.BattlrInfo;
+var BattleInfo = BattileUI.BattleInfo;
 
 var linebot = require('linebot');
 var express = require('express');
