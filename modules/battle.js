@@ -1,11 +1,7 @@
-require('fs').readdirSync('./roll/').forEach(function(file) {
-	if (file.match(/\.js$/) !== null && file !== 'index.js') {
-	  var name = file.replace('.js', '');
-	  exports[name] = require('../roll/' + file);
-	}
-});
 var BattileUI = require('../battlesys/battleUI.js');
 var BattleInfo = BattileUI.BattleInfo;
+
+var rollbase = require('../roll/rollbase.js');
 
 var linebot = require('linebot');
 var express = require('express');
@@ -32,6 +28,7 @@ info[5] = [];//當前Mp
 info[6] = 0;//經過回合數
 info[7] = 0;//戰鬥名稱
 info[8] = [];//團隊名稱
+info[9] = 0;//輪到誰行動
 
 ////////////////////////
 
@@ -79,6 +76,8 @@ function battleON(FightInfo){
 	battlesys('battleOn');
 
 	bot.push(info[1],battle);
+	
+	battlesys('Move');
 
 }
 
@@ -130,6 +129,7 @@ function battlesys(command){
 						}
 						
 						battle += '](' + info[4][j] + '/' + info[3][j].Mp + ')\n';
+						
 					}
 				}
 			}
@@ -138,6 +138,30 @@ function battlesys(command){
 		}
 			
 		
+	}else if(command == 'Move'){
+		if(info[3][info[9]].ID == 'c'){
+			var s = 1;
+			
+			for(var i = 0;i<3;i++){
+				if(info[3][info[9]].Skill[i] != '無') s++;
+			}
+			
+			var Cmove = rollbase.Dice(s);
+			
+		}else{
+			var say = '輪到' + info[3][info[9]].UName + '的行動了！\
+				\n你可以:\
+				\n 1.普攻\n';
+			
+			for(var i = 0;i<3;i++){
+				if(info[3][info[9]].Skill[i] != '無'){
+					say += i+1 + '.' + info[3][info[9]].Skill[i] + '\n';
+				}
+			}
+			
+			bot.push(info[1],say);
+			
+		}
 	}else if(command == 'battleOff'){
 		for(var i = 0;i<info.length;i++){
 			info[i] = 0;
