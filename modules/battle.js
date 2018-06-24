@@ -62,7 +62,7 @@ function parseInput(inputStr,UserID,UserN) {
 }
 
 function battleON(FightInfo){
-	console.log(FightInfo[3][0]);
+	console.log(FightInfo[3][0].Hp);
 	/*info[0] = FightInfo[0];
 	info[1] = FightInfo[1];
 	info[2] = FightInfo[2];
