@@ -204,7 +204,7 @@ function battlesys(command,move,target){
 			}
 			
 			say += '\n--------------------\
-				你可以攻擊的對象:\n';
+				\n你可以攻擊的對象:\n';
 			
 			for(var i = 0; i < info[3].length;i++){
 				if(info[3][i].Team != info[3][info[9]].Team){
@@ -234,7 +234,7 @@ function battlesys(command,move,target){
 	}else if(command == 'move'){
 		
 		if(move !=1){
-			if(info[3][info[9]].Skill[move-1] == '無'){
+			if(info[3][info[9]].Skill[move-1] == '無'|| move == null){
 				bot.push(info[1],'錯誤！無效動作');
 			}
 		}
