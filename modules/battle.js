@@ -78,9 +78,12 @@ function battleON(FightInfo){
 	
 	battlesys('battleOn');
 	
-	rply[0] = 'battleOn';
-	rply[1] = battle;
-	return rply;
+	if(info[0] == 0){
+		bot.push(info[2],'戰鬥模式關閉');
+	}else{
+		bot.push(info[1],'戰鬥模式關閉');
+	}
+
 }
 
 
@@ -89,9 +92,9 @@ function battleOff(){
 	console.log(battle);
 	
 	if(info[0] == 0){
-		bot.push(info[2],'戰鬥模式關閉');
+		bot.push(info[2],battle);
 	}else{
-		bot.push(info[1],'戰鬥模式關閉');
+		bot.push(info[1],battle);
 	}
 	
 	rply[0] = 'battleOff';
