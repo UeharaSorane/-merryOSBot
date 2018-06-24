@@ -264,7 +264,7 @@ function battlesys(command,move,target){
 	}else if(command == 'result'){
 		bot.push(info[1],'行動測試沒有問題');
 		info[9] = 0;
-		battlesys('MoveRequest');
+		setTimeout(function(){battlesys('MoveRequest'); }, 2000);
 	}else if(command == 'battleOff'){
 		for(var i = 0;i<info.length;i++){
 			info[i] = 0;
