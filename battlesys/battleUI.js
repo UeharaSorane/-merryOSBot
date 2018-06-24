@@ -22,3 +22,6 @@ var BattleInfo = function(ID,Name,Hp,Mp,Atk,Ability,WS,AS,BS,S1,S2,S3,MS,MStype,
 };
 
 
+module.exports = {
+	BattleInfo
+};
