@@ -105,12 +105,12 @@ function battlesys(command){
 				battle += '---團隊:' + info[8][i]  + '---\n';
 				
 				for(var j = 0;j < info[3].length;j++){
-					if(info[3][i].Team == info[8][i]){
-						battle += '玩家名:' + info[3][i].UName + '\
-							\n角色名:' + info[3][i].CName + '\
+					if(info[3][j].Team == info[8][i]){
+						battle += '玩家名:' + info[3][j].UName + '\
+							\n角色名:' + info[3][j].CName + '\
 							\nHp[';
 						
-						var HpP = info[4][i]/info[3][i].Hp*20;
+						var HpP = info[4][j]/info[3][j].Hp*20;
 						for(var k = 0; k < HpP;k++){
 							battle += '|';
 						}
@@ -118,10 +118,10 @@ function battlesys(command){
 							battle += ' ';
 						}
 						
-						battle += '(' + info[4][i] + '/' + info[3][i].Hp + ')\
+						battle += '](' + info[4][j] + '/' + info[3][j].Hp + ')\
 							\nMp[';
 						
-						var MpP = info[4][i]/info[3][i].Mp*20;
+						var MpP = info[4][j]/info[3][j].Mp*20;
 						for(var k = 0; k < MpP;k++){
 							battle += '|';
 						}
@@ -129,7 +129,7 @@ function battlesys(command){
 							battle += ' ';
 						}
 						
-						battle += '(' + info[4][i] + '/' + info[3][i].Mp + ')';
+						battle += '](' + info[4][j] + '/' + info[3][j].Mp + ')\n';
 					}
 				}
 			}
