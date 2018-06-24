@@ -151,27 +151,26 @@ function battlesys(command){
 					\n角色名:' + info[3][info[9]].CName + '\
 					\nHp[';
 						
-					var HpP = info[4][info[9]]/info[3][info[9]].Hp*20;
-					for(var k = 0; k < HpP;k++){
-						battle += '|';
-					}
-					for(var k = 0; k < 20-HpP;k++){
-						battle += ' ';
-					}
+			var HpP = info[4][info[9]]/info[3][info[9]].Hp*20;
+			for(var k = 0; k < HpP;k++){
+				battle += '|';
+			}
+			for(var k = 0; k < 20-HpP;k++){
+				battle += ' ';
+			}
 
-					battle += '](' + info[4][info[9]] + '/' + info[3][info[9]].Hp + ')\
-						\nMp[';
+			battle += '](' + info[4][info[9]] + '/' + info[3][info[9]].Hp + ')\
+				\nMp[';
+			
+			var MpP = info[4][info[9]]/info[3][info[9]].Mp*20;
+			for(var k = 0; k < MpP;k++){
+				battle += '|';
+			}
+			for(var k = 0; k < 20-MpP;k++){
+				battle += ' ';
+			}
 
-					var MpP = info[4][info[9]]/info[3][info[9]].Mp*20;
-					for(var k = 0; k < MpP;k++){
-						battle += '|';
-					}
-					for(var k = 0; k < 20-MpP;k++){
-						battle += ' ';
-					}
-
-					battle += '](' + info[4][info[9]] + '/' + info[3][info[9]].Mp + ')\
-
+			battle += '](' + info[4][info[9]] + '/' + info[3][info[9]].Mp + ')\
 					\n你可以:\
 					\n 1.普攻\n';
 			
@@ -181,7 +180,7 @@ function battlesys(command){
 				}
 			}
 			
-			say += '你可以攻擊的對象:';
+			say += '你可以攻擊的對象:\';
 			
 			for(var i = 0; i < info[3].length;i++){
 				if(info[3][i].Team != info[3][info[9]].Team){
