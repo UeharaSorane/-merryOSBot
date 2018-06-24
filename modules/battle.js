@@ -62,13 +62,13 @@ function parseInput(inputStr,UserID,UserN) {
 }
 
 function battleON(FightInfo){
-	console.log(FightInfo[3][0].Hp);
-	/*info[0] = FightInfo[0];
+	//console.log(FightInfo[3][0].Hp);
+	info[0] = FightInfo[0];
 	info[1] = FightInfo[1];
 	info[2] = FightInfo[2];
 	info[3] = FightInfo[3];
 	
-	for(var i = 0;i<=FightInfo[3].length;i++){
+	for(var i = 0;i<FightInfo[3].length;i++){
 		info[4][i] = FightInfo[3][i].Hp;
 		info[5][i] = FightInfo[3][i].Mp;
 	}
@@ -80,7 +80,7 @@ function battleON(FightInfo){
 	
 	rply[0] = 'battleOn';
 	rply[1] = battle;
-	return rply;*/
+	return rply;
 }
 
 
