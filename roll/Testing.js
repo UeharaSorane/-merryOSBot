@@ -58,8 +58,8 @@ function SimBattle(UserID,GroupID,UserN){
 	FightInfo[2] = 1;//戰鬥類型
 	
 	FightInfo[3] = [];//戰鬥員情報
-	FightInfo[3][1] = new BattleInfo(UserID,UserN,'測試用玩家','player',10,10,2,10,'無','無','無','無','無','無','無','無','無','無');
-	FightInfo[3][2] = new BattleInfo('C1','電腦','測試用電腦','computer',10,10,2,10,'無','無','無','無','無','無','無','無','無','無');
+	FightInfo[3][0] = new BattleInfo(UserID,UserN,'測試用玩家','player',10,10,2,10,'無','無','無','無','無','無','無','無','無','無');
+	FightInfo[3][1] = new BattleInfo('C1','電腦','測試用電腦','computer',10,10,2,10,'無','無','無','無','無','無','無','無','無','無');
 	
 	FightInfo[4] = '測試用戰鬥';//戰鬥名稱
 	
