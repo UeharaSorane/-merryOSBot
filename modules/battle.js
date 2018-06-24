@@ -29,6 +29,7 @@ info[6] = 0;//經過回合數
 info[7] = 0;//戰鬥名稱
 info[8] = [];//團隊名稱
 info[9] = 0;//輪到誰行動
+info[10] = [];//紀錄行動
 
 ////////////////////////
 
@@ -48,11 +49,22 @@ function parseInput(inputStr,UserID,UserN) {
 	}
 	////////////////
 	
+	////////////////戰鬥用指令
+	if (trigger.match(/^戰鬥$/) != null){
+		if(UserID == info[3][info[9]].ID){
+			battlesys('move',mainMsg[1],mainMsg[2]);
+			
+		}else{
+			rply[0] = 'rply';
+			rply[1] = '現在不是你行動喔';
+			return rply;
+		}
+	}
+	////////////////
 	
-	////////////////無效指令時，直接回覆戰況
+	////////////////無效指令時，無作用
 	else{
-		battlesys('Move');
-		rply[0] = 'push';
+		rply[0] = 'rply';
 		rply[1] = '';
 		return rply;
 	}
@@ -95,7 +107,7 @@ function battleOff(){
 ///////////////////////////////////////////////////////
 ////////////////////////戰鬥系統////////////////////////
 ///////////////////////////////////////////////////////
-function battlesys(command){
+function battlesys(command,move,target){
 	if(command == 'battleOn'){
 		/////通常對戰系統
 		if(info[2] == 1){
@@ -136,7 +148,7 @@ function battlesys(command){
 		}
 			
 		
-	}else if(command == 'Move'){
+	}else if(command == 'MoveRequest'){
 		if(info[3][info[9]].ID == 'c'){
 			var s = 1;
 			
@@ -145,6 +157,16 @@ function battlesys(command){
 			}
 			
 			var Cmove = rollbase.Dice(s);
+			
+			var w=0;
+			for(var i = 0; i < info[3].length;i++){
+				if(info[3][i].Team != info[3][info[9]].Team){
+					w++
+				}
+			}
+			var Ctarget = rollbase.Dice(w);
+			
+			battlesys('move',Cmove,info[3][info[9]].UN);
 			
 		}else{
 			var say = '輪到' + info[3][info[9]].UName + '的行動了！\
@@ -209,6 +231,33 @@ function battlesys(command){
 			bot.push(info[1],say);
 			
 		}
+	}else if(command == 'move'){
+		
+		if(move !=1){
+			if(info[3][info[9]].Skill[move-1] == '無'){
+				bot.push(info[1],'錯誤！無效動作');
+			}
+		}
+		
+		for(var i = 0;i<info[3].length;i++){
+			if(target == info[3][i].UName||target == info[3][i].CName){
+				info[10][info[9]] = [move,info[3][i].UName];
+
+				info[9]++;
+
+				if(info[9] == info[3].length){
+				}
+				
+				return 0;
+			}
+		}
+		
+		bot.push(info[1],'錯誤！無效對象');
+		
+	}else if(command == 'result'){
+		bot.push(info[1],'行動測試沒有問題');
+		info[9] = 0;
+		battlesys('Move');
 	}else if(command == 'battleOff'){
 		for(var i = 0;i<info.length;i++){
 			info[i] = 0;
