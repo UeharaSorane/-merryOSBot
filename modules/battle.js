@@ -153,24 +153,24 @@ function battlesys(command){
 						
 			var HpP = info[4][info[9]]/info[3][info[9]].Hp*20;
 			for(var k = 0; k < HpP;k++){
-				battle += '|';
+				say += '|';
 			}
 			for(var k = 0; k < 20-HpP;k++){
-				battle += ' ';
+				say += ' ';
 			}
 
-			battle += '](' + info[4][info[9]] + '/' + info[3][info[9]].Hp + ')\
+			say += '](' + info[4][info[9]] + '/' + info[3][info[9]].Hp + ')\
 				\nMp[';
 			
 			var MpP = info[4][info[9]]/info[3][info[9]].Mp*20;
 			for(var k = 0; k < MpP;k++){
-				battle += '|';
+				say += '|';
 			}
 			for(var k = 0; k < 20-MpP;k++){
-				battle += ' ';
+				say += ' ';
 			}
 
-			battle += '](' + info[4][info[9]] + '/' + info[3][info[9]].Mp + ')\
+			say += '](' + info[4][info[9]] + '/' + info[3][info[9]].Mp + ')\
 					\n你可以:\
 					\n 1.普攻\n';
 			
@@ -190,10 +190,10 @@ function battlesys(command){
 					
 					var HpP = info[4][i]/info[3][i].Hp*20;
 					for(var k = 0; k < HpP;k++){
-						battle += '|';
+						say += '|';
 					}
 					for(var k = 0; k < 20-HpP;k++){
-						battle += ' ';
+						say += ' ';
 					}
 					
 					say += ']\n\n';
