@@ -66,9 +66,6 @@ function SimBattle(UserID,GroupID,UserN){
 	FightInfo[5] = ['player','computer'];
 	
 	battle.battleON(FightInfo);
-	
-	rply[0] = 'battleOn';
-	return rply;
 }
 
 module.exports = {
