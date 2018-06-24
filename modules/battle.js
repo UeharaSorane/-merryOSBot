@@ -236,6 +236,8 @@ function battlesys(command,move,target){
 		if(move !=1){
 			if(info[3][info[9]].Skill[move-1] == '無'|| move == null){
 				bot.push(info[1],'錯誤！無效動作');
+				
+				return 0;
 			}
 		}
 		
