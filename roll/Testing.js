@@ -2,6 +2,7 @@ var rply = [];
 var linebot = require('linebot');
 var express = require('express');
 var battle = require('../modules/battle.js');
+var BattileUI = require('../battlesys/battleUI.js');
 
 var bot = linebot({
 	channelId: "1568211787",
@@ -45,7 +46,6 @@ function SimBattle(UserID,GroupID,UserN){
 	
 	FightInfo[0] = 0;//是否在群組內遊玩
 	FightInfo[1] = 0;//群組ID
-	FightInfo[2] = 0;//玩家1的ID
 	
 	if(GroupID != null){
 		FightInfo[0] = 1;
@@ -53,24 +53,12 @@ function SimBattle(UserID,GroupID,UserN){
 	}else{
 		FightInfo[0] = 0;
 	}
+	FightInfo[2] = 0;//戰鬥類型
 	
-	FightInfo[2] = UserID;
-	FightInfo[3] = 10;//玩家1的Hp
-	FightInfo[4] = 10;//電腦的Hp
-
-	FightInfo[5] = 10;//玩家1的Mp
-	FightInfo[6] = 10;//電腦的Mp
-
-	FightInfo[7] = 10;//玩家1的Atk
-	FightInfo[8] = 10;//電腦的Atk
+	FightInfo[3] = [];//戰鬥員情報
+	FightInfo[3][1] = new BattleInfo(UserID,UserN,'測試用玩家',10,10,10,10,'無','無','無','無','無','無','無','無','無','無');
+	FightInfo[3][2] = new BattleInfo('C1','電腦','測試用電腦',10,10,10,10,'無','無','無','無','無','無','無','無','無','無');
 	
-	FightInfo[9] = 0;//經過回合數
-
-	FightInfo[16] = UserN;//玩家1的line名稱
-	FightInfo[17] = '測試用玩家';//玩家1的腳色名稱
-	
-	FightInfo[18] = 0;//戰鬥類型
-	FightInfo[19] = '測試用電腦';//電腦的腳色名稱
 	
 	battle.battleON(FightInfo);
 	
