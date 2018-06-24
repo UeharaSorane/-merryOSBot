@@ -154,7 +154,7 @@ function battlesys(command){
 			
 			for(var i = 0;i<3;i++){
 				if(info[3][info[9]].Skill[i] != '無'){
-					say += i+1 + '.' + info[3][info[9]].Skill[i] + '\n';
+					say +=' ' +  (i+2) + '.' + info[3][info[9]].Skill[i] + '\n';
 				}
 			}
 			
