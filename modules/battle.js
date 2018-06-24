@@ -76,6 +76,8 @@ function battleON(FightInfo){
 	battlesys('battleOn');
 
 	bot.push(info[1],battle);
+	
+	setTimeout(function(){battlesys('Move'); }, 2000);
 
 }
 
@@ -130,8 +132,6 @@ function battlesys(command){
 					}
 				}
 			}
-			
-			battlesys('Move');
 		}
 			
 		
