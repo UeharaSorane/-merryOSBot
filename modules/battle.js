@@ -127,14 +127,11 @@ function battlesys(command){
 						}
 						
 						battle += '](' + info[4][j] + '/' + info[3][j].Mp + ')\n';
-						
-						battlesys('Move')
-						
 					}
 				}
 			}
 			
-			
+			battlesys('Move');
 		}
 			
 		
