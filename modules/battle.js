@@ -4,6 +4,8 @@ require('fs').readdirSync('./roll/').forEach(function(file) {
 	  exports[name] = require('../roll/' + file);
 	}
 });
+var BattileUI = require('../battlesys/battleUI.js');
+
 var linebot = require('linebot');
 var express = require('express');
 
@@ -20,34 +22,16 @@ var info = [];
 
 info[0] = 0;//是否在群組內遊玩
 info[1] = 0;//群組ID
-info[2] = 0;//玩家1的ID
+info[2] = 0;//戰鬥類型
 
-info[3] = 0;//玩家1的Hp
-info[4] = 0;//電腦的Hp
+info[3] = [];//戰鬥員資料
+info[4] = [];//當前Hp
+info[5] = [];//當前Mp
 
-info[5] = 0;//玩家1的Mp
-info[6] = 0;//電腦的Mp
+info[6] = 0;//經過回合數
+info[7] = 0;//戰鬥名稱
+info[8] = [];//團隊名稱
 
-info[7] = 0;//玩家1的Atk
-info[8] = 0;//電腦的Atk
-
-info[9] = 0;//經過回合數
-
-info[10] = 0;//玩家1的當前Hp
-info[11] = 0;//電腦的當前Hp
-
-info[12] = 0;//玩家1的當前Mp
-info[13] = 0;//電腦的當前Mp
-
-info[14] = 0;//玩家1的當前Atk
-info[15] = 0;//電腦的當前Atk
-
-info[16] = 0;//玩家1的line名稱
-info[17] = 0;//玩家1的腳色名稱
-
-info[18] = 0;//戰鬥類型
-
-info[19] = 0;//電腦的腳色名稱
 ////////////////////////
 
 function parseInput(inputStr,UserID,UserN) {
@@ -77,12 +61,19 @@ function parseInput(inputStr,UserID,UserN) {
 }
 
 function battleON(FightInfo){
-	info = FightInfo;
-	if(FightInfo[0] == 0){
-		bot.push(FightInfo[2],'戰鬥模式啟動');
-	}else{
-		bot.push(FightInfo[1],'戰鬥模式啟動');
+	info[0] = FightInfo[0];
+	info[1] = FightInfo[1];
+	info[2] = FightInfo[2];
+	info[3] = FightInfo[3];
+	
+	for(var i = 0;i<=FightInfo[3].length;i++){
+		info[4][i] = FightInfo[3][i].Hp;
+		info[5][i] = FightInfo[3][i].Mp;
 	}
+	
+	info[7] = FightInfo[4];
+	info[8] = FightInfo[5];
+	
 	battlesys('battleOn');
 	
 	rply[0] = 'battleOn';
@@ -112,68 +103,46 @@ function battleOff(){
 ///////////////////////////////////////////////////////
 function battlesys(command){
 	if(command == 'battleOn'){
-		if(info[18] == 0){
-			info[10] = 7;
-			info[11] = info[4];
-
-			info[12] = info[5];
-			info[13] = info[6];
-
-			info[14] = info[7];
-			info[15] = info[8];
+		/////通常對戰系統
+		if(info[2] == 1){
+			battle = '[' + info[7] + '開始] 經過回合數:' + info[6] + '\n';
 			
-			battle = '[測試戰鬥進行中] 回合數:' + info[9] + '\
-			\n玩家名:' + info[16] + '\
-			\n玩家腳色名:' + info[17] + '\
-			\nHp:[';
-			var Phpbar = info[10]/info[3]*20;
-			for(var i = 0;i<Phpbar;i++){
-				battle += '|';
+			for(var i = 0; i < info[8].length;i++){
+				battle += '---團隊:' + info[8][i]  + '---\n';
+				
+				for(var j = 0;j < info[3].length;j++){
+					if(info[3][i].Team == info[8][i]){
+						battle += '玩家名:' + info[3][i].UName + '\
+							\n角色名:' + info[3][i].CName + '\
+							\nHp[';
+						
+						var HpP = info[4][i]/info[3][i].Hp*20;
+						for(var k = 0; k < HpP;k++){
+							battle += '|';
+						}
+						for(var k = 0; k < 20-HpP;k++){
+							battle += ' ';
+						}
+						
+						battle += '(' + info[4][i] + '/' + info[3][i].Hp + ')\
+							\nMp[';
+						
+						var MpP = info[4][i]/info[3][i].Mp*20;
+						for(var k = 0; k < MpP;k++){
+							battle += '|';
+						}
+						for(var k = 0; k < 20-MpP;k++){
+							battle += ' ';
+						}
+						
+						battle += '(' + info[4][i] + '/' + info[3][i].Mp + ')';
+					}
+				}
 			}
-			
-			for(var i = 0;i<20-Phpbar;i++){
-				battle += ' ';
-			}
-			
-			battle += ']' + info[10] + '/' + info[3] +'(' + Math.ceil(info[10]/info[3]*100) + '%)\nMp:[';
-			
-			var Pmpbar = info[12]/info[5]*20;
-			for(var i = 0;i<Pmpbar;i++){
-				battle += '|';
-			}
-			
-			for(var i = 0;i<20-Pmpbar;i++){
-				battle += ' ';
-			}
-		
-			battle += ']' + info[12] + '/' + info[5] +'(' + Math.ceil(info[12]/info[5]*100) + '%)\nAtk:' + info[14] + '\n=======VS=======\
-			\n電腦腳色名:' + info[19] + '\
-			\nHp:[';
-			var Chpbar = info[11]/info[4]*20;
-			for(var i = 0;i<Chpbar;i++){
-				battle += '|';
-			}
-			
-			for(var i = 0;i<20-Chpbar;i++){
-				battle += ' ';
-			}
-			
-			battle += ']' + info[11] + '/' + info[4] +'(' + Math.ceil(info[11]/info[4]*100) + '%)\nMp:[';
-			
-			var Cmpbar = info[13]/info[6]*20;
-			for(var i = 0;i<Cmpbar;i++){
-				battle += '|';
-			}
-			
-			for(var i = 0;i<20-Cmpbar;i++){
-				battle += ' ';
-			}
-			
-			battle += ']' + info[13] + '/' + info[6] +'(' + Math.ceil(info[13]/info[6]*100) + '%)\nAtk:' + info[15];
-			
 			
 			
 		}
+			
 		
 	}else if(command == 'battleOff'){
 		for(var i = 0;i<info.length;i++){
