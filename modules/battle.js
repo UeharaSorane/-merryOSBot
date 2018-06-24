@@ -51,8 +51,9 @@ function parseInput(inputStr,UserID,UserN) {
 	
 	////////////////無效指令時，直接回覆戰況
 	else{
-		rply[0] = 'rply';
-		rply[1] = battle;
+		battlesys('Move');
+		rply[0] = 'push';
+		rply[1] = '';
 		return rply;
 	}
 	////////////////
@@ -147,14 +148,61 @@ function battlesys(command){
 			
 		}else{
 			var say = '輪到' + info[3][info[9]].UName + '的行動了！\
-				\n你可以:\
-				\n 1.普攻\n';
+					\n角色名:' + info[3][info[9]].CName + '\
+					\nHp[';
+						
+					var HpP = info[4][info[9]]/info[3][info[9]].Hp*20;
+					for(var k = 0; k < HpP;k++){
+						battle += '|';
+					}
+					for(var k = 0; k < 20-HpP;k++){
+						battle += ' ';
+					}
+
+					battle += '](' + info[4][info[9]] + '/' + info[3][info[9]].Hp + ')\
+						\nMp[';
+
+					var MpP = info[4][info[9]]/info[3][info[9]].Mp*20;
+					for(var k = 0; k < MpP;k++){
+						battle += '|';
+					}
+					for(var k = 0; k < 20-MpP;k++){
+						battle += ' ';
+					}
+
+					battle += '](' + info[4][info[9]] + '/' + info[3][info[9]].Mp + ')\
+
+					\n你可以:\
+					\n 1.普攻\n';
 			
 			for(var i = 0;i<3;i++){
 				if(info[3][info[9]].Skill[i] != '無'){
 					say +=' ' +  (i+2) + '.' + info[3][info[9]].Skill[i] + '\n';
 				}
 			}
+			
+			say += '你可以攻擊的對象:';
+			
+			for(var i = 0; i < info[3].length;i++){
+				if(info[3][i].Team != info[3][info[9]].Team){
+					
+					say += '玩家名:' + info[3][i].UName + '\
+					\nHp[';
+					
+					var HpP = info[4][i]/info[3][i].Hp*20;
+					for(var k = 0; k < HpP;k++){
+						battle += '|';
+					}
+					for(var k = 0; k < 20-HpP;k++){
+						battle += ' ';
+					}
+					
+					say += ']\n\n';
+					
+				}
+			}
+			
+			say += '請輸入 [戰鬥 行動編號 對象玩家名(角色名)] 決定行動';
 			
 			bot.push(info[1],say);
 			
