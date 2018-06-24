@@ -53,7 +53,9 @@ function SimBattle(UserID,GroupID,UserN){
 		FightInfo[0] = 1;
 		FightInfo[1] = GroupID;
 	}else{
-		FightInfo[0] = 0;
+		rply[0] = 'rply';
+		rply[1] = '請在群組內戰鬥';
+		return rply;
 	}
 	FightInfo[2] = 1;//戰鬥類型
 	
