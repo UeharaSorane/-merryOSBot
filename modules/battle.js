@@ -180,7 +180,7 @@ function battlesys(command){
 				}
 			}
 			
-			say += '你可以攻擊的對象:\';
+			say += '你可以攻擊的對象:\n';
 			
 			for(var i = 0; i < info[3].length;i++){
 				if(info[3][i].Team != info[3][info[9]].Team){
