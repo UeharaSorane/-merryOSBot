@@ -4,6 +4,8 @@ var express = require('express');
 var battle = require('../modules/battle.js');
 var BattileUI = require('../battlesys/battleUI.js');
 
+var BattlrInfo = BattileUI.BattlrInfo;
+
 var bot = linebot({
 	channelId: "1568211787",
 	channelSecret: "9848b4e4a814dd07e84212da82bad4a3",
