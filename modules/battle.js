@@ -171,6 +171,7 @@ function battlesys(command){
 			}
 
 			say += '](' + info[4][info[9]] + '/' + info[3][info[9]].Mp + ')\
+					\n--------------------\
 					\n你可以:\
 					\n 1.普攻\n';
 			
@@ -180,12 +181,14 @@ function battlesys(command){
 				}
 			}
 			
-			say += '你可以攻擊的對象:\n';
+			say += '\n--------------------\
+				你可以攻擊的對象:\n';
 			
 			for(var i = 0; i < info[3].length;i++){
 				if(info[3][i].Team != info[3][info[9]].Team){
 					
 					say += '玩家名:' + info[3][i].UName + '\
+					\n角色名:' + info[3][i].CName + '\
 					\nHp[';
 					
 					var HpP = info[4][i]/info[3][i].Hp*20;
@@ -196,7 +199,7 @@ function battlesys(command){
 						say += ' ';
 					}
 					
-					say += ']\n\n';
+					say += '](' + info[4][i] + '/' + info[3][i].Hp + ')\n\n';
 					
 				}
 			}
