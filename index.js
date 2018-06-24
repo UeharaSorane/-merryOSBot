@@ -28,7 +28,7 @@ var battle = 0;
 
 bot.on('message', function(event) {
 	var msg = event.message.text;
-	var rply = [];
+	var rply = ['text',''];
 	
 		if(event.message.type == 'text'){
 			event.source.profile().then(function (profile) {
