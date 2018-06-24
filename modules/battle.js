@@ -246,7 +246,12 @@ function battlesys(command,move,target){
 				info[9]++;
 
 				if(info[9] == info[3].length){
+					battlesys('result');
+					
+					return 0;
 				}
+				
+				battlesys('MoveRequest');
 				
 				return 0;
 			}
@@ -257,7 +262,7 @@ function battlesys(command,move,target){
 	}else if(command == 'result'){
 		bot.push(info[1],'行動測試沒有問題');
 		info[9] = 0;
-		battlesys('Move');
+		battlesys('MoveRequest');
 	}else if(command == 'battleOff'){
 		for(var i = 0;i<info.length;i++){
 			info[i] = 0;
