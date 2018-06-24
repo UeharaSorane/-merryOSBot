@@ -166,7 +166,7 @@ function battlesys(command,move,target){
 			}
 			var Ctarget = rollbase.Dice(w);
 			
-			battlesys('move',Cmove,info[3][info[9]].UN);
+			battlesys('move',Cmove,info[3][info[9]].UName);
 			
 		}else{
 			var say = '輪到' + info[3][info[9]].UName + '的行動了！\
