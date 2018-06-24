@@ -43,7 +43,7 @@ bot.on('message', function(event) {
 						battle = 1;
 					}
 				}
-				if(rply[0] == 'rply'){
+				if(rply[0] == 'rply'||rply[0] == 'battleOff'){
 					event.reply(rply[1]).then(function (data) {
 					  // success
 					}).catch(function (error) {
