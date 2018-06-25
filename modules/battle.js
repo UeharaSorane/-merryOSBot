@@ -203,7 +203,7 @@ function battlesys(command,move,target){
 			say += '](' + info[4][info[9]] + '/' + info[3][info[9]].Hp + ')\
 				\nMp[';
 			
-			var MpP = info[4][info[9]]/info[3][info[9]].Mp*20;
+			var MpP = info[5][info[9]]/info[3][info[9]].Mp*20;
 			for(var k = 0; k < MpP;k++){
 				say += '|';
 			}
@@ -211,7 +211,7 @@ function battlesys(command,move,target){
 				say += ' ';
 			}
 
-			say += '](' + info[4][info[9]] + '/' + info[3][info[9]].Mp + ')\
+			say += '](' + info[5][info[9]] + '/' + info[3][info[9]].Mp + ')\
 					\n--------------------\
 					\n你可以:\
 					\n 1.通常攻擊\n';
