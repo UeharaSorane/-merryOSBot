@@ -7,6 +7,8 @@ var Skills = Skill.getSkillData();
 
 function damage(Who,move,Atk,Spd,T){
 	var type;
+	console.log(Spd);
+	
 	
 	for(var i = 0; i<Skills.length;i++){
 		if(move == Skills[i].Name){
