@@ -27,7 +27,7 @@ info[3] = [];//戰鬥員資料
 info[4] = [];//當前Hp
 info[5] = [];//當前Mp
 
-info[6] = 0;//經過回合數
+info[6] = 1;//經過回合數
 info[7] = 0;//戰鬥名稱
 info[8] = [];//團隊名稱
 info[9] = 0;//輪到誰行動
@@ -113,7 +113,7 @@ function battlesys(command,move,target){
 	if(command == 'battleOn'){
 		/////通常對戰系統
 		if(info[2] == 1){
-			battle = '[' + info[7] + '開始] 經過回合數:' + info[6] + '\n';
+			battle = '[' + info[7] + '開始] 目前回合:' + info[6] + '\n';
 			
 			for(var i = 0; i < info[8].length;i++){
 				battle += '---團隊:' + info[8][i]  + '---\n';
@@ -290,9 +290,43 @@ function battlesys(command,move,target){
 		for(var i =0;i<info[10].length;i++){
 			if(info[10][i][0] == 1) moveN = '通常攻擊';
 			
-			resultA[i] = damageUI.damage(moveN,info[3][i].Atk,info[3][i].Spd);
+			resultA[i] = damageUI.damage(moveN,info[3][i].Atk,info[10][i][1]);
 		}
 		
+		var spdl = resultA;
+		
+		for(var i =0;i<spdl.length;i++){
+			var temp = spdl[i];
+			for(var j =0; j<spdl.lengt;j++){
+				if(spdl[i][3] > spdl[j][3]){
+					spdl[i] = spdl[j];
+					spdl[j] = temp;
+				}else if(spdl[i][3] == spdl[j][3]){
+					if(spdl[i][2] > spdl[j][2]){
+						spdl[i] = spdl[j];
+						spdl[j] = temp;
+					}else if(spdl[i][2] == spdl[j][2]){
+						if(rollbase.Dice(2) == 2){
+							spdl[i] = spdl[j];
+							spdl[j] = temp;
+						}
+					}
+				}
+			}
+		}
+		
+
+		
+		var SayResult = '戰鬥回合:' + info[6] + '\n--------------------\n';
+		
+		for(var i =0;i<spdl.length;i++){
+			if(spdl[0] == '傷害'){
+				for(var j =0;j <info[3].length;j++){
+					if(info[3][j].UName == spdl[i][4]){}
+				}	
+			}
+			
+		}
 		
 		
 		bot.push(info[1],'行動測試沒有問題');
