@@ -3,7 +3,7 @@ var creds = require('../client_secret.json');
 
 var SkillDB = new GoogleSpreadsheet('19dmO1oYtwVES_It0rixnrYVojvRMsbz9w5H3yg1Cm9Y');
 
-var Skill = [];
+var Skills = [];
 
 SkillDB.useServiceAccountAuth(creds, function (err) {
 		
@@ -16,7 +16,7 @@ SkillDB.useServiceAccountAuth(creds, function (err) {
 				console.log( err );
 			}else{
 				for(var i=0; i< rows.length; i++){
-					Skill[i] = {};
+					Skills[i] = {};
 					
 					Skills[i].Name = rows[i].skillname;
 					Skills[i].Type = rows[i].type;
@@ -42,7 +42,7 @@ SkillDB.useServiceAccountAuth(creds, function (err) {
 	});
 
 function getSkillData(){
-	return Skill;
+	return Skills;
 }
 
 module.exports = {
