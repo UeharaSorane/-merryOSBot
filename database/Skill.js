@@ -24,6 +24,7 @@ SkillDB.useServiceAccountAuth(creds, function (err) {
 					Skills[i].maxRM = rows[i].maxrm;
 					Skills[i].SpdM = rows[i].spdm;
 					Skills[i].Priority = rows[i].priority;
+					Skills[i].Descirption = rows[i].description;
 					
 				}
 				console.log(Skills);
@@ -37,3 +38,11 @@ SkillDB.useServiceAccountAuth(creds, function (err) {
 		
 		
 	});
+
+function getSkillData(){
+	return Skills;
+}
+
+module.exports = {
+	getSkillData
+};
