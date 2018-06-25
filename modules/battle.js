@@ -370,11 +370,20 @@ function battlesys(command,move,target){
 		setTimeout(function(){bot.push(info[1],battle); }, 1000);
 		setTimeout(function(){battlesys('MoveRequest'); }, 2000);
 	}else if(command == 'battleOff'){
-		for(var i = 0;i<info.length;i++){
-			info[i] = 0;
-		}
+		info[0] = 0;//是否在群組內遊玩
+		info[1] = 0;//群組ID
+		info[2] = 0;//戰鬥類型
+
+		info[3] = [];//戰鬥員資料
+		info[4] = [];//當前Hp
+		info[5] = [];//當前Mp
+
+		info[6] = 1;//經過回合數
+		info[7] = 0;//戰鬥名稱
+		info[8] = [];//團隊名稱
+		info[9] = 0;//輪到誰行動
+		info[10] = [];//紀錄行動
 	}
-	
 }
 
 
