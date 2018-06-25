@@ -138,7 +138,7 @@ function battlesys(command,move,target){
 						battle += '](' + info[4][j] + '/' + info[3][j].Hp + ')\
 							\nMp[';
 						
-						var MpP = info[4][j]/info[3][j].Mp*20;
+						var MpP = info[5][j]/info[3][j].Mp*20;
 						for(var k = 0; k < MpP;k++){
 							battle += '|';
 						}
@@ -146,7 +146,7 @@ function battlesys(command,move,target){
 							battle += ' ';
 						}
 						
-						battle += '](' + info[4][j] + '/' + info[3][j].Mp + ')\n';
+						battle += '](' + info[5][j] + '/' + info[3][j].Mp + ')\n';
 					}
 				}
 			}
@@ -313,7 +313,9 @@ function battlesys(command,move,target){
 						spdl[i] = spdl[j];
 						spdl[j] = temp;
 					}else if(spdl[i][2] == spdl[j][2]){
-						if(rollbase.Dice(2) == 2){
+						var Dic = rollbase.Dice(2);
+						
+						if(Dic == 2){
 							spdl[i] = spdl[j];
 							spdl[j] = temp;
 						}
