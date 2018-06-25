@@ -322,6 +322,7 @@ function battlesys(command,move,target){
 			}
 		}
 		
+		console.log(spdl);
 
 		
 		var SayResult = '戰鬥回合:' + info[6] + '\n--------------------\n';
