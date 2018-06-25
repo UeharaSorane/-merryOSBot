@@ -333,7 +333,7 @@ function battlesys(command,move,target){
 					if(info[3][j].UName == spdl[i][4]){
 						info[4][j]-= spdl[i][1];
 						
-						SayResult +='\n' +  spdl[i][5] + '使用' + spdl[i][6] + '攻擊' + info[3][j].CName;
+						SayResult +='\n' +  spdl[i][5] + '使用' + spdl[i][6] + '\n攻擊' + info[3][j].CName;
 						
 						SayResult += '\n承受' + spdl[i][1] + '點傷害\
 								\nHp[';
@@ -346,10 +346,10 @@ function battlesys(command,move,target){
 							SayResult += ' ';
 						}
 
-						SayResult += '](' + info[4][j] + '/' + info[3][j].Hp + ')\n\n';
+						SayResult += '](' + info[4][j] + '/' + info[3][j].Hp + ')';
 						
 						if(info[4][j] <= 0){
-							SayResult += info[3][j].CName + '被打倒了！';
+							SayResult += '\n' + info[3][j].CName + '被打倒了！';
 						}
 						
 						
