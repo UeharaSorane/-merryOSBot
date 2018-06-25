@@ -10,7 +10,7 @@ function BattleInfo(ID,UName,CName,Team,Hp,Mp,Atk,spd,Ability,WS,AS,BS,Skill,MS,
   this.Hp = Hp;
   this.Mp = Mp;
   this.Atk = Atk;
-  this.spd = spd;
+  this.Spd = spd;
   this.Ability = Ability;
   this.WS = WS;
   this.AS = AS;
