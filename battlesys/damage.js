@@ -14,7 +14,15 @@ function damage(Who,move,Atk,Spd,T){
 			if(Skills[i].Type == '攻擊'){
 				type ='傷害';
 				
-				var Multiply = Skills[i].minRM + rollbase.Dice(Skills[i].maxRM-Skills[i].minRM);
+				var RM;
+				
+				if(Skills[i].maxRM != Skills[i].minRM){
+					RM = rollbase.Dice(Skills[i].maxRM-Skills[i].minRM);
+				}else{
+					RM = 0;
+				}
+				
+				var Multiply = Skills[i].minRM + RM;
 				
 				var dmg = Atk*Multiply;
 				var rspd = Spd*Skills[i].SpdM;
