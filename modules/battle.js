@@ -333,7 +333,7 @@ function battlesys(command,move,target){
 					if(info[3][j].UName == spdl[i][4]){
 						info[4][j]-= spdl[i][1];
 						
-						SayResult += spdl[i][5] + '使用' + spdl[i][6] + '攻擊' + info[3][j].CName;
+						SayResult +='\n' +  spdl[i][5] + '使用' + spdl[i][6] + '攻擊' + info[3][j].CName;
 						
 						SayResult += '\n承受' + spdl[i][1] + '點傷害\
 								\nHp[';
@@ -364,7 +364,8 @@ function battlesys(command,move,target){
 		bot.push(info[1],SayResult);
 		info[6]++;
 		info[9] = 0;
-		setTimeout(function(){battlesys('battleOn'); }, 1000);
+		battlesys('battleOn');
+		setTimeout(function(){bot.push(info[1],battle); }, 1000);
 		setTimeout(function(){battlesys('MoveRequest'); }, 2000);
 	}else if(command == 'battleOff'){
 		for(var i = 0;i<info.length;i++){
