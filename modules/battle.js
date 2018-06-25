@@ -4,6 +4,7 @@ var BattleInfo = BattileUI.BattleInfo;
 var rollbase = require('../roll/rollbase.js');
 
 var damageUI = require('../battlesys/damage.js');
+var Skill = require('../database/Skill.js');
 
 var linebot = require('linebot');
 var express = require('express');
@@ -16,6 +17,8 @@ var bot = linebot({
 ////////////////////////
 var battle;
 var rply = [];
+
+var Skills = Skill.getSkillData();
 ////////////////////////
 var info = [];
 
@@ -113,7 +116,7 @@ function battlesys(command,move,target){
 	if(command == 'battleOn'){
 		/////通常對戰系統
 		if(info[2] == 1){
-			battle = '[' + info[7] + '開始] 目前回合:' + info[6] + '\n';
+			battle = '[' + info[7] + '] 目前回合:' + info[6] + '\n';
 			
 			for(var i = 0; i < info[8].length;i++){
 				battle += '---團隊:' + info[8][i]  + '---\n';
@@ -211,7 +214,7 @@ function battlesys(command,move,target){
 			say += '](' + info[4][info[9]] + '/' + info[3][info[9]].Mp + ')\
 					\n--------------------\
 					\n你可以:\
-					\n 1.普攻\n';
+					\n 1.通常攻擊\n';
 			
 			for(var i = 0;i<3;i++){
 				if(info[3][info[9]].Skill[i] != '無'){
@@ -220,77 +223,81 @@ function battlesys(command,move,target){
 			}
 			
 			say += '\n--------------------\
-				\n你可以攻擊的對象:\n';
-			
-			for(var i = 0; i < info[3].length;i++){
-				if(info[3][i].Team != info[3][info[9]].Team){
-					
-					say += '玩家名:' + info[3][i].UName + '\
-					\n角色名:' + info[3][i].CName + '\
-					\nHp[';
-					
-					var HpP = info[4][i]/info[3][i].Hp*20;
-					for(var k = 0; k < HpP;k++){
-						say += '|';
-					}
-					for(var k = 0; k < 20-HpP;k++){
-						say += ' ';
-					}
-					
-					say += '](' + info[4][i] + '/' + info[3][i].Hp + ')\n\n';
-					
-				}
-			}
-			
-			say += '請輸入 [戰鬥 行動編號 對象玩家名(角色名)] 決定行動';
+				\n請輸入 [戰鬥 行動編號] 決定行動';
 			
 			bot.push(info[1],say);
 			
 		}
 	}else if(command == 'move'){
 		
-		if(move !=1){
-			if(info[3][info[9]].Skill[move-1] == '無'|| move == null){
-				bot.push(info[1],'錯誤！無效動作');
-				
-				return 0;
-			}
-		}
-		
-		for(var i = 0;i<info[3].length;i++){
-			if(target == info[3][i].UName||target == info[3][i].CName){
-				if(target == info[3][info[9]].UName||target == info[3][info[9]].CName){
-					bot.push(info[1],'錯誤！無效對象');
-					
-					return 0;
+		if(move == 1){
+			if(target == null){
+				say = '你可以攻擊的對象:\n';
+				for(var i = 0; i < info[3].length;i++){
+					if(info[3][i].Team != info[3][info[9]].Team){
+
+						say += '玩家名:' + info[3][i].UName + '\
+						\n角色名:' + info[3][i].CName + '\
+						\nHp[';
+
+						var HpP = info[4][i]/info[3][i].Hp*20;
+						for(var k = 0; k < HpP;k++){
+							say += '|';
+						}
+						for(var k = 0; k < 20-HpP;k++){
+							say += ' ';
+						}
+
+						say += '](' + info[4][i] + '/' + info[3][i].Hp + ')\n\n';
+
+					}
 				}
 				
-				info[10][info[9]] = [move,info[3][i].UName];
-
-				info[9]++;
-
-				if(info[9] == info[3].length){
-					battlesys('result');
-					
-					return 0;
-				}
+				say += '請輸入 [戰鬥 1 對象玩家名(角色名)] 確認攻擊\
+					\n如果想更換其他行動 請輸入 [戰鬥 行動編號]';
 				
-				battlesys('MoveRequest');
+				bot.push(info[1],say);
 				
 				return 0;
-			}
+			}else{
+				for(var i = 0;i<info[3].length;i++){
+					if(target == info[3][i].UName||target == info[3][i].CName){
+						if(info[3][i].Team == info[3][info[9]].Team){
+							bot.push(info[1],'錯誤！無效對象');
+
+							return 0;
+						}else{
+							info[10][info[9]] = ['通常攻擊',info[3][i].UName];
+							
+						}
+					}
+				}
+				
+				
+			}	
+		}else{
+			bot.push(info[1],'錯誤！無效動作');
+				
+			return 0;
 		}
 		
-		bot.push(info[1],'錯誤！無效對象');
+		info[9]++;
+
+		if(info[9] == info[3].length){
+			battlesys('result');
+
+			return 0;
+		}
+
+		battlesys('MoveRequest');
+
+		return 0;
 		
 	}else if(command == 'result'){	
-		var moveN; 
 		var resultA = [];
 		
-		for(var i =0;i<info[10].length;i++){
-			if(info[10][i][0] == 1) moveN = '通常攻擊';
-			
-			resultA[i] = damageUI.damage(moveN,info[3][i].Atk,info[10][i][1]);
+		for(var i =0;i<info[10].length;i++){	
+			resultA[i] = damageUI.damage(info[3][i].CName,info[10][i][0],info[3][i].Atk,info[3][i].Spd,info[10][i][1]);
 		}
 		
 		var spdl = resultA;
@@ -322,15 +329,41 @@ function battlesys(command,move,target){
 		for(var i =0;i<spdl.length;i++){
 			if(spdl[0] == '傷害'){
 				for(var j =0;j <info[3].length;j++){
-					if(info[3][j].UName == spdl[i][4]){}
+					if(info[3][j].UName == spdl[i][4]){
+						info[4][j]-= spdl[i][1];
+						
+						SayResult += spdl[i][5] + '使用' + spdl[i][6] + '攻擊' + info[3][j].CName;
+						
+						SayResult += '\n承受' + spdl[i][1] + '點傷害\
+								\nHp[';
+
+						var HpP = info[4][j]/info[3][j].Hp*20;
+						for(var k = 0; k < HpP;k++){
+							SayResult += '|';
+						}
+						for(var k = 0; k < 20-HpP;k++){
+							SayResult += ' ';
+						}
+
+						SayResult += '](' + info[4][j] + '/' + info[3][j].Hp + ')\n\n';
+						
+						if(info[4][j] <= 0){
+							SayResult += info[3][j].CName + '被打倒了！';
+						}
+						
+						
+					}
 				}	
 			}
 			
+			SayResult += '\n--------------------';
 		}
 		
 		
-		bot.push(info[1],'行動測試沒有問題');
+		bot.push(info[1],SayResult);
+		info[6]++;
 		info[9] = 0;
+		setTimeout(function(){battlesys('battleOn'); }, 1000);
 		setTimeout(function(){battlesys('MoveRequest'); }, 2000);
 	}else if(command == 'battleOff'){
 		for(var i = 0;i<info.length;i++){
