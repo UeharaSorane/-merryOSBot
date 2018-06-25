@@ -21,11 +21,11 @@ SkillDB.useServiceAccountAuth(creds, function (err) {
 					Skills[i].Name = rows[i].skillname;
 					Skills[i].Type = rows[i].type;
 					Skills[i].Range = rows[i].range;
-					Skills[i].Plus = rows[i].plus;
-					Skills[i].minRM = rows[i].minrm;
-					Skills[i].maxRM = rows[i].maxrm;
-					Skills[i].SpdM = rows[i].spdm;
-					Skills[i].Priority = rows[i].priority;
+					Skills[i].Plus = Number(rows[i].plus);
+					Skills[i].minRM = Number(rows[i].minrm);
+					Skills[i].maxRM = Number(rows[i].maxrm);
+					Skills[i].SpdM = Number(rows[i].spdm);
+					Skills[i].Priority = Number(rows[i].priority);
 					Skills[i].Descirption = rows[i].description;
 					
 				}
