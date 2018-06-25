@@ -20,8 +20,11 @@ SkillDB.useServiceAccountAuth(creds, function (err) {
 					Skills[i].Name = rows[i].skillname;
 					Skills[i].Type = rows[i].type;
 					Skills[i].Range = rows[i].range;
-					Skills[i].Multiply = rows[i].multiply;
 					Skills[i].Plus = rows[i].plus;
+					Skills[i].minRM = rows[i].minrm;
+					Skills[i].maxRM = rows[i].maxrm;
+					Skills[i].SpdM = rows[i].spdm;
+					Skills[i].Priority = rows[i].priority;
 					
 				}
 				console.log(Skills);
@@ -37,11 +40,19 @@ SkillDB.useServiceAccountAuth(creds, function (err) {
 	});
 
 function damage(move,Atk,Spd){
+	var type;
+	
 	for(var i = 0; i<Skills.length;i++){
 		if(move == Skills[i].Name){
 			if(Skills[i].Type == '攻擊'){
-				var dmg = Atk*Skills[i].multiply
+				type ='傷害';
 				
+				var Multiply = Skills[i].minRM + rollbase.Dice(Skills[i].maxRM-Skills[i].minRM);
+				
+				var dmg = Atk*Multiply;
+				var rspd = Spd*Skills[i].SpdM;
+				
+				return type dmg rspd Skills[i].Priority;
 			}
 		}
 	}
