@@ -3,6 +3,8 @@ var BattleInfo = BattileUI.BattleInfo;
 
 var rollbase = require('../roll/rollbase.js');
 
+var damageUI = require('../battlesys/damage.js');
+
 var linebot = require('linebot');
 var express = require('express');
 
@@ -166,7 +168,21 @@ function battlesys(command,move,target){
 			}
 			var Ctarget = rollbase.Dice(w);
 			
-			battlesys('move',Cmove,info[3][info[9]].UName);
+			var CT;
+			
+			for(var i =0;i<Ctarget;i++){
+				for(var j = 0; j<info[3].length;j++){
+					if(info[3][j].Team != info[3][info[9]].Team){
+						if(CT != info[3][j].UName){
+							CT = info[3][j].UName;
+							break;
+						}
+					}
+				}
+				
+			}
+			
+			battlesys('move',Cmove,CT);
 			
 		}else{
 			var say = '輪到' + info[3][info[9]].UName + '的行動了！\
@@ -243,6 +259,12 @@ function battlesys(command,move,target){
 		
 		for(var i = 0;i<info[3].length;i++){
 			if(target == info[3][i].UName||target == info[3][i].CName){
+				if(target == info[3][info[9]].UName||target == info[3][info[9]].CName){
+					bot.push(info[1],'錯誤！無效對象');
+					
+					return 0;
+				}
+				
 				info[10][info[9]] = [move,info[3][i].UName];
 
 				info[9]++;
@@ -261,7 +283,18 @@ function battlesys(command,move,target){
 		
 		bot.push(info[1],'錯誤！無效對象');
 		
-	}else if(command == 'result'){
+	}else if(command == 'result'){	
+		var moveN; 
+		var resultA = [];
+		
+		for(var i =0;i<info[10].length;i++){
+			if(info[10][i][0] == 1) moveN = '通常攻擊';
+			
+			resultA[i] = damageUI.damage(moveN,info[3][i].Atk,info[3][i].Spd);
+		}
+		
+		
+		
 		bot.push(info[1],'行動測試沒有問題');
 		info[9] = 0;
 		setTimeout(function(){battlesys('MoveRequest'); }, 2000);
