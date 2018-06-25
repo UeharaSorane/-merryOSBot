@@ -16,12 +16,10 @@ SkillDB.useServiceAccountAuth(creds, function (err) {
 				console.log( err );
 			}else{
 				for(var i=0; i< rows.length; i++){
-					Skills[i] = [];
-					
-					Skills[i][0] = rows[i].skillname;
-					Skills[i][1] = rows[i].type;
-					Skills[i][2] = rows[i].range;
-					Skills[i][3] = rows[i].multiply;
+					Skills[i].Name = rows[i].skillname;
+					Skills[i].Type = rows[i].type;
+					Skills[i].Range = rows[i].range;
+					Skills[i].Multiply = rows[i].multiply;
 					
 				}
 				console.log(Skills);
@@ -37,7 +35,13 @@ SkillDB.useServiceAccountAuth(creds, function (err) {
 	});
 
 function damage(move,Atk,Spd){
-	//if(move == '通常攻擊')
+	for(var i = 0; i<Skills.length;i++){
+		if(move == Skills[i].Name){
+			if(Skills[i].Type == '攻擊'){
+				
+			}
+		}
+	}
 
 }
 
