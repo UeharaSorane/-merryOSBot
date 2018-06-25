@@ -18,7 +18,7 @@ function damage(Who,move,Atk,Spd,T){
 				var dmg = Atk*Multiply;
 				var rspd = Spd*Skills[i].SpdM;
 				
-				return [type,dmg,Spd,Skills[i].Priority,T,Who,move];
+				return [type,dmg,rspd,Skills[i].Priority,T,Who,move];
 			}
 		}
 	}
