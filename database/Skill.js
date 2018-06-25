@@ -16,7 +16,7 @@ SkillDB.useServiceAccountAuth(creds, function (err) {
 				console.log( err );
 			}else{
 				for(var i=0; i< rows.length; i++){
-					var Skill[i] = {};
+					Skill[i] = {};
 					
 					Skills[i].Name = rows[i].skillname;
 					Skills[i].Type = rows[i].type;
