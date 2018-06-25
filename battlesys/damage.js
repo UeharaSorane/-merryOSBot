@@ -39,7 +39,7 @@ SkillDB.useServiceAccountAuth(creds, function (err) {
 		
 	});
 
-function damage(move,Atk,Spd){
+function damage(move,Atk,Spd,T){
 	var type;
 	
 	for(var i = 0; i<Skills.length;i++){
@@ -52,7 +52,7 @@ function damage(move,Atk,Spd){
 				var dmg = Atk*Multiply;
 				var rspd = Spd*Skills[i].SpdM;
 				
-				return type dmg rspd Skills[i].Priority;
+				return type dmg rspd Skills[i].Priority T;
 			}
 		}
 	}
