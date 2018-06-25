@@ -325,10 +325,10 @@ function battlesys(command,move,target){
 		console.log(spdl);
 
 		
-		var SayResult = '戰鬥回合:' + info[6] + '\n--------------------\n';
+		var SayResult = '戰鬥回合:' + info[6] + '\n--------------------';
 		
 		for(var i =0;i<spdl.length;i++){
-			if(spdl[0] == '傷害'){
+			if(spdl[i][0] == '傷害'){
 				for(var j =0;j <info[3].length;j++){
 					if(info[3][j].UName == spdl[i][4]){
 						info[4][j]-= spdl[i][1];
