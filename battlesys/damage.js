@@ -1,5 +1,6 @@
 var GoogleSpreadsheet = require('google-spreadsheet');
 var creds = require('../client_secret.json');
+var rollbase = require('../roll/rollbase.js');
 
 var SkillDB = new GoogleSpreadsheet('19dmO1oYtwVES_It0rixnrYVojvRMsbz9w5H3yg1Cm9Y');
 
@@ -20,6 +21,7 @@ SkillDB.useServiceAccountAuth(creds, function (err) {
 					Skills[i].Type = rows[i].type;
 					Skills[i].Range = rows[i].range;
 					Skills[i].Multiply = rows[i].multiply;
+					Skills[i].Plus = rows[i].plus;
 					
 				}
 				console.log(Skills);
@@ -38,6 +40,7 @@ function damage(move,Atk,Spd){
 	for(var i = 0; i<Skills.length;i++){
 		if(move == Skills[i].Name){
 			if(Skills[i].Type == '攻擊'){
+				var dmg = Atk*Skills[i].multiply
 				
 			}
 		}
