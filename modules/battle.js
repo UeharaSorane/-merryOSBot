@@ -368,9 +368,31 @@ function battlesys(command,move,target){
 						
 						if(info[4][j] <= 0){
 							SayResult += '\n' + info[3][j].CName + '被打倒了！';
+							
+							var GameEnd = battlesys('DefeatCheck');
+							if(GameEnd == 1){
+								SayResult += '\n--------------------';
+								
+								bot.push(info[1],SayResult);
+								
+								for(var i = 0;i<info[3].length;i++){
+									if(info[4][i] > 0){
+
+										SayResult = '戰鬥結束！\
+												\nWinner:';
+
+										for(var k = 0; k<info[3].length;k++){
+											if(info[3][k].Team == info[3][i].Team){
+												SayResult += '\n' + info[3][k].UName;
+											}
+										}
+										BTon = 0;
+										bot.push(info[1],SayResult);
+										battlesys('battleOff');
+									}
+								}
+							}
 						}
-						
-						
 					}
 				}	
 			}
@@ -393,6 +415,8 @@ function battlesys(command,move,target){
 						return 0;
 					}
 				}
+				
+				return 1;
 				
 				SayResult = '戰鬥結束！\
 						\nWinner:';
