@@ -314,7 +314,7 @@ function battlesys(command,move,target,commander){
 							return 0;
 						}else{
 							
-							info[10] = info[10].push(['通常攻擊',info[3][i].UName,commander]);
+							info[10].push(['通常攻擊',info[3][i].UName,commander]);
 							
 						}
 					}
