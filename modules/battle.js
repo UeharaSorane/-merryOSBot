@@ -395,11 +395,8 @@ function battlesys(command,move,target){
 										}
 										setTimeout(function(){
 											bot.push(info[1],SayResult); 
-											setTimeout(function(){BTon = 0; }, 2000);
+											setTimeout(function(){BTon = 0; battlesys('battleOff');}, 2000);
 										}, 1000);
-										
-		
-										battlesys('battleOff');
 										
 										return 0;
 									}
