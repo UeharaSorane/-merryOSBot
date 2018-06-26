@@ -24,26 +24,15 @@ var server = app.listen(process.env.PORT || 8080, function() {
 	console.log("基本運轉似乎沒問題");
 });
 
-var battle = 0;
-
 bot.on('message', function(event) {
 	var msg = event.message.text;
 	var rply = ['text',''];
 	
 		if(event.message.type == 'text'){
 			event.source.profile().then(function (profile) {
-				if(battle == 1){
-					rply = exports.battle.parseInput(msg, event.source.userId, profile.displayName, event.source.groupId);
-					if(rply[0] == 'battleOff'){
-						battle = 0;
-					}
-				}else{
-					rply = exports.analytics.parseInput(msg, event.source.userId, profile.displayName,event.source.groupId);
-					if(rply[0] == 'battleOn'){
-						battle = 1;
-					}
-				}
-				if(rply[0] == 'rply'||rply[0] == 'battleOff'){
+				rply = exports.battle.parseInput(msg, event.source.userId, profile.displayName, event.source.groupId);
+
+				if(rply[0] == 'rply'){
 					event.reply(rply[1]).then(function (data) {
 					  // success
 					}).catch(function (error) {
