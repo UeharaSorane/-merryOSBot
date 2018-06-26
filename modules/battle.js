@@ -273,7 +273,7 @@ function battlesys(command,move,target,commander){
 			if(target == null){
 				say = '你可以攻擊的對象:\n';
 				for(var i = 0; i < info[3].length;i++){
-					if(info[3][i].Team != info[3][info[9]].Team){
+					if(info[3][i].Team != info[3][info[9]].Team && info[4][i]>0){
 
 						say += '玩家名:' + info[3][i].UName + '\
 						\n角色名:' + info[3][i].CName + '\
@@ -301,11 +301,12 @@ function battlesys(command,move,target,commander){
 			}else{
 				for(var i = 0;i<info[3].length;i++){
 					if(target == info[3][i].UName||target == info[3][i].CName){
-						if(info[3][i].Team == info[3][info[9]].Team){
+						if(info[3][i].Team == info[3][info[9]].Team || info[4][i]<=0){
 							bot.push(info[1],'錯誤！無效對象');
 
 							return 0;
 						}else{
+							
 							info[10][info[9]] = ['通常攻擊',info[3][i].UName,commander];
 							
 						}
