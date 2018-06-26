@@ -5,16 +5,7 @@ require('fs').readdirSync('./roll/').forEach(function(file) {
 	}
   });
   
-function parseInput(inputStr,UserID,UserN,GroupID) {
-	console.log(UserN);
-	//console.log('InputStr: ' + inputStr);
-	_isNaN = function(obj) 	{
-	return isNaN(parseInt(obj));  
-	}
-	
-	let msgSplitor = (/\S+/ig);	
-	let mainMsg = inputStr.match(msgSplitor); //定義輸入字串
-	let trigger = mainMsg[0].toString().toLowerCase(); //指定啟動詞在第一個詞&把大階強制轉成細階
+function parseInput(mainMsg,trigger,UserID,UserN,GroupID) {
 	
 ///////////////////////////////////////////////////////
 ////////////////////////開始分析////////////////////////
