@@ -327,12 +327,12 @@ function battlesys(command,move,target){
 		
 		for(var i =0;i<spdl.length;i++){
 			var temp = spdl[i];
-			for(var j =0; j<spdl.lengt;j++){
-				if(spdl[i][3] > spdl[j][3]){
+			for(var j =0; j<spdl.length;j++){
+				if(spdl[i][3] < spdl[j][3]){
 					spdl[i] = spdl[j];
 					spdl[j] = temp;
 				}else if(spdl[i][3] == spdl[j][3]){
-					if(spdl[i][2] > spdl[j][2]){
+					if(spdl[i][2] < spdl[j][2]){
 						spdl[i] = spdl[j];
 						spdl[j] = temp;
 					}else if(spdl[i][2] == spdl[j][2]){
