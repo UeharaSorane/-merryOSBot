@@ -50,7 +50,7 @@ function parseInput(inputStr,UserID,UserN,GroupID) {
 	
 	////////////////判定是否在戰鬥
 	if(BTon == 0){
-		return NormalSys.parseInput(mainMsg,trigger,UserID,UserN,GroupID);
+		return NormalSys.NormalMode(mainMsg,trigger,UserID,UserN,GroupID);
 	}
 	////////////////
 	
