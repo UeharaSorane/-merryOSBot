@@ -1,7 +1,6 @@
 var rply = [];
 var linebot = require('linebot');
 var express = require('express');
-var battle = require('../modules/battle.js');
 var BattileUI = require('../battlesys/battleUI.js');
 
 var BattleInfo = BattileUI.BattleInfo;
@@ -66,8 +65,6 @@ function SimBattle(UserID,GroupID,UserN){
 	FightInfo[4] = '測試用戰鬥';//戰鬥名稱
 	
 	FightInfo[5] = ['player','computer'];
-	
-	battle.battleON(FightInfo);
 	
 	rply[0] = 'battleOn';
 	rply[1] = FightInfo;
