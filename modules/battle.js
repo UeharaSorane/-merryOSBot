@@ -146,7 +146,7 @@ function battlesys(command,move,target){
 				for(var j = 0;j < info[3].length;j++){
 					if(info[3][j].Team == info[8][i]){
 						battle += '玩家名:' + info[3][j].UName + '\
-							\n角色名:' + info[3][j].CName';
+							\n角色名:' + info[3][j].CName;
 						
 						if(info[4][i]<=0){
 							battle += '(戰鬥不能)';
