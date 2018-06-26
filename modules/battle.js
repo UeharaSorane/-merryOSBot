@@ -387,8 +387,10 @@ function battlesys(command,move,target){
 											}
 										}
 										BTon = 0;
-										bot.push(info[1],SayResult);
+										setTimeout(function(){bot.push(info[1],SayResult); }, 2000);
 										battlesys('battleOff');
+										
+										return 0;
 									}
 								}
 							}
