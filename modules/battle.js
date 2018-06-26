@@ -109,7 +109,7 @@ function battleON(FightInfo){
 
 function battleOff(){
 	
-	1BTon = 0;
+	BTon = 0;
 	battlesys('battleOff');
 	
 	rply[0] = 'rply';
