@@ -461,7 +461,7 @@ function battlesys(command,move,target,commander){
 		bot.push(info[1],SayResult);
 		info[6]++;
 		info[9] = 0;
-		info[10] = [0];
+		info[10].length = 0;
 		battlesys('battleOn');
 		setTimeout(function(){battlesys('MoveRequest'); }, 2000);
 	}else if(command == 'DefeatCheck'){
@@ -497,15 +497,15 @@ function battlesys(command,move,target,commander){
 		info[1] = 0;//群組ID
 		info[2] = 0;//戰鬥類型
 
-		info[3] = [];//戰鬥員資料
-		info[4] = [];//當前Hp
-		info[5] = [];//當前Mp
+		info[3].length = 0;//戰鬥員資料
+		info[4].length = 0;//當前Hp
+		info[5].length = 0;//當前Mp
 
 		info[6] = 1;//經過回合數
 		info[7] = 0;//戰鬥名稱
-		info[8] = [];//團隊名稱
+		info[8].length = 0;//團隊名稱
 		info[9] = 0;//輪到誰行動
-		info[10] = [];//紀錄行動
+		info[10].length = 0;//紀錄行動
 	}
 }
 
