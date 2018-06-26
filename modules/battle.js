@@ -1,14 +1,13 @@
+////////////////////////
 var BattileUI = require('../battlesys/battleUI.js');
 var BattleInfo = BattileUI.BattleInfo;
-
 var rollbase = require('../roll/rollbase.js');
-
 var damageUI = require('../battlesys/damage.js');
 var Skill = require('../database/Skill.js');
-
+var NormalSys = require('../modules/NormalSys.js');
 var linebot = require('linebot');
 var express = require('express');
-
+////////////////////////
 var bot = linebot({
 	channelId: "1568211787",
 	channelSecret: "9848b4e4a814dd07e84212da82bad4a3",
@@ -20,6 +19,7 @@ var rply = [];
 
 var Skills = Skill.getSkillData();
 ////////////////////////
+var BTon = 0;
 var info = [];
 
 info[0] = 0;//是否在群組內遊玩
@@ -38,7 +38,7 @@ info[10] = [];//紀錄行動
 
 ////////////////////////
 
-function parseInput(inputStr,UserID,UserN) {
+function parseInput(inputStr,UserID,UserN,GroupID) {
 	//console.log('InputStr: ' + inputStr);
 	_isNaN = function(obj) 	{
 	return isNaN(parseInt(obj));  
@@ -47,6 +47,12 @@ function parseInput(inputStr,UserID,UserN) {
 	let msgSplitor = (/\S+/ig);	
 	let mainMsg = inputStr.match(msgSplitor); //定義輸入字串
 	let trigger = mainMsg[0].toString().toLowerCase(); //指定啟動詞在第一個詞&把大階強制轉成細階
+	
+	////////////////判定是否在戰鬥
+	if(BTon == 0){
+		return NormalSys.parseInput(mainMsg,trigger,UserID,UserN,GroupID);
+	}
+	////////////////
 	
 	////////////////管理用指令
 	if (trigger.match(/^強制終止戰鬥$/) != null){
