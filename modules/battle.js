@@ -385,6 +385,11 @@ function battlesys(command,move,target){
 		battlesys('battleOn');
 		setTimeout(function(){bot.push(info[1],battle); }, 1000);
 		setTimeout(function(){battlesys('MoveRequest'); }, 2000);
+	}else if(command == 'DefeatCheck'){
+		for(var i = 0;i<info[8].length;i++){
+			
+		}
+		
 	}else if(command == 'battleOff'){
 		info[0] = 0;//是否在群組內遊玩
 		info[1] = 0;//群組ID
