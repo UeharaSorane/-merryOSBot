@@ -461,6 +461,7 @@ function battlesys(command,move,target,commander){
 		bot.push(info[1],SayResult);
 		info[6]++;
 		info[9] = 0;
+		info[10] = [];
 		battlesys('battleOn');
 		setTimeout(function(){battlesys('MoveRequest'); }, 2000);
 	}else if(command == 'DefeatCheck'){
