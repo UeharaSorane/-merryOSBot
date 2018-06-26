@@ -18,5 +18,5 @@ function parseInput(mainMsg,trigger,UserID,UserN,GroupID) {
 }
 
 module.exports = {
-	parseInput:parseInput
+	parseInput
 };
