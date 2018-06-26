@@ -148,7 +148,7 @@ function battlesys(command,move,target,commander){
 						battle += '玩家名:' + info[3][j].UName + '\
 							\n角色名:' + info[3][j].CName;
 						
-						if(info[4][i]<=0){
+						if(info[4][j]<=0){
 							battle += '(戰鬥不能)';
 						}
 						battle +='\nHp[';
@@ -180,6 +180,8 @@ function battlesys(command,move,target,commander){
 			
 		
 	}else if(command == 'MoveRequest'){
+		console.log(info[3][info[9]].ID);
+		
 		if(info[3][info[9]].ID == 'c'){
 			if(info[4][info[9]]<=0){			
 				battlesys('move','Dead');
