@@ -185,6 +185,8 @@ function battlesys(command,move,target,commander){
 		if(info[3][info[9]].ID == 'c'){
 			if(info[4][info[9]]<=0){			
 				battlesys('move','Dead');
+				
+				return 0;
 			}
 			
 			var s = 1;
@@ -226,6 +228,8 @@ function battlesys(command,move,target,commander){
 				bot.push(info[1],say);
 				
 				battlesys('move','Dead');
+				
+				return 0;
 			}
 			
 			var say = '輪到' + info[3][info[9]].UName + '的行動了！\
