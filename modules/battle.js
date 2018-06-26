@@ -364,7 +364,7 @@ function battlesys(command,move,target,commander){
 		
 		for(var i =0;i<spdl.length;i++){
 			var temp = spdl[i];
-			for(var j =0; j<spdl.length;j++){
+			for(var j =i+1; j<spdl.length;j++){
 				if(spdl[i][3] < spdl[j][3]){
 					spdl[i] = spdl[j];
 					spdl[j] = temp;
