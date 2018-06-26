@@ -70,7 +70,7 @@ function parseInput(inputStr,UserID,UserN,GroupID) {
 	////////////////戰鬥用指令
 	if (trigger.match(/^戰鬥$/) != null){
 		if(UserID == info[3][info[9]].ID){
-			battlesys('move',mainMsg[1],mainMsg[2]);
+			battlesys('move',mainMsg[1],mainMsg[2],info[3][info[9]].UName);
 			
 		}else{
 			rply[0] = 'rply';
@@ -134,7 +134,7 @@ function battleOff(){
 ///////////////////////////////////////////////////////
 ////////////////////////戰鬥系統////////////////////////
 ///////////////////////////////////////////////////////
-function battlesys(command,move,target){
+function battlesys(command,move,target,commander){
 	if(command == 'battleOn'){
 		/////通常對戰系統
 		if(info[2] == 1){
@@ -215,7 +215,7 @@ function battlesys(command,move,target){
 				
 			}
 			
-			battlesys('move',Cmove,CT);
+			battlesys('move',Cmove,CT,info[3][info[9]].UName);
 			
 		}else{
 			if(info[4][info[9]]<=0){
@@ -298,9 +298,6 @@ function battlesys(command,move,target){
 				bot.push(info[1],say);
 				
 				return 0;
-			}else if(move == 'Dead'){
-				
-				
 			}else{
 				for(var i = 0;i<info[3].length;i++){
 					if(target == info[3][i].UName||target == info[3][i].CName){
@@ -309,7 +306,7 @@ function battlesys(command,move,target){
 
 							return 0;
 						}else{
-							info[10][info[9]] = ['通常攻擊',info[3][i].UName];
+							info[10][info[9]] = ['通常攻擊',info[3][i].UName,commander];
 							
 						}
 					}
@@ -317,6 +314,9 @@ function battlesys(command,move,target){
 				
 				
 			}	
+		}else if(move == 'Dead'){
+				
+				
 		}else{
 			bot.push(info[1],'錯誤！無效動作');
 				
@@ -340,8 +340,24 @@ function battlesys(command,move,target){
 		
 		console.log(info[10]);
 		
-		for(var i =0;i<info[10].length;i++){	
-			resultA[i] = damageUI.damage(info[3][i].CName,info[10][i][0],info[3][i].Atk,info[3][i].Spd,info[10][i][1]);
+		for(var i =0;i<info[10].length;i++){
+			for(var j = 0;j<info[3].length;j++){
+				if(info[3][j].UName == info[10][i][2]){
+					var data = {
+						UName: info[3][j].UName,
+						Move: info[10][i][0],
+						MaxHp: info[3][j].Hp,
+						NowHp: info[4][j],
+						MaxMp: info[3][j].Mp,
+						NowMp: info[5][j],
+						Atk: info[3][j].Atk,
+						Spd: info[3][j].Spd,
+						Target: info[10][i][1]
+					};
+					
+					resultA[i] = damageUI.damage(data);
+				}
+			}
 		}
 		
 		var spdl = resultA;
