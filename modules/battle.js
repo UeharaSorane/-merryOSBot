@@ -4,7 +4,7 @@ var BattleInfo = BattileUI.BattleInfo;
 var rollbase = require('../roll/rollbase.js');
 var damageUI = require('../battlesys/damage.js');
 var Skill = require('../database/Skill.js');
-var NormalSys = require('NormalSys.js');
+var NormalSys = require('./NormalSys.js');
 var linebot = require('linebot');
 var express = require('express');
 ////////////////////////
