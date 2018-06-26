@@ -5,7 +5,7 @@ require('fs').readdirSync('./roll/').forEach(function(file) {
 	}
   });
   
-function parseInput(mainMsg,trigger,UserID,UserN,GroupID) {
+function NormalMode(mainMsg,trigger,UserID,UserN,GroupID) {
 	
 ///////////////////////////////////////////////////////
 ////////////////////////開始分析////////////////////////
@@ -18,5 +18,5 @@ function parseInput(mainMsg,trigger,UserID,UserN,GroupID) {
 }
 
 module.exports = {
-	parseInput
+	NormalMode
 };
