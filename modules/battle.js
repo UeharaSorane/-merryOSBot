@@ -338,7 +338,7 @@ function battlesys(command,move,target){
 	}else if(command == 'result'){	
 		var resultA = [];
 		
-		console.log(resultA);
+		console.log(info[10]);
 		
 		for(var i =0;i<info[10].length;i++){	
 			resultA[i] = damageUI.damage(info[3][i].CName,info[10][i][0],info[3][i].Atk,info[3][i].Spd,info[10][i][1]);
