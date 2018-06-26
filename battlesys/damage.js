@@ -5,7 +5,7 @@ var Skill = require('../database/Skill.js');
 
 var Skills = Skill.getSkillData();
 
-function damage(Who,move,Atk,Spd,T){
+function damage(data){
 	var type;
 	
 	
@@ -24,10 +24,10 @@ function damage(Who,move,Atk,Spd,T){
 				
 				var Multiply = Skills[i].minRM + RM;
 				
-				var dmg = Atk*Multiply;
-				var rspd = Spd*Skills[i].SpdM;
+				var dmg = data.Atk*Multiply;
+				var rspd = data.Spd*Skills[i].SpdM;
 				
-				return [type,dmg,rspd,Skills[i].Priority,T,Who,move];
+				return [type,dmg,rspd,Skills[i].Priority,data.Target,data.UName,data.Move];
 			}
 		}
 	}
