@@ -213,7 +213,8 @@ function battlesys(command,move,target,commander){
 				}
 				
 			}
-			if(info[4][info[9]]>0){			
+			if(info[4][info[9]]>0){
+				console.log(info[4][info[9]]);
 				battlesys('move',Cmove,CT,info[3][info[9]].UName);
 			}else{
 				battlesys('move','Dead');
