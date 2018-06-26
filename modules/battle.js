@@ -78,6 +78,12 @@ function parseInput(inputStr,UserID,UserN,GroupID) {
 			return rply;
 		}
 	}
+	
+	if (trigger.match(/^戰況$/) != null){
+			rply[0] = 'rply';
+			rply[1] = battle;
+			return rply;
+	}
 	////////////////
 	
 	////////////////無效指令時，無作用
@@ -239,7 +245,8 @@ function battlesys(command,move,target){
 			}
 			
 			say += '\n--------------------\
-				\n請輸入 [戰鬥 行動編號] 決定行動';
+				\n請輸入 [戰鬥 行動編號] 決定行動\
+				\n或輸入 [戰況] 確認目前情勢';
 			
 			bot.push(info[1],say);
 			
@@ -386,8 +393,12 @@ function battlesys(command,move,target){
 												SayResult += '\n' + info[3][k].UName;
 											}
 										}
-										BTon = 0;
-										setTimeout(function(){bot.push(info[1],SayResult); }, 2000);
+										setTimeout(function(){
+											bot.push(info[1],SayResult); 
+											setTimeout(function(){BTon = 0; }, 2000);
+										}, 1000);
+										
+		
 										battlesys('battleOff');
 										
 										return 0;
@@ -407,7 +418,6 @@ function battlesys(command,move,target){
 		info[6]++;
 		info[9] = 0;
 		battlesys('battleOn');
-		setTimeout(function(){bot.push(info[1],battle); }, 1000);
 		setTimeout(function(){battlesys('MoveRequest'); }, 2000);
 	}else if(command == 'DefeatCheck'){
 		for(var i = 0;i<info[3].length;i++){
