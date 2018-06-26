@@ -183,11 +183,6 @@ function battlesys(command,move,target,commander){
 		console.log(info[3][info[9]].ID);
 		
 		if(info[3][info[9]].ID == 'c'){
-			if(info[4][info[9]]<=0){			
-				battlesys('move','Dead');
-				
-				return 0;
-			}
 			
 			var s = 1;
 			
@@ -218,20 +213,15 @@ function battlesys(command,move,target,commander){
 				}
 				
 			}
-			
-			battlesys('move',Cmove,CT,info[3][info[9]].UName);
-			
-		}else{
-			if(info[4][info[9]]<=0){
-				var say = '玩家' + info[3][info[9]].UName + '已被擊倒！\
-					\n無法行動';
-				bot.push(info[1],say);
-				
+			if(info[4][info[9]]>0){			
+				battlesys('move',Cmove,CT,info[3][info[9]].UName);
+			}else{
 				battlesys('move','Dead');
-				
-				return 0;
 			}
 			
+			
+			
+		}else{
 			var say = '輪到' + info[3][info[9]].UName + '的行動了！\
 					\n角色名:' + info[3][info[9]].CName + '\
 					\nHp[';
@@ -270,7 +260,17 @@ function battlesys(command,move,target,commander){
 				\n請輸入 [戰鬥 行動編號] 決定行動\
 				\n或輸入 [戰況] 確認目前情勢';
 			
-			bot.push(info[1],say);
+			if(info[4][info[9]]>0){
+				bot.push(info[1],say);
+			}else{
+				var say = '玩家' + info[3][info[9]].UName + '已被擊倒！\
+					\n無法行動';
+				bot.push(info[1],say);
+				
+				battlesys('move','Dead');
+				
+				return 0;
+			}
 			
 		}
 	}else if(command == 'move'){
