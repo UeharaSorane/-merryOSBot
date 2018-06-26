@@ -386,8 +386,29 @@ function battlesys(command,move,target){
 		setTimeout(function(){bot.push(info[1],battle); }, 1000);
 		setTimeout(function(){battlesys('MoveRequest'); }, 2000);
 	}else if(command == 'DefeatCheck'){
-		for(var i = 0;i<info[8].length;i++){
-			
+		for(var i = 0;i<info[3].length;i++){
+			if(info[4][i] > 0){
+				for(var j = 0 ; j<info[3].length;j++){
+					if(info[4][j] > 0 && info[3][j].Team != info[3][i].Team){
+						return 0;
+					}
+				}
+				
+				SayResult = '戰鬥結束！\
+						\nWinner:';
+				
+				for(var k = 0; k<info[3].length;k++){
+					if(info[3][k].Team == info[3][i].Team){
+						SayResult += '\n' + info[3][k].UName;
+					}
+				}
+				
+				BTon = 0;
+				bot.push(info[1],SayResult);
+				battlesys('battleOff');
+				
+				
+			}
 		}
 		
 	}else if(command == 'battleOff'){
