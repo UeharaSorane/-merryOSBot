@@ -298,7 +298,7 @@ function battlesys(command,move,target){
 				bot.push(info[1],say);
 				
 				return 0;
-			}else(move == 'Dead'){
+			}else if(move == 'Dead'){
 				
 				
 			}else{
