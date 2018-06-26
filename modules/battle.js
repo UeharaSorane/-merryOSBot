@@ -146,8 +146,12 @@ function battlesys(command,move,target){
 				for(var j = 0;j < info[3].length;j++){
 					if(info[3][j].Team == info[8][i]){
 						battle += '玩家名:' + info[3][j].UName + '\
-							\n角色名:' + info[3][j].CName + '\
-							\nHp[';
+							\n角色名:' + info[3][j].CName';
+						
+						if(info[4][i]<=0){
+							battle += '(戰鬥不能)';
+						}
+						battle +='\nHp[';
 						
 						var HpP = info[4][j]/info[3][j].Hp*20;
 						for(var k = 0; k < HpP;k++){
@@ -177,6 +181,10 @@ function battlesys(command,move,target){
 		
 	}else if(command == 'MoveRequest'){
 		if(info[3][info[9]].ID == 'c'){
+			if(info[4][info[9]]<=0){			
+				battlesys('move','Dead');
+			}
+			
 			var s = 1;
 			
 			for(var i = 0;i<3;i++){
@@ -210,6 +218,14 @@ function battlesys(command,move,target){
 			battlesys('move',Cmove,CT);
 			
 		}else{
+			if(info[4][info[9]]<=0){
+				var say = '玩家' + info[3][info[9]].UName + '已被擊倒！\
+					\n無法行動';
+				bot.push(info[1],say);
+				
+				battlesys('move','Dead');
+			}
+			
 			var say = '輪到' + info[3][info[9]].UName + '的行動了！\
 					\n角色名:' + info[3][info[9]].CName + '\
 					\nHp[';
@@ -282,6 +298,9 @@ function battlesys(command,move,target){
 				bot.push(info[1],say);
 				
 				return 0;
+			}else(move == 'Dead'){
+				
+				
 			}else{
 				for(var i = 0;i<info[3].length;i++){
 					if(target == info[3][i].UName||target == info[3][i].CName){
