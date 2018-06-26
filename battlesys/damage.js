@@ -6,8 +6,6 @@ var Skill = require('../database/Skill.js');
 var Skills = Skill.getSkillData();
 
 function damage(data){
-	console.log(data);
-	
 	var type;
 	
 	
