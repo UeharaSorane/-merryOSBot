@@ -83,7 +83,9 @@ function parseInput(inputStr,UserID,UserN,GroupID) {
 }
 
 function battleON(FightInfo){
-	//console.log(FightInfo[3][0].Hp);
+	
+	BTon = 1;
+	
 	info[0] = FightInfo[0];
 	info[1] = FightInfo[1];
 	info[2] = FightInfo[2];
@@ -102,14 +104,15 @@ function battleON(FightInfo){
 	bot.push(info[1],battle);
 	
 	setTimeout(function(){battlesys('MoveRequest'); }, 2000);
-
 }
 
 
 function battleOff(){
+	
+	1BTon = 0;
 	battlesys('battleOff');
 	
-	rply[0] = 'battleOff';
+	rply[0] = 'rply';
 	rply[1] = '戰鬥系統關閉';
 	return rply;
 	
