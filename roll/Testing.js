@@ -70,7 +70,7 @@ function SimBattle(UserID,GroupID,UserN){
 	battle.battleON(FightInfo);
 	
 	rply[0] = 'battleOn';
-	rply[1] = '';
+	rply[1] = FightInfo;
 	return rply;
 }
 
