@@ -12,7 +12,7 @@ function damage(data){
 	
 	
 	for(var i = 0; i<Skills.length;i++){
-		if(move == Skills[i].Name){
+		if(data.Move == Skills[i].Name){
 			if(Skills[i].Type == '攻擊'){
 				type ='傷害';
 				
