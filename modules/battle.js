@@ -337,6 +337,8 @@ function battlesys(command,move,target){
 						spdl[j] = temp;
 					}else if(spdl[i][2] == spdl[j][2]){
 						var Dic = rollbase.Dice(2);
+						console.log(Dic);
+						
 						
 						if(Dic == 2){
 							spdl[i] = spdl[j];
