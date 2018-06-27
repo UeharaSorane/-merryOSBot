@@ -30,7 +30,7 @@ SkillDB.useServiceAccountAuth(creds, function (err) {
 					Skills[i].Description = rows[i].description;
 					Skills[i].W = [rows[i].w1,rows[i].w2,rows[i].w3];
 					
-					Skills[i].Effect = rows[i].effect;
+					Skills[i].Effect = rows[i].effect.split(';');
 					
 					
 				}
