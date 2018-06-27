@@ -381,7 +381,7 @@ function battlesys(command,move,target,commander){
 						\n 施放範圍:' + Skills[i].Range + '\
 						\n 描述:\n' + Skills[i].Description + '\
 						\n--------------------\
-						\n你可以選擇的對象有:';
+						\n你可以選擇的對象有:\n';
 					
 					if(Skills[i].Range == '敵方單體'){
 						for(var i = 0; i < info[3].length;i++){
@@ -500,7 +500,7 @@ function battlesys(command,move,target,commander){
 					
 					
 				}else{
-					if(info[5][info[9]] >= Skill[i].Mp){
+					if(info[5][info[9]] >= Skills[i].Mp){
 						if(Skill[i].Range == '敵方單體'){
 							for(var j = 0;j<info[3].length;j++){
 								if(target == info[3][j].UName||target == info[3][j].CName){
