@@ -754,6 +754,7 @@ function battlesys(command,move,target,commander){
 										if(Skills[sm1].Effect[E1] == 'MpRecoverPer'){
 											if(Skills[sm1].Effect[E1][2] == '自身'){
 												info[5][sm2] += (info[3][sm2].Mp/Skills[sm1].Effect[E1][1]);
+												if(info[5][sm2]>info[3][sm2].Mp) info[5][sm2] = info[3][sm2].Mp;
 												
 											}
 										}
