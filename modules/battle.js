@@ -740,7 +740,7 @@ function battlesys(command,move,target,commander){
 																return 0;
 															}
 														}else{
-															j = Skills.length;
+															k = Skills.length;
 														}
 													}
 												}	
