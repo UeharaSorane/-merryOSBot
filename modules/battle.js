@@ -211,6 +211,8 @@ function battlesys(command,move,target,commander){
 				}else{
 					SD == info[3][info[9]].Skill[Cmove-2];
 				}
+				
+				console.log(SD);
 
 				for(var M1 = 0;M1<Skills.length;M1++){
 
