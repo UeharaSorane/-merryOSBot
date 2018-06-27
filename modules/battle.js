@@ -324,7 +324,7 @@ function battlesys(command,move,target,commander){
 					\n--------------------\
 					\n你可以:\
 					\n 1.通常攻擊\n';
-			
+			console.log(info[3][info[9]].Skill);
 			for(var i = 0;i<3;i++){
 				if(info[3][info[9]].Skill[i] != '無'){
 					say +=' ' +  (i+1) + '.' + info[3][info[9]].Skill[i] + '\n';
