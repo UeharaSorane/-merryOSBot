@@ -704,43 +704,48 @@ function battlesys(command,move,target,commander){
 								
 								if(spdl[i][0] == '傷害'){
 									for(var j = 0;j<Skills.length;j++){
-										if(Skills[j].Range == '敵方單體'){
-											for(var k =0;k<info[3].length;k++){
-												if(info[3][k].UName == spdl[i][4][0]){
+										if(Skills[j].Name == spdl[i][5]){
+											if(Skills[j].Range == '敵方單體'){
+												for(var k =0;k<info[3].length;k++){
+													if(info[3][k].UName == spdl[i][4][0]){
 
-													info[4][k]-= spdl[i][1];
+														info[4][k]-= spdl[i][1];
 
-													SayResult +='\n' +  spdl[i][5] + '使用' + spdl[i][6] + '\n攻擊' + info[3][k].CName;
+														SayResult +='\n' +  spdl[i][5] + '使用' + spdl[i][6] + '\n攻擊' + info[3][k].CName;
 
-													SayResult += '\n承受' + spdl[i][1] + '點傷害\
-															\nHp[';
+														SayResult += '\n承受' + spdl[i][1] + '點傷害\
+																\nHp[';
 
-													var HpP = info[4][k]/info[3][k].Hp*20;
-													for(var l = 0; l < HpP;l++){
-														SayResult += '|';
-													}
-													for(var l = 0; l < 20-HpP;l++){
-														SayResult += ' ';
-													}
+														var HpP = info[4][k]/info[3][k].Hp*20;
+														for(var l = 0; l < HpP;l++){
+															SayResult += '|';
+														}
+														for(var l = 0; l < 20-HpP;l++){
+															SayResult += ' ';
+														}
 
-													SayResult += '](' + info[4][k] + '/' + info[3][k].Hp + ')';
+														SayResult += '](' + info[4][k] + '/' + info[3][k].Hp + ')';
 
-													var KC = battlesys('killCheck','',info[3][k].UName);
+														var KC = battlesys('killCheck','',info[3][k].UName);
 
-													SayResult += KC[1];
+														SayResult += KC[1];
 
-													if(KC[0] == 1){
-														var GE = battlesys('DefeatCheck');
-														if(GE == 1){
-															SayResult += '\n--------------------';
+														if(KC[0] == 1){
+															var GE = battlesys('DefeatCheck');
+															if(GE == 1){
+																SayResult += '\n--------------------';
 
-															bot.push(info[1],SayResult);
+																bot.push(info[1],SayResult);
 
-															return 0;
+																return 0;
+															}
+														}else{
+															j = Skills.length;
 														}
 													}
-												}
-											}	
+												}	
+											}
+											
 										}
 									}	
 								}
@@ -784,7 +789,7 @@ function battlesys(command,move,target,commander){
 		for(var k1 = 0;k1<info[3].length;k1++){
 			if(target == info[3][k1].UName){
 				if(info[4][k1] <=0){
-					return [1,info[3][k1].CName + ' Hp歸0，再起不能！'];
+					return [1,'\n' + info[3][k1].CName + ' Hp歸0，再起不能！'];
 				}else{
 					return [0,'\n'];
 				}
