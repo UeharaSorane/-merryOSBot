@@ -17,12 +17,14 @@ function damage(data){
 				var RM;
 				
 				if(Skills[i].maxRM != Skills[i].minRM){
-					RM = rollbase.Dice(Skills[i].maxRM-Skills[i].minRM);
+					RM = rollbase.Dice(Skills[i].maxRM-Skills[i].minRM+1);
 				}else{
 					RM = 0;
 				}
 				
-				var Multiply = Skills[i].minRM + RM;
+				var Multiply = Skills[i].minRM + RM -1;
+				
+				console.log(Multiply);
 				
 				var dmg = Math.floor(data.Atk*Multiply/100 + Skills[i].Plus);
 				var rspd = data.Spd*Skills[i].SpdM;
