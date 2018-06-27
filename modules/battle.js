@@ -207,9 +207,9 @@ function battlesys(command,move,target,commander){
 				
 				console.log(Cmove);
 				if(Cmove == 1){
-					SD == '通常攻擊';
+					SD = '通常攻擊';
 				}else{
-					SD == info[3][info[9]].Skill[Cmove-2];
+					SD = info[3][info[9]].Skill[Cmove-2];
 				}
 				
 				console.log(SD);
