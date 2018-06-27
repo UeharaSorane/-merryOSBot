@@ -674,7 +674,9 @@ function battlesys(command,move,target,commander){
 					for(var sm2 = 0;sm2<info[3].length;sm2++){
 						if(spdl[5] == info[3][sm2].UName){
 							var NeedMp = 0;
-							var WT;
+							var WT ='';
+							
+							console.log(WT);
 							
 							for(var sm3 = 0; sm3<Weapon.length;sm3++){
 								if(info[3][sm2].EW == Weapon[sm3].Name){
@@ -683,7 +685,6 @@ function battlesys(command,move,target,commander){
 								}
 							}
 							
-							console.log(WT);
 							
 							for(var sm4 = 0; sm4<Skills[sm1].W.length;sm4++){
 								
