@@ -24,7 +24,7 @@ function damage(data){
 				
 				var Multiply = Skills[i].minRM + RM;
 				
-				var dmg = Math.floor(data.Atk*Multiply);
+				var dmg = Math.floor(data.Atk*Multiply/100);
 				var rspd = data.Spd*Skills[i].SpdM;
 				
 				return [type,dmg,rspd,Skills[i].Priority,data.Target,data.UName,data.Move];
