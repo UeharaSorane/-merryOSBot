@@ -749,6 +749,16 @@ function battlesys(command,move,target,commander){
 										}
 									}	
 								}
+								if(Skills[sm1].Effect != ['無']){
+									for(var E1 = 0;E1<Skills[sm1].Effect.length;E1++){
+										if(Skills[sm1].Effect[E1] == 'MpRecoverPer'){
+											if(Skills[sm1].Effect[E1][2] == '自身'){
+												info[5][sm2] += (info[3][sm2].Mp/Skills[sm1].Effect[E1][1]);
+												
+											}
+										}
+									}
+								}
 							}else{
 								SayResult +='\n' +  spdl[i][5] + '想使用' + spdl[i][6] + '\
 										\n 卻因為魔力不足而無法使用！';
