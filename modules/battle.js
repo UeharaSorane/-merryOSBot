@@ -613,6 +613,8 @@ function battlesys(command,move,target,commander){
 		return 0;
 		
 	}else if(command == 'result'){	
+		var GE;
+		
 		var resultA = [];
 		
 		console.log(info[10]);
@@ -732,14 +734,8 @@ function battlesys(command,move,target,commander){
 														SayResult += KC[1];
 
 														if(KC[0] == 1){
-															var GE = battlesys('DefeatCheck');
-															if(GE == 1){
-																SayResult += '\n--------------------';
+															GE = battlesys('DefeatCheck');
 
-																bot.push(info[1],SayResult);
-
-																return 0;
-															}
 														}
 														
 														j = Skills.length;
@@ -784,13 +780,17 @@ function battlesys(command,move,target,commander){
 			SayResult += '\n--------------------';
 		}
 		
-		
-		bot.push(info[1],SayResult);
-		info[6]++;
-		info[9] = 0;
-		info[10].length = 0;
-		battlesys('battleOn');
-		setTimeout(function(){battlesys('MoveRequest'); }, 2000);
+		if(GE == 0){
+			bot.push(info[1],SayResult);
+			info[6]++;
+			info[9] = 0;
+			info[10].length = 0;
+			battlesys('battleOn');
+			setTimeout(function(){battlesys('MoveRequest'); }, 2000);
+		}else{
+			bot.push(info[1],SayResult);
+			battlesys('GameEnd');
+		}
 	}else if(command == 'DefeatCheck'){
 		for(var i = 0;i<info[3].length;i++){
 			if(info[4][i] > 0){
@@ -799,9 +799,6 @@ function battlesys(command,move,target,commander){
 						return 0;
 					}
 				}
-				
-				battlesys('GameEnd');
-				
 				return 1;		
 			}
 		}
