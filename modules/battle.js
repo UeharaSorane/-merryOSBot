@@ -662,59 +662,67 @@ function battlesys(command,move,target,commander){
 							for(var sm4 = 0; sm4<Skills[sm1].W.length;sm4++){
 								if(WT = Skills[sm1].W[sm4]){
 									NeedMp = Skills[sm1].Mp/2;
+									break;
 								}else{
-									
+									NeedMp = Skills[sm1].Mp;
 								}
 							}
 							
-							if(info[3][sm2])
+							if(info[5][sm2]>NeedMp){
+								info[5][sm2]-=NeedMp;
+								
+								if(spdl[i][0] == '傷害'){
+									for(var j = 0;j<Skills.length;j++){
+										if(Skill[j].Range == '敵方單體'){
+											for(var k =0;k<info[3].length;k++){
+												if(info[3][k].UName == Spdl[i][4][0]){
+
+													info[4][k]-= spdl[i][1];
+
+													SayResult +='\n' +  spdl[i][5] + '使用' + spdl[i][6] + '\n攻擊' + info[3][k].CName;
+
+													SayResult += '\n承受' + spdl[i][1] + '點傷害\
+															\nHp[';
+
+													var HpP = info[4][k]/info[3][k].Hp*20;
+													for(var l = 0; l < HpP;l++){
+														SayResult += '|';
+													}
+													for(var l = 0; l < 20-HpP;l++){
+														SayResult += ' ';
+													}
+
+													SayResult += '](' + info[4][k] + '/' + info[3][k].Hp + ')';
+
+													var KC = battlesys('killCheck','',info[3][k].UName);
+
+													SayResult += KC[1];
+
+													if(KC[0] == 1){
+														var GE =  battlesys('DefeatCheck');
+														if(GE == 1){
+															SayResult += '\n--------------------';
+
+															bot.push(info[1],SayResult);
+
+															return 0;
+														}
+													}
+												}
+											}	
+										}
+									}	
+								}
+							}else{
+								SayResult +='\n' +  spdl[i][5] + '想使用' + spdl[i][6] + '\
+										\n 卻因為魔力不足而無法使用！;
+							}
 						}
 					}
 				}
 			}
 			
-			if(spdl[i][0] == '傷害'){
-				for(var j = 0;j<Skills.length;j++){
-					if(Skill[j].Range == '敵方單體'){
-						for(var k =0;k<info[3].length;k++){
-							if(info[3][k].UName == Spdl[i][4][0]){
-							
-								info[4][k]-= spdl[i][1];
-
-								SayResult +='\n' +  spdl[i][5] + '使用' + spdl[i][6] + '\n攻擊' + info[3][k].CName;
-
-								SayResult += '\n承受' + spdl[i][1] + '點傷害\
-										\nHp[';
-
-								var HpP = info[4][k]/info[3][k].Hp*20;
-								for(var l = 0; l < HpP;l++){
-									SayResult += '|';
-								}
-								for(var l = 0; l < 20-HpP;l++){
-									SayResult += ' ';
-								}
-
-								SayResult += '](' + info[4][k] + '/' + info[3][k].Hp + ')';
-								
-								var KC = battlesys('killCheck','',info[3][k].UName);
-								
-								SayResult += KC[1];
-								
-								if(KC[0] == 1){
-									var GE =  battlesys('DefeatCheck');
-									if(GE == 1){
-										SayResult += '\n--------------------';
-										
-										bot.push(info[1],SayResult);
-										
-										return 0;
-									}
-								}
-							}
-						}	
-					}
-				}	
-			}
+			
 			
 			SayResult += '\n--------------------';
 		}
