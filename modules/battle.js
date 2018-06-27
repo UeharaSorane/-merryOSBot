@@ -696,16 +696,16 @@ function battlesys(command,move,target,commander){
 								}
 							}
 							
-							console.log(NeedMp);
-							
 							
 							if(info[5][sm2]>NeedMp){
 								info[5][sm2]-=NeedMp;
 								
 								if(spdl[i][0] == '傷害'){
 									for(var j = 0;j<Skills.length;j++){
+										console.log('-2');
 										if(Skills[j].Name == spdl[i][5]){
 											if(Skills[j].Range == '敵方單體'){
+												console.log('-1');
 												for(var k =0;k<info[3].length;k++){
 													console.log('0');
 													if(info[3][k].UName == spdl[i][4][0]){
