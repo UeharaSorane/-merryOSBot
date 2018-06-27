@@ -737,6 +737,9 @@ function battlesys(command,move,target,commander){
 															GE = battlesys('DefeatCheck');
 															if(GE == 1){
 																SayResult += '\n--------------------';
+																bot.push(info[1],SayResult);
+																battlesys('GameEnd');
+																return 0;
 																
 															}
 
@@ -765,10 +768,6 @@ function battlesys(command,move,target,commander){
 											if(Effect1[E1][2] == '自身'){
 												info[5][sm2] += (info[3][sm2].Mp/Effect1[E1][1]);
 												if(info[5][sm2]>info[3][sm2].Mp) info[5][sm2] = info[3][sm2].Mp;
-												
-												bot.push(info[1],SayResult);
-												battlesys('GameEnd');
-												return 0;
 												
 											}
 										}
