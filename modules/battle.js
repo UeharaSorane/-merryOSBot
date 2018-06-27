@@ -704,14 +704,10 @@ function battlesys(command,move,target,commander){
 								
 								if(spdl[i][0] == '傷害'){
 									for(var j = 0;j<Skills.length;j++){
-										console.log('-2');
-										console.log(Skills[j].Name);
-										console.log(spdl[i][5]);
-										if(Skills[j].Name == spdl[i][5]){
+										if(Skills[j].Name == spdl[i][6]){
 											console.log(Skills[j].Name);
 											if(Skills[j].Range == '敵方單體'){
 												for(var k =0;k<info[3].length;k++){
-													console.log('0');
 													if(info[3][k].UName == spdl[i][4][0]){
 														console.log('1');
 														info[4][k]-= spdl[i][1];
@@ -745,6 +741,8 @@ function battlesys(command,move,target,commander){
 																return 0;
 															}
 														}
+														
+														j = Skills.length;
 													}
 												}	
 											}
