@@ -105,6 +105,8 @@ function battleON(FightInfo){
 	info[2] = FightInfo[2];
 	info[3] = FightInfo[3];
 	
+	console.log(info[3]);
+	
 	for(var i = 0;i<FightInfo[3].length;i++){
 		info[4][i] = FightInfo[3][i].Hp;
 		info[5][i] = FightInfo[3][i].Mp;
@@ -325,7 +327,7 @@ function battlesys(command,move,target,commander){
 			
 			for(var i = 0;i<3;i++){
 				if(info[3][info[9]].Skill[i] != '無'){
-					say +=' ' +  (i+2) + '.' + info[3][info[9]].Skill[i] + '\n';
+					say +=' ' +  (i+1) + '.' + info[3][info[9]].Skill[i] + '\n';
 				}
 			}
 			
