@@ -328,7 +328,7 @@ function battlesys(command,move,target,commander){
 					\n 1.通常攻擊\n';
 			for(var i = 0;i<3;i++){
 				if(info[3][info[9]].Skill[i] != '無'){
-					say +=' ' +  (i+1) + '.' + info[3][info[9]].Skill[i] + '\n';
+					say +=' ' +  (i+2) + '.' + info[3][info[9]].Skill[i] + '\n';
 				}
 			}
 			
@@ -357,7 +357,7 @@ function battlesys(command,move,target,commander){
 		}else if(move == 'Dead'){
 			
 		}else if(move == 2||move == 3 || move == 4){
-			if(info[3][info[9]].Skill[move] !='無'){
+			if(info[3][info[9]].Skill[move-2] !='無'){
 				UseSkill = info[3][info[9]].Skill[move];
 			}else{
 				bot.push(info[1],'錯誤！無效動作');
