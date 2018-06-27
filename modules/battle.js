@@ -685,6 +685,8 @@ function battlesys(command,move,target,commander){
 								}
 							}
 							
+							console.log('WT');
+							
 							
 							for(var sm4 = 0; sm4<Skills[sm1].W.length;sm4++){
 								
@@ -704,8 +706,8 @@ function battlesys(command,move,target,commander){
 									for(var j = 0;j<Skills.length;j++){
 										console.log('-2');
 										if(Skills[j].Name == spdl[i][5]){
+											console.log('-1');
 											if(Skills[j].Range == '敵方單體'){
-												console.log('-1');
 												for(var k =0;k<info[3].length;k++){
 													console.log('0');
 													if(info[3][k].UName == spdl[i][4][0]){
@@ -746,6 +748,7 @@ function battlesys(command,move,target,commander){
 											}
 											
 										}
+										
 									}	
 								}
 								
