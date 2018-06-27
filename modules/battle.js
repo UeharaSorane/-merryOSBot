@@ -105,7 +105,7 @@ function battleON(FightInfo){
 	info[2] = FightInfo[2];
 	info[3] = FightInfo[3];
 	
-	console.log(info[3]);
+	//console.log(info[3]);
 	
 	for(var i = 0;i<FightInfo[3].length;i++){
 		info[4][i] = FightInfo[3][i].Hp;
@@ -183,9 +183,6 @@ function battlesys(command,move,target,commander){
 			
 		
 	}else if(command == 'MoveRequest'){
-		console.log(info[3][info[9]].Skill);
-		
-		console.log(info[3][info[9]].ID);
 		
 		if(info[3][info[9]].ID == 'c'){
 			
@@ -207,6 +204,8 @@ function battlesys(command,move,target,commander){
 				
 				
 				Cmove = rollbase.Dice(s);
+				
+				console.log(Cmove);
 				if(Cmove == 1){
 					SD == '通常攻擊';
 				}else{
@@ -216,6 +215,8 @@ function battlesys(command,move,target,commander){
 				for(var M1 = 0;M1<Skills.length;M1++){
 
 					if(SD == Skills[M1].Name){
+						console.log(Skills[M1].Name);
+						
 						if(info[5][info[9]] >= Skills[M1].Mp){
 							if(Skills[M1].Range == '敵方單體'){
 								for(var i = 0; i < info[3].length;i++){
