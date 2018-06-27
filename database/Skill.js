@@ -32,7 +32,7 @@ SkillDB.useServiceAccountAuth(creds, function (err) {
 					
 					Skills[i].Effect = rows[i].effect.split(';');
 					for(var s1 = 0;s1<Skills[i].Effect.length;s1++){
-						Skills[i].Effect[i] = Skills[i].Effect[i].split(',');
+						Skills[i].Effect[s1] = Skills[i].Effect[s1].split(',');
 					}
 					
 				}
