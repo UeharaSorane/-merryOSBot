@@ -747,7 +747,9 @@ function battlesys(command,move,target,commander){
 										}
 									}	
 								}
-								if(Skills[sm1].Effect != ['無']){
+								
+								
+								/*if(Skills[sm1].Effect != ['無']){
 									var Effect1 = [];
 									for(var E0 = 0; E0<Skills[sm1].Effect.length;E0++){
 										Effect1.push(Skills[sm1].Effect[E0].split(','))
@@ -763,7 +765,7 @@ function battlesys(command,move,target,commander){
 											}
 										}
 									}
-								}
+								}*/
 							}else{
 								SayResult +='\n' +  spdl[i][5] + '想使用' + spdl[i][6] + '\
 										\n 卻因為魔力不足而無法使用！';
