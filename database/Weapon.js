@@ -1,16 +1,16 @@
 var GoogleSpreadsheet = require('google-spreadsheet');
 var creds = require('../client_secret.json');
 
-var SkillDB = new GoogleSpreadsheet('19dmO1oYtwVES_It0rixnrYVojvRMsbz9w5H3yg1Cm9Y');
+var WeaponDB = new GoogleSpreadsheet('19dmO1oYtwVES_It0rixnrYVojvRMsbz9w5H3yg1Cm9Y');
 
-var Skills = [];
+var Weapons = [];
 
-SkillDB.useServiceAccountAuth(creds, function (err) {
+WeaponDB.useServiceAccountAuth(creds, function (err) {
 		
  
 	
  // 是先將資料讀進陣列
-	SkillDB.getRows(1 , 
+	SkillDB.getRows(2 , 
 		function (err, rows) {
 			if (err) {
 				console.log( err );
@@ -18,23 +18,20 @@ SkillDB.useServiceAccountAuth(creds, function (err) {
 				for(var i=0; i< rows.length; i++){
 					Skills[i] = {};
 					
-					Skills[i].Name = rows[i].skillname;
-					Skills[i].Type = rows[i].type;
-					Skills[i].Mp = Number(rows[i].mp);
-					Skills[i].Range = rows[i].range;
-					Skills[i].Plus = Number(rows[i].plus);
-					Skills[i].minRM = Number(rows[i].minrm);
-					Skills[i].maxRM = Number(rows[i].maxrm);
-					Skills[i].SpdM = Number(rows[i].spdm);
-					Skills[i].Priority = Number(rows[i].priority);
-					Skills[i].Descirption = rows[i].description;
-					Skills[i].W1 = rows[i].W1;
-					Skills[i].W2 = rows[i].W2;
-					Skills[i].W3 = rows[i].W3;
+					Weapons[i].ID = rows[i].id;
+					Weapons[i].Name = rows[i].name;
+					Weapons[i].Rare = rows[i].rare;
+					Weapons[i].Type = rows[i].type;
+					Weapons[i].HpB = Number(rows[i].hpb);
+					Weapons[i].MpB = Number(rows[i].mpb);
+					Weapons[i].AtkB = Number(rows[i].atkb);
+					Weapons[i].Ability = rows[i].ability;
+					Weapons[i].Descirption = rows[i].description;
+					Weapons[i].HTGI = rows[i].htgi;
 					
 				}
-				console.log(Skills);
-				console.log('技能資料 讀取完成');
+				console.log(Weapons);
+				console.log('武器資料 讀取完成');
 			}
 		
 
@@ -45,10 +42,10 @@ SkillDB.useServiceAccountAuth(creds, function (err) {
 		
 	});
 
-function getSkillData(){
-	return Skills;
+function getWeaponData(){
+	return Weapons;
 }
 
 module.exports = {
-	getSkillData
+	getWeaponData
 };
