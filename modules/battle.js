@@ -374,8 +374,7 @@ function battlesys(command,move,target,commander){
 		
 		for(var i = 0; i<Skills.length;i++){
 			if(UseSkill == Skills[i].Name){
-				console.log(Skill[i]);
-				
+				console.log(Skills[i]);
 				if(target == null){
 					say = '技能名稱:' + Skills[i].Name + '\
 						\n 消耗Mp:' + Skills[i].Mp + '\
