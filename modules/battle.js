@@ -683,7 +683,10 @@ function battlesys(command,move,target,commander){
 								}
 							}
 							
+							console.log(WT);
+							
 							for(var sm4 = 0; sm4<Skills[sm1].W.length;sm4++){
+								
 								if(WT == Skills[sm1].W[sm4]){
 									NeedMp = Skills[sm1].Mp/2;
 									break;
@@ -691,6 +694,9 @@ function battlesys(command,move,target,commander){
 									NeedMp = Skills[sm1].Mp;
 								}
 							}
+							
+							console.log(NeedMp);
+							
 							
 							if(info[5][sm2]>NeedMp){
 								info[5][sm2]-=NeedMp;
