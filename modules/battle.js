@@ -190,28 +190,50 @@ function battlesys(command,move,target,commander){
 				if(info[3][info[9]].Skill[i] != '無') s++;
 			}
 			
-			var Cmove = rollbase.Dice(s);
-			
+			var Cmove = 0;
+			var SD;
 			var w=0;
-			for(var i = 0; i < info[3].length;i++){
-				if(info[3][i].Team != info[3][info[9]].Team){
-					w++
-				}
-			}
-			var Ctarget = rollbase.Dice(w);
-			
+			var Ctarget = 0
 			var CT;
 			
-			for(var i =0;i<Ctarget;i++){
-				for(var j = 0; j<info[3].length;j++){
-					if(info[3][j].Team != info[3][info[9]].Team){
-						if(CT != info[3][j].UName){
-							CT = info[3][j].UName;
-							break;
+			while(true){
+				Cmove = rollbase.Dice(s);
+				if(Cmove == 1){
+					SD == '通常攻擊';
+				}else{
+					SD == info[3][info[9]].Skill[Cmove-2];
+				}
+
+				for(var M1 = 0;M1<Skills.length;M1++){
+
+					if(SD == Skills[M1].Name){
+						if(info[5][info[9]] >= Skills[M1].Mp){
+							if(Skills[M1].Range == '敵方單體'){
+								for(var i = 0; i < info[3].length;i++){
+									if(info[3][i].Team != info[3][info[9]].Team){
+										w++
+									}
+								}
+								
+								Ctarget = rollbase.Dice(w);
+								
+								for(var i =0;i<Ctarget;i++){
+									for(var j = 0; j<info[3].length;j++){
+										if(info[3][j].Team != info[3][info[9]].Team){
+											if(CT != info[3][j].UName){
+												CT = info[3][j].UName;
+												break;
+											}
+										}
+									}
+
+								}
+								
+							}
 						}
+
 					}
 				}
-				
 			}
 			if(info[4][info[9]]>0){
 				console.log(info[4][info[9]]);
