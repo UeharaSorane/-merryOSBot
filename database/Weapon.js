@@ -16,7 +16,7 @@ WeaponDB.useServiceAccountAuth(creds, function (err) {
 				console.log( err );
 			}else{
 				for(var i=0; i< rows.length; i++){
-					Skills[i] = {};
+					Weapons[i] = {};
 					
 					Weapons[i].ID = rows[i].id;
 					Weapons[i].Name = rows[i].name;
