@@ -736,7 +736,8 @@ function battlesys(command,move,target,commander){
 														if(KC[0] == 1){
 															GE = battlesys('DefeatCheck');
 															if(GE == 1){
-																i = spdl.length;
+																SayResult += '\n--------------------';
+																
 															}
 
 														}
@@ -765,6 +766,10 @@ function battlesys(command,move,target,commander){
 												info[5][sm2] += (info[3][sm2].Mp/Effect1[E1][1]);
 												if(info[5][sm2]>info[3][sm2].Mp) info[5][sm2] = info[3][sm2].Mp;
 												
+												bot.push(info[1],SayResult);
+												battlesys('GameEnd');
+												return 0;
+												
 											}
 										}
 									}
@@ -790,9 +795,6 @@ function battlesys(command,move,target,commander){
 			info[10].length = 0;
 			battlesys('battleOn');
 			setTimeout(function(){battlesys('MoveRequest'); }, 2000);
-		}else{
-			bot.push(info[1],SayResult);
-			battlesys('GameEnd');
 		}
 	}else if(command == 'DefeatCheck'){
 		for(var i = 0;i<info[3].length;i++){
@@ -823,10 +825,8 @@ function battlesys(command,move,target,commander){
 					\nWinner:';
 				
 				for(var GE2 = 0;GE2 < info[3].length;GE2++){
-					console.log(0);
 					if(info[3][GE2].Team == info[3][GE1].Team){
-						console.log(1);
-						SayResult += '\n' + info[3][GE2].UName;
+						SayR += '\n' + info[3][GE2].UName;
 					}
 				}
 				
