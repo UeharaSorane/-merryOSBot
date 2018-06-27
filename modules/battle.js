@@ -613,7 +613,7 @@ function battlesys(command,move,target,commander){
 		return 0;
 		
 	}else if(command == 'result'){	
-		var GE;
+		var GE = 0;
 		
 		var resultA = [];
 		
