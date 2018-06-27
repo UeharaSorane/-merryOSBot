@@ -39,7 +39,7 @@ SkillDB.useServiceAccountAuth(creds, function (err) {
 					
 					console.log(Effect2);
 					
-					Skills[i].Effect = Effect2;
+					Skills[i].Effect = [[1],[2]];
 				}
 				console.log(Skills);
 				console.log('技能資料 讀取完成');
