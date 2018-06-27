@@ -785,6 +785,8 @@ function battlesys(command,move,target,commander){
 			if(target == info[3][k1].UName){
 				if(info[4][k1] <=0){
 					return [1,info[3][k1].CName + ' Hp歸0，再起不能！'];
+				}else{
+					return [0,'\n'];
 				}
 			}
 		}
