@@ -706,7 +706,7 @@ function battlesys(command,move,target,commander){
 									for(var j = 0;j<Skills.length;j++){
 										if(Skills[j].Range == '敵方單體'){
 											for(var k =0;k<info[3].length;k++){
-												if(info[3][k].UName == Spdl[i][4][0]){
+												if(info[3][k].UName == spdl[i][4][0]){
 
 													info[4][k]-= spdl[i][1];
 
