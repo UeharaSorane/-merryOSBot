@@ -735,6 +735,9 @@ function battlesys(command,move,target,commander){
 
 														if(KC[0] == 1){
 															GE = battlesys('DefeatCheck');
+															if(GE == 1){
+																i = spdl.length;
+															}
 
 														}
 														
@@ -820,7 +823,9 @@ function battlesys(command,move,target,commander){
 					\nWinner:';
 				
 				for(var GE2 = 0;GE2 < info[3].length;GE2++){
+					console.log(0);
 					if(info[3][GE2].Team == info[3][GE1].Team){
+						console.log(1);
 						SayResult += '\n' + info[3][GE2].UName;
 					}
 				}
