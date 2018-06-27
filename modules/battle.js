@@ -715,7 +715,7 @@ function battlesys(command,move,target,commander){
 								}
 							}else{
 								SayResult +='\n' +  spdl[i][5] + '想使用' + spdl[i][6] + '\
-										\n 卻因為魔力不足而無法使用！;
+										\n 卻因為魔力不足而無法使用！';
 							}
 						}
 					}
