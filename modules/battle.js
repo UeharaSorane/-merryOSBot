@@ -275,18 +275,133 @@ function battlesys(command,move,target,commander){
 			
 		}
 	}else if(command == 'move'){
+		var UseSkill;
 		
 		if(move == 1){
-			if(target == null){
-				say = '你可以攻擊的對象:\n';
-				for(var i = 0; i < info[3].length;i++){
-					if(info[3][i].Team != info[3][info[9]].Team && info[4][i]>0){
+			UseSkill = '通常攻擊';
+		}else if(move == 'Dead'){
+			
+		}else if(move == 2||move == 3 || move == 4){
+			if(info[3][info[9]].Skill[move] !='無'){
+				UseSkill = info[3][info[9]].Skill[move];
+			}else{
+				bot.push(info[1],'錯誤！無效動作');
+				
+				return 0;
+			}
+		}else{
+			bot.push(info[1],'錯誤！無效動作');
+				
+			return 0;
+		}
+		
+		for(var i = 0; i<Skills.length;i++){
+			if(UseSkill == Skill[i].Name){
+				if(target == null){
+					say = '技能名稱:' + Skill[i].Name + '\
+						\n 消耗Mp:' + Skill[i].Mp + '\
+						\n 施放範圍:' + Skill[i].Range + '\
+						\n 描述:\n' + Skill[i].Description + '\
+						\n--------------------\
+						\n你可以選擇的對象有:';
+					
+					if(Skill[i].Range == '敵方單體'){
+						for(var i = 0; i < info[3].length;i++){
+							if(info[3][i].Team != info[3][info[9]].Team && info[4][i]>0){
 
-						say += '玩家名:' + info[3][i].UName + '\
-						\n角色名:' + info[3][i].CName + '\
+								say += '玩家名:' + info[3][i].UName + '\
+								\n角色名:' + info[3][i].CName + '\
+								\nHp[';
+
+								var HpP = info[4][i]/info[3][i].Hp*20;
+								for(var k = 0; k < HpP;k++){
+									say += '|';
+								}
+								for(var k = 0; k < 20-HpP;k++){
+									say += ' ';
+								}
+
+								say += '](' + info[4][i] + '/' + info[3][i].Hp + ')\n\n';
+
+							}
+						}
+					}else if(Skill[i].Range == '我方單體'){
+						for(var i = 0; i < info[3].length;i++){
+							if(info[3][i].Team == info[3][info[9]].Team && info[4][i]>0){
+
+								say += '玩家名:' + info[3][i].UName + '\
+								\n角色名:' + info[3][i].CName + '\
+								\nHp[';
+
+								var HpP = info[4][i]/info[3][i].Hp*20;
+								for(var k = 0; k < HpP;k++){
+									say += '|';
+								}
+								for(var k = 0; k < 20-HpP;k++){
+									say += ' ';
+								}
+
+								say += '](' + info[4][i] + '/' + info[3][i].Hp + ')\n\n';
+
+							}
+						}
+					}else if(Skill[i].Range == '敵方全體'){
+						say+='敵方全體\n\
+							\n以下玩家都會受到影響:';
+						for(var i = 0; i < info[3].length;i++){
+							if(info[3][i].Team != info[3][info[9]].Team && info[4][i]>0){
+
+								say += '玩家名:' + info[3][i].UName + '\
+								\n角色名:' + info[3][i].CName + '\
+								\nHp[';
+
+								var HpP = info[4][i]/info[3][i].Hp*20;
+								for(var k = 0; k < HpP;k++){
+									say += '|';
+								}
+								for(var k = 0; k < 20-HpP;k++){
+									say += ' ';
+								}
+
+								say += '](' + info[4][i] + '/' + info[3][i].Hp + ')\n\n';
+
+							}
+						}
+						
+					}else if(Skill[i].Range == '我方全體'){
+						say+='我方全體\n\
+							\n以下玩家都會受到影響:';
+						for(var i = 0; i < info[3].length;i++){
+							if(info[3][i].Team != info[3][info[9]].Team && info[4][i]>0){
+
+								say += '玩家名:' + info[3][i].UName + '\
+								\n角色名:' + info[3][i].CName + '\
+								\nHp[';
+
+								var HpP = info[4][i]/info[3][i].Hp*20;
+								for(var k = 0; k < HpP;k++){
+									say += '|';
+								}
+								for(var k = 0; k < 20-HpP;k++){
+									say += ' ';
+								}
+
+								say += '](' + info[4][i] + '/' + info[3][i].Hp + ')\n\n';
+
+							}
+						}
+						
+					}else if(Skill[i].Range == '全體'){
+						say+='全體\
+							\n 所有玩家都會受到影響';
+					}else if(Skill[i].Range == '自身'){
+						say+='自身';
+						
+						say += '玩家名:' + info[3][info[9]].UName + '\
+						\n角色名:' + info[3][info[9]].CName + '\
 						\nHp[';
 
-						var HpP = info[4][i]/info[3][i].Hp*20;
+						var HpP = info[4][info[9]]/info[3][info[9]].Hp*20;
 						for(var k = 0; k < HpP;k++){
 							say += '|';
 						}
@@ -294,41 +409,99 @@ function battlesys(command,move,target,commander){
 							say += ' ';
 						}
 
-						say += '](' + info[4][i] + '/' + info[3][i].Hp + ')\n\n';
-
+						say += '](' + info[4][info[9]] + '/' + info[3][info[9]].Hp + ')\n\n';
 					}
-				}
-				
-				say += '請輸入 [戰鬥 1 對象玩家名(角色名)] 確認攻擊\
-					\n如果想更換其他行動 請輸入 [戰鬥 行動編號]';
-				
-				bot.push(info[1],say);
-				
-				return 0;
-			}else{
-				for(var i = 0;i<info[3].length;i++){
-					if(target == info[3][i].UName||target == info[3][i].CName){
-						if(info[3][i].Team == info[3][info[9]].Team || info[4][i]<=0){
-							bot.push(info[1],'錯誤！無效對象');
+					
+					say += '請輸入 [戰鬥 ' + move +' 對象名(角色,團體)] 確認行動\
+						\n如果想更換其他行動 請輸入 [戰鬥 行動編號]';
 
-							return 0;
-						}else{
+					bot.push(info[1],say);
+
+					return 0;
+					
+					
+					
+				}else{
+					if(info[5][info[9]] >= Skill[i].Mp){
+						if(Skill[i].Range == '敵方單體'){
+							for(var j = 0;j<info[3].length;j++){
+								if(target == info[3][j].UName||target == info[3][j].CName){
+									if(info[3][j].Team == info[3][info[9]].Team || info[4][j]<=0){
+										bot.push(info[1],'錯誤！無效對象');
+
+										return 0;
+									}else{
+
+										info[10].push([UseSkill,[info[3][j].UName],commander]);
+
+									}
+								}
+							}
 							
-							info[10].push(['通常攻擊',info[3][i].UName,commander]);
+						}else if(Skill[i].Range == '我方單體'){
+							for(var j = 0;j<info[3].length;j++){
+								if(target == info[3][j].UName||target == info[3][j].CName){
+									if(info[3][j].Team != info[3][info[9]].Team || info[4][j]<=0){
+										bot.push(info[1],'錯誤！無效對象');
+
+										return 0;
+									}else{
+
+										info[10].push([UseSkill,[info[3][j].UName],commander]);
+
+									}
+								}
+							}
+							
+						}else if(Skill[i].Range == '敵方全體'){
+							if(target != '敵方全體'){
+								bot.push(info[1],'錯誤！無效對象');
+
+								return 0;
+							}else{
+								var TgGroup = [];
+								for(var j = 0;j<info[3].length;j++){
+									if(info[3][j].Team != info[3][info[9]].Team && info[4][j]>0){
+										TgGroup.push(info[3][j].UName);
+									}
+								}
+								
+								info[10].push([UseSkill,TgGroup,commander]);
+							}
+						}else if(Skill[i].Range == '我方全體'){
+							if(target != '我方全體'){
+								bot.push(info[1],'錯誤！無效對象');
+
+								return 0;
+							}else{
+								var TgGroup = [];
+								for(var j = 0;j<info[3].length;j++){
+									if(info[3][j].Team == info[3][info[9]].Team && info[4][j]>0){
+										TgGroup.push(info[3][j].UName);
+									}
+								}
+								
+								info[10].push([UseSkill,TgGroup,commander]);
+							}
+						}else if(Skill[i].Range == '自身'){
+							if(target == info[3][info[9]].UName||target == info[3][info[9]].CName || target == '自身'){
+								info[10].push([UseSkill,[info[3][info[9]].UName],commander]);
+							}else{
+								bot.push(info[1],'錯誤！無效對象');
+
+								return 0;
+							}
 							
 						}
+					
+					}else{
+						bot.push(info[1],'錯誤！Mp不足');
+
+						return 0;
 					}
+					
 				}
-				
-				
-			}	
-		}else if(move == 'Dead'){
-				
-				
-		}else{
-			bot.push(info[1],'錯誤！無效動作');
-				
-			return 0;
+			}
 		}
 		
 		info[9]++;
@@ -401,55 +574,44 @@ function battlesys(command,move,target,commander){
 		
 		for(var i =0;i<spdl.length;i++){
 			if(spdl[i][0] == '傷害'){
-				for(var j =0;j <info[3].length;j++){
-					if(info[3][j].UName == spdl[i][4]){
-						info[4][j]-= spdl[i][1];
-						
-						SayResult +='\n' +  spdl[i][5] + '使用' + spdl[i][6] + '\n攻擊' + info[3][j].CName;
-						
-						SayResult += '\n承受' + spdl[i][1] + '點傷害\
-								\nHp[';
-
-						var HpP = info[4][j]/info[3][j].Hp*20;
-						for(var k = 0; k < HpP;k++){
-							SayResult += '|';
-						}
-						for(var k = 0; k < 20-HpP;k++){
-							SayResult += ' ';
-						}
-
-						SayResult += '](' + info[4][j] + '/' + info[3][j].Hp + ')';
-						
-						if(info[4][j] <= 0){
-							SayResult += '\n' + info[3][j].CName + '被打倒了！';
+				for(var j = 0;j<Skills.length;j++){
+					if(Skill[j].Range == '敵方單體'){
+						for(var k =0;k<info[3].length;k++){
+							if(info[3][k].UName == Spdl[i][4][0]){
 							
-							var GameEnd = battlesys('DefeatCheck');
-							if(GameEnd == 1){
-								SayResult += '\n--------------------';
-								
-								bot.push(info[1],SayResult);
-								
-								for(var i = 0;i<info[3].length;i++){
-									if(info[4][i] > 0){
+								info[4][k]-= spdl[i][1];
 
-										SayResult = '戰鬥結束！\
-												\nWinner:';
+								SayResult +='\n' +  spdl[i][5] + '使用' + spdl[i][6] + '\n攻擊' + info[3][k].CName;
 
-										for(var k = 0; k<info[3].length;k++){
-											if(info[3][k].Team == info[3][i].Team){
-												SayResult += '\n' + info[3][k].UName;
-											}
-										}
-										setTimeout(function(){
-											bot.push(info[1],SayResult); 
-											setTimeout(function(){BTon = 0; battlesys('battleOff');}, 2000);
-										}, 1000);
+								SayResult += '\n承受' + spdl[i][1] + '點傷害\
+										\nHp[';
+
+								var HpP = info[4][k]/info[3][k].Hp*20;
+								for(var l = 0; l < HpP;l++){
+									SayResult += '|';
+								}
+								for(var l = 0; l < 20-HpP;l++){
+									SayResult += ' ';
+								}
+
+								SayResult += '](' + info[4][k] + '/' + info[3][k].Hp + ')';
+								
+								var KC = battlesys('killCheck','',info[3][k].UName);
+								
+								SayResult += KC[1];
+								
+								if(KC[0] == 1){
+									var GE =  battlesys('DefeatCheck');
+									if(GE == 1){
+										SayResult += '\n--------------------';
+										
+										bot.push(info[1],SayResult);
 										
 										return 0;
 									}
 								}
 							}
-						}
+						}	
 					}
 				}	
 			}
@@ -473,22 +635,37 @@ function battlesys(command,move,target,commander){
 					}
 				}
 				
-				return 1;
+				battlesys('GameEnd');
 				
-				SayResult = '戰鬥結束！\
-						\nWinner:';
+				return 1;		
+			}
+		}
+		
+	}else if(command == 'killCheck'){
+		for(var k1 = 0;k1<info[3].length;k1++){
+			if(target == info[3][k1].UName){
+				if(info[4][k1] <=0){
+					return [1,info[3][k1].CName + ' Hp歸0，再起不能！'];
+				}
+			}
+		}
+	}else if(command == 'GameEnd'){
+		for(var GE1 = 0;GE1 < info[3].length;GE1++){
+			if(info[4][GE1] > 0){
+				var SayR = '戰鬥結束！\
+					\nWinner:';
 				
-				for(var k = 0; k<info[3].length;k++){
-					if(info[3][k].Team == info[3][i].Team){
-						SayResult += '\n' + info[3][k].UName;
+				for(var GE2 = 0;GE2 < info[3].length;GE2++){
+					if(info[3][GE2].Team == info[3][GE1].Team){
+						SayResult += '\n' + info[3][GE2].UName;
 					}
 				}
 				
-				BTon = 0;
-				bot.push(info[1],SayResult);
-				battlesys('battleOff');
-				
-				
+				setTimeout(function(){
+					bot.push(info[1],SayR); 
+					setTimeout(function(){BTon = 0; battlesys('battleOff');}, 2000);
+				}, 1000);
+				return 0;
 			}
 		}
 		
