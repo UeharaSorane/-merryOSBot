@@ -756,7 +756,7 @@ function battlesys(command,move,target,commander){
 										var Effect1 = Skills[sm1].Effect[E1].split(',');
 										
 										if(Effect1[0] == 'MpRecoverPer'){
-											if(Skills[Effect1[2] == '自身'){
+											if(Effect1[2] == '自身'){
 												info[5][sm2] += (info[3][sm2].Mp/Effect1[0][1]);
 												if(info[5][sm2]>info[3][sm2].Mp) info[5][sm2] = info[3][sm2].Mp;
 												
