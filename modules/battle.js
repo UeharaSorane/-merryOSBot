@@ -371,16 +371,16 @@ function battlesys(command,move,target,commander){
 		}
 		
 		for(var i = 0; i<Skills.length;i++){
-			if(UseSkill == Skill[i].Name){
+			if(UseSkill == Skills[i].Name){
 				if(target == null){
-					say = '技能名稱:' + Skill[i].Name + '\
-						\n 消耗Mp:' + Skill[i].Mp + '\
-						\n 施放範圍:' + Skill[i].Range + '\
-						\n 描述:\n' + Skill[i].Description + '\
+					say = '技能名稱:' + Skills[i].Name + '\
+						\n 消耗Mp:' + Skills[i].Mp + '\
+						\n 施放範圍:' + Skills[i].Range + '\
+						\n 描述:\n' + Skills[i].Description + '\
 						\n--------------------\
 						\n你可以選擇的對象有:';
 					
-					if(Skill[i].Range == '敵方單體'){
+					if(Skills[i].Range == '敵方單體'){
 						for(var i = 0; i < info[3].length;i++){
 							if(info[3][i].Team != info[3][info[9]].Team && info[4][i]>0){
 
@@ -400,7 +400,7 @@ function battlesys(command,move,target,commander){
 
 							}
 						}
-					}else if(Skill[i].Range == '我方單體'){
+					}else if(Skills[i].Range == '我方單體'){
 						for(var i = 0; i < info[3].length;i++){
 							if(info[3][i].Team == info[3][info[9]].Team && info[4][i]>0){
 
@@ -420,7 +420,7 @@ function battlesys(command,move,target,commander){
 
 							}
 						}
-					}else if(Skill[i].Range == '敵方全體'){
+					}else if(Skills[i].Range == '敵方全體'){
 						say+='敵方全體\n\
 							\n以下玩家都會受到影響:';
 						for(var i = 0; i < info[3].length;i++){
