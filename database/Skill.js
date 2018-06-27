@@ -29,17 +29,8 @@ SkillDB.useServiceAccountAuth(creds, function (err) {
 					Skills[i].Priority = Number(rows[i].priority);
 					Skills[i].Description = rows[i].description;
 					Skills[i].W = [rows[i].w1,rows[i].w2,rows[i].w3];
-					
-					let Effect1 = rows[i].effect.split(';');
-					let Effect2 = [];
-					
-					for(var sp1 = 0; sp1<Effect1.length;sp1++){
-						Effect2.push(Effect1[sp1].split(','));
-					}
-					
-					console.log(Effect2);
-					
-					Skills[i].Effect = [[1],[2]];
+					Skills[i].Effect= rows[i].effect.split(';');
+
 				}
 				console.log(Skills);
 				console.log('技能資料 讀取完成');
