@@ -32,10 +32,13 @@ SkillDB.useServiceAccountAuth(creds, function (err) {
 					Skills[i].Effect = [];
 					
 					let Effect1 = rows[i].effect.split(';');
+					let Effect2 = [];
 					
 					for(var sp1 = 0; sp1<Effect1.length;sp1++){
-						console.log(Effect1[sp1].split(','));
+						Effect2.push(Effect1[sp1].split(','));
 					}
+					
+					console.log(Effect2);
 					
 				}
 				console.log(Skills);
