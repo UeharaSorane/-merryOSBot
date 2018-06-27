@@ -359,6 +359,8 @@ function battlesys(command,move,target,commander){
 		}else if(move == 2||move == 3 || move == 4){
 			if(info[3][info[9]].Skill[move-2] !='無'){
 				UseSkill = info[3][info[9]].Skill[move];
+				
+				console.log(UseSkill);
 			}else{
 				bot.push(info[1],'錯誤！無效動作');
 				
@@ -372,6 +374,8 @@ function battlesys(command,move,target,commander){
 		
 		for(var i = 0; i<Skills.length;i++){
 			if(UseSkill == Skills[i].Name){
+				console.log(Skill[i]);
+				
 				if(target == null){
 					say = '技能名稱:' + Skills[i].Name + '\
 						\n 消耗Mp:' + Skills[i].Mp + '\
