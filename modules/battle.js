@@ -501,7 +501,7 @@ function battlesys(command,move,target,commander){
 					
 				}else{
 					if(info[5][info[9]] >= Skills[i].Mp){
-						if(Skill[i].Range == '敵方單體'){
+						if(Skills[i].Range == '敵方單體'){
 							for(var j = 0;j<info[3].length;j++){
 								if(target == info[3][j].UName||target == info[3][j].CName){
 									if(info[3][j].Team == info[3][info[9]].Team || info[4][j]<=0){
@@ -516,7 +516,7 @@ function battlesys(command,move,target,commander){
 								}
 							}
 							
-						}else if(Skill[i].Range == '我方單體'){
+						}else if(Skills[i].Range == '我方單體'){
 							for(var j = 0;j<info[3].length;j++){
 								if(target == info[3][j].UName||target == info[3][j].CName){
 									if(info[3][j].Team != info[3][info[9]].Team || info[4][j]<=0){
@@ -531,7 +531,7 @@ function battlesys(command,move,target,commander){
 								}
 							}
 							
-						}else if(Skill[i].Range == '敵方全體'){
+						}else if(Skills[i].Range == '敵方全體'){
 							if(target != '敵方全體'){
 								bot.push(info[1],'錯誤！無效對象');
 
@@ -546,7 +546,7 @@ function battlesys(command,move,target,commander){
 								
 								info[10].push([UseSkill,TgGroup,commander]);
 							}
-						}else if(Skill[i].Range == '我方全體'){
+						}else if(Skills[i].Range == '我方全體'){
 							if(target != '我方全體'){
 								bot.push(info[1],'錯誤！無效對象');
 
@@ -561,7 +561,7 @@ function battlesys(command,move,target,commander){
 								
 								info[10].push([UseSkill,TgGroup,commander]);
 							}
-						}else if(Skill[i].Range == '自身'){
+						}else if(Skills[i].Range == '自身'){
 							if(target == info[3][info[9]].UName||target == info[3][info[9]].CName || target == '自身'){
 								info[10].push([UseSkill,[info[3][info[9]].UName],commander]);
 							}else{
