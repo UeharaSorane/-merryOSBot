@@ -29,8 +29,13 @@ SkillDB.useServiceAccountAuth(creds, function (err) {
 					Skills[i].Priority = Number(rows[i].priority);
 					Skills[i].Description = rows[i].description;
 					Skills[i].W = [rows[i].w1,rows[i].w2,rows[i].w3];
+					Skill[i].Effect = [];
 					
-					Skills[i].Effect = rows[i].effect.split(';');
+					let Effect = rows[i].effect.split(';');
+					
+					for(var sp1 = 0; sp1<Effect.length;sp1++){
+						Skill[i].Effect[sp1] = Effect.split(',');
+					}
 					
 					
 				}
