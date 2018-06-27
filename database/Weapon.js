@@ -10,7 +10,7 @@ WeaponDB.useServiceAccountAuth(creds, function (err) {
  
 	
  // 是先將資料讀進陣列
-	SkillDB.getRows(2 , 
+	WeaponDB.getRows(2 , 
 		function (err, rows) {
 			if (err) {
 				console.log( err );
