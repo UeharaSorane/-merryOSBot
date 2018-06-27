@@ -684,7 +684,7 @@ function battlesys(command,move,target,commander){
 							}
 							
 							for(var sm4 = 0; sm4<Skills[sm1].W.length;sm4++){
-								if(WT = Skills[sm1].W[sm4]){
+								if(WT == Skills[sm1].W[sm4]){
 									NeedMp = Skills[sm1].Mp/2;
 									break;
 								}else{
@@ -723,7 +723,7 @@ function battlesys(command,move,target,commander){
 													SayResult += KC[1];
 
 													if(KC[0] == 1){
-														var GE =  battlesys('DefeatCheck');
+														var GE = battlesys('DefeatCheck');
 														if(GE == 1){
 															SayResult += '\n--------------------';
 
