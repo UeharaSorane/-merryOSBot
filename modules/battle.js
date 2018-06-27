@@ -4,6 +4,7 @@ var BattleInfo = BattileUI.BattleInfo;
 var rollbase = require('../roll/rollbase.js');
 var damageUI = require('../battlesys/damage.js');
 var Skill = require('../database/Skill.js');
+var Weapon = require('../database/Weapon.js');
 var NormalSys = require('./NormalSys.js');
 var linebot = require('linebot');
 var express = require('express');
@@ -644,6 +645,34 @@ function battlesys(command,move,target,commander){
 		var SayResult = '戰鬥回合:' + info[6] + '\n--------------------';
 		
 		for(var i =0;i<spdl.length;i++){
+			for(var sm1 = 0;sm1<Skills.length;sm1++){
+				if(spdl[i][6] == Skills[sm1].Name){
+					for(var sm2 = 0;sm2<info[3].length;sm2++){
+						if(spdl[5] == info[3][sm2].CName){
+							var NeedMp = 0;
+							var WT;
+							
+							for(var sm3 = 0; sm3<Weapon.length;sm3++){
+								if(info[3][sm2].EW == Weapon[sm3].Name){
+									WT = Weapon[sm3].Type;
+									break;
+								}
+							}
+							
+							for(var sm4 = 0; sm4<Skills[sm1].W.length;sm4++){
+								if(WT = Skills[sm1].W[sm4]){
+									NeedMp = Skills[sm1].Mp/2;
+								}else{
+									
+								}
+							}
+							
+							if(info[3][sm2])
+						}
+					}
+				}
+			}
+			
 			if(spdl[i][0] == '傷害'){
 				for(var j = 0;j<Skills.length;j++){
 					if(Skill[j].Range == '敵方單體'){
