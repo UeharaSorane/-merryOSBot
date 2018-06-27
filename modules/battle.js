@@ -673,9 +673,7 @@ function battlesys(command,move,target,commander){
 			for(var sm1 = 0;sm1<Skills.length;sm1++){
 				if(spdl[i][6] == Skills[sm1].Name){
 					for(var sm2 = 0;sm2<info[3].length;sm2++){
-						console.log(info[3][sm2].UName);
-						if(spdl[5] == info[3][sm2].UName){
-							console.log(2);
+						if(spdl[i][5] == info[3][sm2].UName){
 							var NeedMp = 0;
 							var WT ='';
 							
