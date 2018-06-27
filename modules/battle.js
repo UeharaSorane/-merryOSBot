@@ -358,7 +358,7 @@ function battlesys(command,move,target,commander){
 			
 		}else if(move == 2||move == 3 || move == 4){
 			if(info[3][info[9]].Skill[move-2] !='無'){
-				UseSkill = info[3][info[9]].Skill[move];
+				UseSkill = info[3][info[9]].Skill[move-2];
 				
 				console.log(UseSkill);
 			}else{
