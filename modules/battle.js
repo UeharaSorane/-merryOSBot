@@ -669,15 +669,13 @@ function battlesys(command,move,target,commander){
 		var SayResult = '戰鬥回合:' + info[6] + '\n--------------------';
 		
 		for(var i =0;i<spdl.length;i++){
-			console.log(1);
 			
 			for(var sm1 = 0;sm1<Skills.length;sm1++){
-				console.log(2);
 				if(spdl[i][6] == Skills[sm1].Name){
-					console.log(3);
 					for(var sm2 = 0;sm2<info[3].length;sm2++){
-						console.log(4);
+						console.log(1);
 						if(spdl[5] == info[3][sm2].UName){
+							console.log(2);
 							var NeedMp = 0;
 							var WT ='';
 							
