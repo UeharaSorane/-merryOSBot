@@ -504,7 +504,7 @@ function battlesys(command,move,target,commander){
 					var SPC = 0;
 					
 					for(var SP = 0; SP<info[3].length;SP++){
-						if(target == info[3][j].UName||target == info[3][j].CName){
+						if(target == info[3][SP].UName||target == info[3][SP].CName){
 							SPC++;
 							break;
 						}
