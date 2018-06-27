@@ -733,7 +733,7 @@ function battlesys(command,move,target,commander){
 
 														SayResult += KC[1];
 
-														if(KC[0] == 1){
+														/*if(KC[0] == 1){
 															GE = battlesys('DefeatCheck');
 															if(GE == 1){
 																SayResult += '\n--------------------';
@@ -743,7 +743,7 @@ function battlesys(command,move,target,commander){
 																
 															}
 
-														}
+														}*/
 														
 														j = Skills.length;
 													}
