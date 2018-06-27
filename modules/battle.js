@@ -750,14 +750,16 @@ function battlesys(command,move,target,commander){
 									}	
 								}
 								if(Skills[sm1].Effect != ['無']){
-									var Effect1 = Skills[sm1].Effect.split(',');
+									var Effect1 = [];
+									for(var E0 = 0; E0<Skills[sm1].Effect.length;E0++){
+										Effect1.push(Skills[sm1].Effect[E0].split(','))
+									}
 									
 									for(var E1 = 0;E1<Skills[sm1].Effect.length;E1++){
-										var Effect1 = Skills[sm1].Effect[E1].split(',');
 										
-										if(Effect1[0] == 'MpRecoverPer'){
-											if(Effect1[2] == '自身'){
-												info[5][sm2] += (info[3][sm2].Mp/Effect1[0][1]);
+										if(Effect1[E1][0] == 'MpRecoverPer'){
+											if(Effect1[E1][2] == '自身'){
+												info[5][sm2] += (info[3][sm2].Mp/Effect1[E1][1]);
 												if(info[5][sm2]>info[3][sm2].Mp) info[5][sm2] = info[3][sm2].Mp;
 												
 											}
