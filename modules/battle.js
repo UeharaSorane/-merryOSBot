@@ -196,7 +196,11 @@ function battlesys(command,move,target,commander){
 			var Ctarget = 0
 			var CT;
 			
-			while(true){
+			var SB = 0;
+			
+			while(SB == 0){
+				
+				
 				Cmove = rollbase.Dice(s);
 				if(Cmove == 1){
 					SD == '通常攻擊';
@@ -228,6 +232,51 @@ function battlesys(command,move,target,commander){
 									}
 
 								}
+								SB++;
+								break;
+								
+							}else if(Skills[M1].Range == '我方單體'){
+								for(var i = 0; i < info[3].length;i++){
+									if(info[3][i].Team == info[3][info[9]].Team){
+										w++
+									}
+								}
+								
+								Ctarget = rollbase.Dice(w);
+								
+								for(var i =0;i<Ctarget;i++){
+									for(var j = 0; j<info[3].length;j++){
+										if(info[3][j].Team != info[3][info[9]].Team){
+											if(CT != info[3][j].UName){
+												CT = info[3][j].UName;
+												break;
+											}
+										}
+									}
+
+								}
+								SB++;
+								break;
+								
+							}else if(Skills[M1].Range == '敵方全體'){
+								CT = '敵方全體';
+								SB++;
+								break;
+								
+							}else if(Skills[M1].Range == '我方全體'){
+								CT = '我方全體';
+								SB++;
+								break;
+								
+							}else if(Skills[M1].Range == '全體'){
+								CT = '全體';
+								SB++;
+								break;
+								
+							}else if(Skills[M1].Range == '自身'){
+								CT = '自身';
+								SB++;
+								break;
 								
 							}
 						}
