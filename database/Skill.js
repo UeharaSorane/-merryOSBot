@@ -38,7 +38,7 @@ SkillDB.useServiceAccountAuth(creds, function (err) {
 					for(var sp1 = 0; sp1<Effect.length;sp1++){
 						Skills[i].Effect[sp1] = Effect[sp1].split(',');
 					}
-					
+					console.log(Skills[i].Effect[1][0]);
 					
 				}
 				console.log(Skills);
