@@ -27,7 +27,7 @@ SkillDB.useServiceAccountAuth(creds, function (err) {
 					Skills[i].maxRM = Number(rows[i].maxrm);
 					Skills[i].SpdM = Number(rows[i].spdm);
 					Skills[i].Priority = Number(rows[i].priority);
-					Skills[i].Descirption = rows[i].description;
+					Skills[i].Description = rows[i].description;
 					Skills[i].W = [rows[i].w1,rows[i].w2,rows[i].w3];
 					
 				}
