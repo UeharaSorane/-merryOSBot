@@ -232,6 +232,8 @@ function battlesys(command,move,target,commander){
 							}
 						}
 						
+						console.log('Nmp = ' + Nmp);
+						
 						if(info[5][info[9]] >= Nmp){
 							if(Skills[M1].Range == '敵方單體'){
 								for(var i = 0; i < info[3].length;i++){
@@ -306,7 +308,6 @@ function battlesys(command,move,target,commander){
 				}
 			}
 			if(info[4][info[9]]>0){
-				console.log(info[4][info[9]]);
 				battlesys('move',Cmove,CT,info[3][info[9]].UName);
 			}else{
 				battlesys('move','Dead');
@@ -392,6 +393,8 @@ function battlesys(command,move,target,commander){
 			if(UseSkill == Skills[i].Name){
 				
 				for(var NM1 = 0;NM1<Weapon.length;NM1++){
+					coonsole.log('武器:' + Weapon[NM1].Name)
+					
 					if(info[3][info[9]].EW == Weapon[NM1].Name){
 						for(var NM2 = 0;NM2< Skills[i].W.length;NM2++){
 							if(Weapon[NM1].Type == Skills[i].W[NM]){
