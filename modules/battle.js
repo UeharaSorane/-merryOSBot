@@ -778,7 +778,7 @@ function battlesys(command,move,target,commander){
 												}	
 											}else if(Skills[j].Range == '敵方全體'){
 												
-												SayResult +='\n' +  spdl[i][5] + '使用' + spdl[i][6] + '\n攻擊敵方全體';
+												SayResult +='\n' +  spdl[i][5] + '使用' + spdl[i][6] + '\n攻擊敵方全體\n';
 												
 												for(var EAll1 = 0;EAll1<spdl[i][4].length;EAll1++){
 													for(var k =0;k<info[3].length;k++){
