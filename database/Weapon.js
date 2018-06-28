@@ -30,7 +30,7 @@ WeaponDB.useServiceAccountAuth(creds, function (err) {
 					Weapons[i].HTGI = rows[i].htgi;
 					
 				}
-				console.log(Weapons);
+				//console.log(Weapons);
 				console.log('武器資料 讀取完成');
 			}
 		
