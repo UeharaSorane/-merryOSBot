@@ -537,21 +537,6 @@ function battlesys(command,move,target,commander){
 					
 					
 				}else{
-					var SPC = 0;
-					
-					for(var SP = 0; SP<info[3].length;SP++){
-						if(target == info[3][SP].UName||target == info[3][SP].CName){
-							SPC++;
-							break;
-						}
-					}
-					
-					if(SPC ==0){
-						bot.push(info[1],'錯誤！無效對象');
-
-						return 0;
-					}
-					
 					if(info[5][info[9]] >= Skills[i].Mp){
 						if(Skills[i].Range == '敵方單體'){
 							for(var j = 0;j<info[3].length;j++){
