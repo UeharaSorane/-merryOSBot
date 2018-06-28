@@ -19,7 +19,7 @@ function damage(data){
 				if(Skills[i].maxRM != Skills[i].minRM){
 					RM = rollbase.Dice(Skills[i].maxRM-Skills[i].minRM+1);
 				}else{
-					RM = 0;
+					RM = 1;
 				}
 				
 				var Multiply = Skills[i].minRM + RM -1;
