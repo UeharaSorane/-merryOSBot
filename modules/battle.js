@@ -412,15 +412,6 @@ function battlesys(command,move,target,commander){
 				
 				console.log('NeedMp = ' + NeedMp);
 				
-				for(var NM = 0;NM< Skills[i].W.length;NM++){
-					if(info[3][info[9]].EW == Skills[i].W[NM]){
-						NeedMp = Skills[i].Mp/2;
-						break;
-					}else{
-						NeedMp = Skills[i].Mp;
-					}
-				}
-				
 				if(target == null){
 					say = '技能名稱:' + Skills[i].Name + '\
 						\n 消耗Mp:' + NeedMp + '\
@@ -471,7 +462,7 @@ function battlesys(command,move,target,commander){
 						}
 					}else if(Skills[i].Range == '敵方全體'){
 						say+='敵方全體\n\
-							\n以下玩家都會受到影響:';
+							\n以下玩家都會受到影響:\n';
 						for(var i = 0; i < info[3].length;i++){
 							if(info[3][i].Team != info[3][info[9]].Team && info[4][i]>0){
 
@@ -494,7 +485,7 @@ function battlesys(command,move,target,commander){
 						
 					}else if(Skill[i].Range == '我方全體'){
 						say+='我方全體\n\
-							\n以下玩家都會受到影響:';
+							\n以下玩家都會受到影響:\n';
 						for(var i = 0; i < info[3].length;i++){
 							if(info[3][i].Team != info[3][info[9]].Team && info[4][i]>0){
 
