@@ -354,6 +354,7 @@ function battlesys(command,move,target,commander){
 		}
 	}else if(command == 'move'){
 		var UseSkill;
+		var NeedMp = 0;
 		
 		if(move == 1){
 			UseSkill = '通常攻擊';
@@ -363,7 +364,6 @@ function battlesys(command,move,target,commander){
 			if(info[3][info[9]].Skill[move-2] !='無'){
 				UseSkill = info[3][info[9]].Skill[move-2];
 				
-				console.log(UseSkill);
 			}else{
 				bot.push(info[1],'錯誤！無效動作');
 				
@@ -377,10 +377,19 @@ function battlesys(command,move,target,commander){
 		
 		for(var i = 0; i<Skills.length;i++){
 			if(UseSkill == Skills[i].Name){
-				console.log(Skills[i]);
+				
+				for(var NM = 0;NM< Skills[i].W.length;NM++){
+					if(info[3][info[9]].EW == Skills[i].W[NM]){
+						NeedMp = Skills[i].Mp/2;
+						break;
+					}else{
+						NeedMp = Skills[i].Mp;
+					}
+				}
+				
 				if(target == null){
 					say = '技能名稱:' + Skills[i].Name + '\
-						\n 消耗Mp:' + Skills[i].Mp + '\
+						\n 消耗Mp:' + NeedMp + '\
 						\n 施放範圍:' + Skills[i].Range + '\
 						\n 描述:\n' + Skills[i].Description + '\
 						\n--------------------\
@@ -731,14 +740,12 @@ function battlesys(command,move,target,commander){
 
 														var KC = battlesys('killCheck','',info[3][k].UName);
 														
-														console.log('KC = ' + KC);
 
 														SayResult += KC[1];
 
 														if(KC[0] == 1){
 															GE = battlesys('DefeatCheck');
 															
-															console.log('GE = ' + GE);
 															if(GE == 1){
 																SayResult += '\n--------------------';
 																bot.push(info[1],SayResult);
