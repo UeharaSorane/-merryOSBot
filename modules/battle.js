@@ -789,7 +789,7 @@ function battlesys(command,move,target,commander){
 
 															info[4][k]-= spdl[i][1];
 
-															SayResult += '\n承受' + spdl[i][1] + '點傷害\
+															SayResult +=info[3][k].CName + '\n承受' + spdl[i][1] + '點傷害\
 																	\nHp[';
 
 															var HpP = info[4][k]/info[3][k].Hp*20;
