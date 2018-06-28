@@ -730,6 +730,8 @@ function battlesys(command,move,target,commander){
 														SayResult += '](' + info[4][k] + '/' + info[3][k].Hp + ')';
 
 														var KC = battlesys('killCheck','',info[3][k].UName);
+														
+														console.log('KC = ' + KC);
 
 														SayResult += KC[1];
 
