@@ -585,6 +585,8 @@ function battlesys(command,move,target,commander){
 							
 						}else if(Skills[i].Range == '敵方全體'){
 							if(target != '敵方全體'){
+								console.log(target);
+								
 								bot.push(info[1],'錯誤！無效對象');
 
 								return 0;
