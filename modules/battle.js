@@ -217,9 +217,9 @@ function battlesys(command,move,target,commander){
 						var Nmp = 0;
 						var cwt;
 						
-						for(var NMC1 = 0;NMC1<Wewpon.length;NMC1++){
-							if(info[3][info[9]].EW == Wewpon[NMC1].Name){
-								cwt = Wewpon[NMC1].Type;
+						for(var NMC1 = 0;NMC1<Weapon.length;NMC1++){
+							if(info[3][info[9]].EW == Weapon[NMC1].Name){
+								cwt = Weapon[NMC1].Type;
 								break;
 							}
 						}
