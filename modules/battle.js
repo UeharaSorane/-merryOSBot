@@ -735,17 +735,19 @@ function battlesys(command,move,target,commander){
 
 														SayResult += KC[1];
 
-														/*if(KC[0] == 1){
+														if(KC[0] == 1){
 															GE = battlesys('DefeatCheck');
-															if(GE == 1){
+															
+															console.log('GE = ' + GE);
+															/*if(GE == 1){
 																SayResult += '\n--------------------';
 																bot.push(info[1],SayResult);
 																battlesys('GameEnd');
 																return 0;
 																
-															}
+															}*/
 
-														}*/
+														}
 														
 														j = Skills.length;
 													}
@@ -798,10 +800,10 @@ function battlesys(command,move,target,commander){
 			setTimeout(function(){battlesys('MoveRequest'); }, 2000);
 		}
 	}else if(command == 'DefeatCheck'){
-		for(var i = 0;i<info[3].length;i++){
-			if(info[4][i] > 0){
-				for(var j = 0 ; j<info[3].length;j++){
-					if(info[4][j] > 0 && info[3][j].Team != info[3][i].Team){
+		for(var DC1 = 0;DC1<info[3].length;DC1++){
+			if(info[4][DC1] > 0){
+				for(var DC2 = 0 ; DC2<info[3].length;DC2++){
+					if(info[4][DC2] > 0 && info[3][DC2].Team != info[3][DC1].Team){
 						return 0;
 					}
 				}
