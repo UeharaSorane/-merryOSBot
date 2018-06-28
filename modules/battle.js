@@ -727,7 +727,7 @@ function battlesys(command,move,target,commander){
 							}
 							
 							
-							if(info[5][sm2]>NeedMp){
+							if(info[5][sm2]>=NeedMp){
 								info[5][sm2]-=NeedMp;
 								
 								if(spdl[i][0] == '傷害'){
