@@ -739,13 +739,13 @@ function battlesys(command,move,target,commander){
 															GE = battlesys('DefeatCheck');
 															
 															console.log('GE = ' + GE);
-															/*if(GE == 1){
+															if(GE == 1){
 																SayResult += '\n--------------------';
 																bot.push(info[1],SayResult);
 																battlesys('GameEnd');
 																return 0;
 																
-															}*/
+															}
 
 														}
 														
