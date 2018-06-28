@@ -205,21 +205,34 @@ function battlesys(command,move,target,commander){
 				
 				Cmove = rollbase.Dice(s);
 				
-				console.log(Cmove);
 				if(Cmove == 1){
 					SD = '通常攻擊';
 				}else{
 					SD = info[3][info[9]].Skill[Cmove-2];
 				}
-				
-				console.log(SD);
 
 				for(var M1 = 0;M1<Skills.length;M1++){
 
 					if(SD == Skills[M1].Name){
-						console.log(Skills[M1].Name);
+						var Nmp = 0;
+						var cwt;
 						
-						if(info[5][info[9]] >= Skills[M1].Mp){
+						for(var NMC1 = 0;NMC1<Wewpon.length;NMC1++){
+							if(info[3][info[9]].EW == Wewpon[NMC1].Name){
+								cwt = Wewpon[NMC1].Type;
+								break;
+							}
+						}
+						
+						for(var NMC2 = 0;NMC2<Skills[M1].W.length;NMC2++){
+							if(cwt == Skills[M1].W[NMC2]){
+								Nmp = Skills[M1].Mp/2;
+							}else{
+								Nmp = Skills[M1].Mp;
+							}
+						}
+						
+						if(info[5][info[9]] >= Nmp){
 							if(Skills[M1].Range == '敵方單體'){
 								for(var i = 0; i < info[3].length;i++){
 									if(info[3][i].Team != info[3][info[9]].Team){
@@ -393,6 +406,7 @@ function battlesys(command,move,target,commander){
 					}
 				}
 				
+				console.log('NeedMp = ' + NeedMp);
 				
 				for(var NM = 0;NM< Skills[i].W.length;NM++){
 					if(info[3][info[9]].EW == Skills[i].W[NM]){
