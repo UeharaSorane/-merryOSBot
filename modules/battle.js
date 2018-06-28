@@ -886,7 +886,7 @@ function battlesys(command,move,target,commander){
 		for(var k1 = 0;k1<info[3].length;k1++){
 			if(target == info[3][k1].UName){
 				if(info[4][k1] <=0){
-					return [1,'\n' + info[3][k1].CName + ' Hp歸0，再起不能！'];
+					return [1,'\n' + info[3][k1].CName + ' Hp歸0，再起不能！\n'];
 				}else{
 					return [0,'\n'];
 				}
