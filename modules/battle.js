@@ -394,11 +394,11 @@ function battlesys(command,move,target,commander){
 			if(UseSkill == Skills[i].Name){
 				
 				for(var NM1 = 0;NM1<WD.length;NM1++){
-					console.log('武器:' + WD[NM1].Name)
+					console.log('武器:' + WD[NM1].Name);
 					
 					if(info[3][info[9]].EW == WD[NM1].Name){
 						for(var NM2 = 0;NM2< Skills[i].W.length;NM2++){
-							if(WD[NM1].Type == Skills[i].W[NM]){
+							if(WD[NM1].Type == Skills[i].W[NM2]){
 								NeedMp = Skills[i].Mp/2;
 								NM1 = WD.length;
 								
@@ -798,6 +798,53 @@ function battlesys(command,move,target,commander){
 														j = Skills.length;
 													}
 												}	
+											}else if(Skills[j].Range == '敵方全體'){
+												
+												SayResult +='\n' +  spdl[i][5] + '使用' + spdl[i][6] + '\n攻擊敵方全體';
+												
+												for(var EAll1 = 0;EAll1<spdl[i][4].length;EAll1++){
+													for(var k =0;k<info[3].length;k++){
+														if(info[3][k].UName == spdl[i][4][EAll1]){
+															if(info[4][k]<=0){
+																break;
+															}
+
+															info[4][k]-= spdl[i][1];
+
+															SayResult += '\n承受' + spdl[i][1] + '點傷害\
+																	\nHp[';
+
+															var HpP = info[4][k]/info[3][k].Hp*20;
+															for(var l = 0; l < HpP;l++){
+																SayResult += '|';
+															}
+															for(var l = 0; l < 20-HpP;l++){
+																SayResult += ' ';
+															}
+
+															SayResult += '](' + info[4][k] + '/' + info[3][k].Hp + ')';
+
+															var KC = battlesys('killCheck','',info[3][k].UName);
+
+
+															SayResult += KC[1] + '\n';
+
+															if(KC[0] == 1){
+																GE = battlesys('DefeatCheck');
+
+																if(GE == 1){
+																	SayResult += '\n--------------------';
+																	bot.push(info[1],SayResult);
+																	battlesys('GameEnd');
+																	return 0;
+
+																}
+															}
+														}
+													}
+												}
+												
+												j = Skills.length;
 											}
 											
 										}
