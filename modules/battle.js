@@ -537,7 +537,7 @@ function battlesys(command,move,target,commander){
 					
 					
 				}else{
-					if(info[5][info[9]] >= Skills[i].Mp){
+					if(info[5][info[9]] >= NeedMp){
 						if(Skills[i].Range == '敵方單體'){
 							for(var j = 0;j<info[3].length;j++){
 								if(target == info[3][j].UName||target == info[3][j].CName){
