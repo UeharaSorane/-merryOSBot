@@ -378,6 +378,22 @@ function battlesys(command,move,target,commander){
 		for(var i = 0; i<Skills.length;i++){
 			if(UseSkill == Skills[i].Name){
 				
+				for(var NM1 = 0;NM1<Weapon.length;NM1++){
+					if(info[3][info[9]].EW == Weapon[NM1].Name){
+						for(var NM2 = 0;NM2< Skills[i].W.length;NM2++){
+							if(Weapon[NM1].Type == Skills[i].W[NM]){
+								NeedMp = Skills[i].Mp/2;
+								NM1 = Weapon.length;
+								
+								break;
+							}else{
+								NeedMp = Skills[i].Mp;
+							}
+						}
+					}
+				}
+				
+				
 				for(var NM = 0;NM< Skills[i].W.length;NM++){
 					if(info[3][info[9]].EW == Skills[i].W[NM]){
 						NeedMp = Skills[i].Mp/2;
@@ -696,7 +712,7 @@ function battlesys(command,move,target,commander){
 								}
 							}
 							
-							console.log(WT);
+							console.log('WT = ' + WT);
 							
 							
 							for(var sm4 = 0; sm4<Skills[sm1].W.length;sm4++){
