@@ -719,6 +719,11 @@ function battlesys(command,move,target,commander){
 				if(spdl[i][6] == Skills[sm1].Name){
 					for(var sm2 = 0;sm2<info[3].length;sm2++){
 						if(spdl[i][5] == info[3][sm2].UName){
+							if(info[4][sm2]<=0){
+								sm1 = Skills.length;
+								break;
+							}
+							
 							var NeedMp = 0;
 							var WT ='';
 							
