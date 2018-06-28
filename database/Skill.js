@@ -32,7 +32,7 @@ SkillDB.useServiceAccountAuth(creds, function (err) {
 					Skills[i].Effect= rows[i].effect.split(';');
 
 				}
-				console.log(Skills);
+				//console.log(Skills);
 				console.log('技能資料 讀取完成');
 			}
 		
