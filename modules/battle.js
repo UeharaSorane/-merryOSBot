@@ -218,9 +218,9 @@ function battlesys(command,move,target,commander){
 						var Nmp = 0;
 						var cwt;
 						
-						for(var NMC1 = 0;NMC1<Weapon.length;NMC1++){
-							if(info[3][info[9]].EW == Weapon[NMC1].Name){
-								cwt = Weapon[NMC1].Type;
+						for(var NMC1 = 0;NMC1<WD.length;NMC1++){
+							if(info[3][info[9]].EW == WD[NMC1].Name){
+								cwt = WD[NMC1].Type;
 								break;
 							}
 						}
@@ -393,14 +393,14 @@ function battlesys(command,move,target,commander){
 		for(var i = 0; i<Skills.length;i++){
 			if(UseSkill == Skills[i].Name){
 				
-				for(var NM1 = 0;NM1<Weapon.length;NM1++){
-					coonsole.log('武器:' + Weapon[NM1].Name)
+				for(var NM1 = 0;NM1<WD.length;NM1++){
+					coonsole.log('武器:' + WD[NM1].Name)
 					
-					if(info[3][info[9]].EW == Weapon[NM1].Name){
+					if(info[3][info[9]].EW == WD[NM1].Name){
 						for(var NM2 = 0;NM2< Skills[i].W.length;NM2++){
-							if(Weapon[NM1].Type == Skills[i].W[NM]){
+							if(WD[NM1].Type == Skills[i].W[NM]){
 								NeedMp = Skills[i].Mp/2;
-								NM1 = Weapon.length;
+								NM1 = WD.length;
 								
 								break;
 							}else{
@@ -723,9 +723,9 @@ function battlesys(command,move,target,commander){
 							var WT ='';
 							
 							
-							for(var sm3 = 0; sm3<Weapon.length;sm3++){
-								if(info[3][sm2].EW == Weapon[sm3].Name){
-									WT = Weapon[sm3].Type;
+							for(var sm3 = 0; sm3<WD.length;sm3++){
+								if(info[3][sm2].EW == WD[sm3].Name){
+									WT = WD[sm3].Type;
 									break;
 								}
 							}
