@@ -19,6 +19,7 @@ var battle;
 var rply = [];
 
 var Skills = Skill.getSkillData();
+var WD = Skill.getWeaponData();
 ////////////////////////
 var BTon = 0;
 var info = [];
