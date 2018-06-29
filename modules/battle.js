@@ -654,7 +654,7 @@ function battlesys(command,move,target,commander){
 			}
 		}
 		
-		console.log('resultA;\n'resultA);
+		console.log('resultA:\n' + resultA);
 		
 		var spdl = resultA;
 		
