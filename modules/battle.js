@@ -1038,6 +1038,7 @@ function battlesys(command,move,target,commander){
 						setTimeout(function(){if(GE == 0) battlesys('MoveRequest'); }, 2000);
 					     }, 1000);
 		}
+	}else if(command == 'ImpactCheck'){
 	}else if(command == 'DefeatCheck'){
 		for(var DC1 = 0;DC1<info[3].length;DC1++){
 			if(info[4][DC1] > 0){
