@@ -189,6 +189,24 @@ function battlesys(command,move,target,commander){
 			
 			var s = 1;
 			
+			var LiveE = [];
+			LiveE.length = 0;
+			
+			for(var LE1 = 0;LE1<info[3].length;LE1++){
+				if(info[3][LE1].Team != info[3][info[9]].Team && info[4][LE1]>0){
+					LiveE.push(info[3][LE1].UName);
+				}
+			}
+			
+			var LiveM = [];
+			LiveM.length = 0;
+			
+			for(var LM1 = 0;LM1<info[3].length;LM1++){
+				if(info[3][LM1].Team == info[3][info[9]].Team && info[4][LM1]>0){
+					LiveM.push(info[3][LM1].UName);
+				}
+			}
+			
 			for(var i = 0;i<3;i++){
 				if(info[3][info[9]].Skill[i] != '無') s++;
 			}
@@ -237,44 +255,15 @@ function battlesys(command,move,target,commander){
 						
 						if(info[5][info[9]] >= Nmp){
 							if(Skills[M1].Range == '敵方單體'){
-								for(var i = 0; i < info[3].length;i++){
-									if(info[3][i].Team != info[3][info[9]].Team){
-										w++
-									}
-								}
-								
-								Ctarget = rollbase.Dice(w);
-								
-								for(var i =0;i<Ctarget;i++){
-									for(var j = 0; j<info[3].length;j++){
-										if(info[3][j].Team != info[3][info[9]].Team){
-											CT = info[3][j].UName;
-											break;
-										}
-									}
 
-								}
+								Ctarget = rollbase.Dice(LiveE.length);
+								CT = LiveE[Ctarget-1];
 								SB++;
 								break;
 								
 							}else if(Skills[M1].Range == '我方單體'){
-								for(var i = 0; i < info[3].length;i++){
-									if(info[3][i].Team == info[3][info[9]].Team){
-										w++
-									}
-								}
-								
-								Ctarget = rollbase.Dice(w);
-								
-								for(var i =0;i<Ctarget;i++){
-									for(var j = 0; j<info[3].length;j++){
-										if(info[3][j].Team == info[3][info[9]].Team){
-											CT = info[3][j].UName;
-											break;
-										}
-									}
-
-								}
+								Ctarget = rollbase.Dice(LiveM.length);
+								CT = LiveM[Ctarget-1];
 								SB++;
 								break;
 								
