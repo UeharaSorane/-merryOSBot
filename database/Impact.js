@@ -31,7 +31,7 @@ SkillDB.useServiceAccountAuth(creds, function (err) {
 
 
 				}
-				//console.log(Skills);
+				console.log(Skills);
 				console.log('必殺技資料 讀取完成');
 			}
 		
