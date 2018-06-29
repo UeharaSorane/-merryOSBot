@@ -248,10 +248,8 @@ function battlesys(command,move,target,commander){
 								for(var i =0;i<Ctarget;i++){
 									for(var j = 0; j<info[3].length;j++){
 										if(info[3][j].Team != info[3][info[9]].Team){
-											if(CT != info[3][j].UName){
-												CT = info[3][j].UName;
-												break;
-											}
+											CT = info[3][j].UName;
+											break;
 										}
 									}
 
@@ -270,11 +268,9 @@ function battlesys(command,move,target,commander){
 								
 								for(var i =0;i<Ctarget;i++){
 									for(var j = 0; j<info[3].length;j++){
-										if(info[3][j].Team != info[3][info[9]].Team){
-											if(CT != info[3][j].UName){
-												CT = info[3][j].UName;
-												break;
-											}
+										if(info[3][j].Team == info[3][info[9]].Team){
+											CT = info[3][j].UName;
+											break;
 										}
 									}
 
