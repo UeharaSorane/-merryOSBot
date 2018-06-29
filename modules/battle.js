@@ -163,7 +163,7 @@ function battlesys(command,move,target,commander){
 						if(info[4][j]<=0){
 							battle += '(戰鬥不能)';
 						}else if(Array.isArray(info[11][j]) == true){
-							battle += '(' + info[11][j][0] + 'x' + info[11][j][1] + ')';
+							if(info[11][j][0] != '無') battle += '(' + info[11][j][0] + 'x' + info[11][j][1] + ')';
 						}
 						battle +='\nHp[';
 						
@@ -328,7 +328,7 @@ function battlesys(command,move,target,commander){
 					\n角色名:' + info[3][info[9]].CName; 
 			
 			if(Array.isArray(info[11][info[9]]) == true){
-				say += '(' + info[11][info[9]][0] + 'x' + info[11][info[9]][1] + ')';
+				if(info[11][info[9]][0] != '無') say += '(' + info[11][info[9]][0] + 'x' + info[11][info[9]][1] + ')';
 			}
 			
 			say+='\nHp[';
@@ -1034,8 +1034,9 @@ function battlesys(command,move,target,commander){
 			info[10].length = 0;
 			if(info[13] != 1) battlesys('BurstCheck');
 			battlesys('battleOn');
-			setTimeout(function(){battlesys('AbSCheck'); }, 1000);
-			setTimeout(function(){battlesys('MoveRequest'); }, 2000);
+			setTimeout(function(){battlesys('AbSCheck'); 
+						setTimeout(function(){if(GE == 0) battlesys('MoveRequest'); }, 2000);
+					     }, 1000);
 		}
 	}else if(command == 'DefeatCheck'){
 		for(var DC1 = 0;DC1<info[3].length;DC1++){
@@ -1079,7 +1080,7 @@ function battlesys(command,move,target,commander){
 			if(Array.isArray(info[11][abs1]) == true){
 				if(info[11][abs1][0] == '燃燒'){
 					if(info[11][abs1][1] <= 0){
-						info[11][abs1].length = 0;
+						info[11][abs1] = ['無',0];
 					}else{
 						if(info[4][abs1]>0){
 							info[4][abs1] -= Math.floor(info[3][abs1].Hp/10);
