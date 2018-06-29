@@ -647,7 +647,7 @@ function battlesys(command,move,target,commander){
 		
 		var resultA = [];
 		
-		console.log(info[10]);
+		//console.log(info[10]);
 		
 		for(var i =0;i<info[10].length;i++){
 			for(var j = 0;j<info[3].length;j++){
