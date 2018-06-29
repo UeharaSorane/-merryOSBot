@@ -233,7 +233,7 @@ function battlesys(command,move,target,commander){
 							}
 						}
 						
-						console.log('Nmp = ' + Nmp);
+						//console.log('Nmp = ' + Nmp);
 						
 						if(info[5][info[9]] >= Nmp){
 							if(Skills[M1].Range == '敵方單體'){
@@ -502,7 +502,7 @@ function battlesys(command,move,target,commander){
 						
 					}else if(Skills[i].Range == '全體'){
 						say+='全體\
-							\n 所有玩家都會受到影響';
+							\n 所有玩家都會受到影響\n';
 					}else if(Skills[i].Range == '自身'){
 						say+='自身';
 						
@@ -594,6 +594,21 @@ function battlesys(command,move,target,commander){
 								
 								info[10].push([UseSkill,TgGroup,commander]);
 							}
+						}else if(Skills[i].Range == '全體'){
+							if(target != '全體'){
+								bot.push(info[1],'錯誤！無效對象');
+
+								return 0;
+							}else{
+								var TgGroup = [];
+								for(var j = 0;j<info[3].length;j++){
+									if(info[4][j]>0){
+										TgGroup.push(info[3][j].UName);
+									}
+								}
+								
+								info[10].push([UseSkill,TgGroup,commander]);
+							}
 						}else if(Skills[i].Range == '自身'){
 							if(target == info[3][info[9]].UName||target == info[3][info[9]].CName || target == '自身'){
 								info[10].push([UseSkill,[info[3][info[9]].UName],commander]);
@@ -649,12 +664,12 @@ function battlesys(command,move,target,commander){
 						Target: info[10][i][1]
 					};
 					
-					//resultA[i] = damageUI.damage(data);
+					resultA[i] = damageUI.damage(data);
 				}
 			}
 		}
 		
-		console.log('resultA:\n' + resultA);
+		console.log(resultA);
 		
 		var spdl = resultA;
 		
