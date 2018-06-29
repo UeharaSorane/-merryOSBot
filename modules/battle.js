@@ -649,12 +649,12 @@ function battlesys(command,move,target,commander){
 						Target: info[10][i][1]
 					};
 					
-					resultA[i] = damageUI.damage(data);
+					//resultA[i] = damageUI.damage(data);
 				}
 			}
 		}
 		
-		console.log(resultA);
+		console.log('resultA;\n'resultA);
 		
 		var spdl = resultA;
 		
