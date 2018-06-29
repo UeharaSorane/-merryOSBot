@@ -660,7 +660,7 @@ function battlesys(command,move,target,commander){
 						NowHp: info[4][j],
 						MaxMp: info[3][j].Mp,
 						NowMp: info[5][j],
-						Atk: info[3][j].Atk*info[12][j],
+						Atk: Math.floor(info[3][j].Atk*info[12][j]/100),
 						Spd: info[3][j].Spd,
 						Target: info[10][i][1]
 					};
