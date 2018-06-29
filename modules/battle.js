@@ -681,7 +681,7 @@ function battlesys(command,move,target,commander){
 			}
 		}
 		
-		console.log(spdl);
+		//console.log(spdl);
 
 		
 		var SayResult = '戰鬥回合:' + info[6] + '\n--------------------';
@@ -708,7 +708,7 @@ function battlesys(command,move,target,commander){
 								}
 							}
 							
-							console.log('WT = ' + WT);
+							//console.log('WT = ' + WT);
 							
 							
 							for(var sm4 = 0; sm4<Skills[sm1].W.length;sm4++){
