@@ -117,6 +117,9 @@ function battleON(FightInfo){
 	
 	info[7] = FightInfo[4];
 	info[8] = FightInfo[5];
+	for(var AB = 0;AB<FightInfo.length;AB++){
+		info[12].push(100);
+	}
 	
 	battlesys('battleOn');
 
@@ -657,7 +660,7 @@ function battlesys(command,move,target,commander){
 						NowHp: info[4][j],
 						MaxMp: info[3][j].Mp,
 						NowMp: info[5][j],
-						Atk: info[3][j].Atk,
+						Atk: info[3][j].Atk*info[12][j],
 						Spd: info[3][j].Spd,
 						Target: info[10][i][1]
 					};
