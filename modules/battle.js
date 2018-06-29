@@ -923,6 +923,7 @@ function battlesys(command,move,target,commander){
 															}
 
 															info[4][k]+= spdl[i][1];
+															if(info[4][k]>info[3][k].Hp) info[4][k] = info[3][k].Hp;
 
 															SayResult +=info[3][k].CName + '\n恢復' + spdl[i][1] + '點Hp\
 																	\nHp[';
