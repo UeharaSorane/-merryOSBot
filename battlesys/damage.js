@@ -24,9 +24,28 @@ function damage(data){
 				
 				var Multiply = Skills[i].minRM + RM -1;
 				
-				console.log(Multiply);
+				console.log('倍率 = ' + Multiply);
 				
 				var dmg = Math.floor(data.Atk*Multiply/100 + Skills[i].Plus);
+				var rspd = data.Spd*Skills[i].SpdM;
+				
+				return [type,dmg,rspd,Skills[i].Priority,data.Target,data.UName,data.Move];
+			}else if(Skills[i].Type == '治癒'){
+				type ='回復';
+				
+				var RM;
+				
+				if(Skills[i].maxRM != Skills[i].minRM){
+					RM = rollbase.Dice(Skills[i].maxRM-Skills[i].minRM+1);
+				}else{
+					RM = 1;
+				}
+				
+				var Multiply = Skills[i].minRM + RM -1;
+				
+				console.log('倍率 = ' + Multiply);
+				
+				var dmg = Math.floor(data.MaxMp*Multiply/100 + Skills[i].Plus);
 				var rspd = data.Spd*Skills[i].SpdM;
 				
 				return [type,dmg,rspd,Skills[i].Priority,data.Target,data.UName,data.Move];
