@@ -676,21 +676,21 @@ function battlesys(command,move,target,commander){
 		for(var i =0;i<spdl.length-1;i++){
 			var temp = spdl[i];
 			
-			if(spdl[i][3] < spdl[i+1][3]){
-				spdl[i] = spdl[i+1];
-				spdl[i+1] = temp;
-			}else if(spdl[i][3] == spdl[i+1][3]){
-				if(spdl[i][2] < spdl[i+1][2]){
-					spdl[i] = spdl[i+1];
-					spdl[i+1] = temp;
-				}else if(spdl[i][2] == spdl[i+1][2]){
-					var Dic = rollbase.Dice(2);
-					//console.log(Dic);
-
-
-					if(Dic == 2){
+			for(var j = i-1;j>=0;j--){
+				if(spdl[j][3]<spdl[i][3]){
+					spdl[i] = spdl[j];
+					spdl[j] = temp;
+				}else if(spdl[j][3] == spdl[i][3]){
+					if(spdl[j][2]<spdl[i][2]){
 						spdl[i] = spdl[j];
-						spdl[i+1] = temp;
+						spdl[j] = temp;
+					}else if(spdl[j][2] == spdl[i][2]){
+						var Dic = rollbase.Dice(2);
+						//console.log(Dic);
+						if(Dic == 2){
+							spdl[i] = spdl[j];
+							spdl[j] = temp;
+						}
 					}
 				}
 			}
