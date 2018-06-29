@@ -677,7 +677,7 @@ function battlesys(command,move,target,commander){
 			var temp = spdl[i];
 			
 			if(spdl[i][3] < spdl[i+1][3]){
-				spdl[i] = spdl[j];
+				spdl[i] = spdl[i+1];
 				spdl[i+1] = temp;
 			}else if(spdl[i][3] == spdl[i+1][3]){
 				if(spdl[i][2] < spdl[i+1][2]){
