@@ -1033,10 +1033,10 @@ function battlesys(command,move,target,commander){
 		for(var abs1 = 0;abs1<info[3].length;abs1++){
 			if(Array.isArray(info[11][abs1])){
 				if(info[11][abs1][0] == '燃燒'){
-					info[4][abs1] -= Math.floor(info[3].Hp/10);
+					info[4][abs1] -= Math.floor(info[3][abs1].Hp/10);
 					
 					SayAbs = info[3].CName + '因為燃燒狀態\
-								\n 承受' + (Math.floor(info[3].Hp/10)) + '的傷害！\
+								\n 承受' + Math.floor(info[3][abs1].Hp/10) + '的傷害！\
 					
 								\nHp[';
 
