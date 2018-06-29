@@ -404,11 +404,8 @@ function battlesys(command,move,target,commander){
 							}
 						}
 					}
-				}
-				
-				console.log('NeedMp = ' + NeedMp);
-				
-				console.log(Skills[i]);
+				}				
+				console.log(Skills[i].Range);
 				
 				if(target == null){
 					say = '技能名稱:' + Skills[i].Name + '\
