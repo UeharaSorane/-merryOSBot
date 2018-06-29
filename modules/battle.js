@@ -405,10 +405,9 @@ function battlesys(command,move,target,commander){
 						}
 					}
 				}				
-				console.log(Skills[i].Range);
 				
 				if(target == null){
-					/*say = '技能名稱:' + Skills[i].Name + '\
+					say = '技能名稱:' + Skills[i].Name + '\
 						\n 消耗Mp:' + NeedMp + '\
 						\n 施放範圍:' + Skills[i].Range + '\
 						\n 描述:\n' + Skills[i].Description + '\
@@ -478,7 +477,7 @@ function battlesys(command,move,target,commander){
 							}
 						}
 						
-					}else if(Skill[i].Range == '我方全體'){
+					}else if(Skills[i].Range == '我方全體'){
 						say+='我方全體\n\
 							\n以下玩家都會受到影響:\n';
 						for(var i = 0; i < info[3].length;i++){
@@ -501,10 +500,10 @@ function battlesys(command,move,target,commander){
 							}
 						}
 						
-					}else if(Skill[i].Range == '全體'){
+					}else if(Skills[i].Range == '全體'){
 						say+='全體\
 							\n 所有玩家都會受到影響';
-					}else if(Skill[i].Range == '自身'){
+					}else if(Skills[i].Range == '自身'){
 						say+='自身';
 						
 						say += '玩家名:' + info[3][info[9]].UName + '\
@@ -525,7 +524,7 @@ function battlesys(command,move,target,commander){
 					say += '請輸入 [戰鬥 ' + move +' 對象名(角色,團體)] 確認行動\
 						\n如果想更換其他行動 請輸入 [戰鬥 行動編號]';
 
-					bot.push(info[1],say);*/
+					bot.push(info[1],say);
 
 					return 0;
 					
