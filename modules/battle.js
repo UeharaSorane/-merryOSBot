@@ -5,6 +5,7 @@ var rollbase = require('../roll/rollbase.js');
 var damageUI = require('../battlesys/damage.js');
 var Skill = require('../database/Skill.js');
 var Weapon = require('../database/Weapon.js');
+var Impact = require('../database/Impact.js');
 var NormalSys = require('./NormalSys.js');
 var linebot = require('linebot');
 var express = require('express');
@@ -20,6 +21,7 @@ var rply = [];
 
 var Skills = Skill.getSkillData();
 var WD = Weapon.getWeaponData();
+var ImpactD = Weapon.getImpactData();
 ////////////////////////
 var BTon = 0;
 var info = [];
