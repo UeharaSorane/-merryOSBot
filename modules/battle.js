@@ -937,7 +937,7 @@ function battlesys(command,move,target,commander){
 																SayResult += ' ';
 															}
 
-															SayResult += '](' + info[4][k] + '/' + info[3][k].Hp + ')';
+															SayResult += '](' + info[4][k] + '/' + info[3][k].Hp + ')\n';
 														}
 													}
 												}
