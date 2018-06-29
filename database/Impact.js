@@ -23,7 +23,7 @@ SkillDB.useServiceAccountAuth(creds, function (err) {
 					Skills[i].Type = rows[i].type;
 					Skills[i].Mp = Number(rows[i].mp);
 					Skills[i].Range = rows[i].range;
-					Skills[i].con= [rows[i].effect.con1(','),rows[i].effect.con2(','),rows[i].effect.con3(',')];
+					Skills[i].con= [rows[i].con1.split(','),rows[i].con2.split(','),rows[i].con3.split(',')];
 					Skills[i].Dmg = Number(rows[i].dmg);
 					Skills[i].Effect= rows[i].effect.split(';');
 					Skills[i].Description = rows[i].description;
