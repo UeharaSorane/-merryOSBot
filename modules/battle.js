@@ -408,7 +408,7 @@ function battlesys(command,move,target,commander){
 				console.log(Skills[i].Range);
 				
 				if(target == null){
-					say = '技能名稱:' + Skills[i].Name + '\
+					/*say = '技能名稱:' + Skills[i].Name + '\
 						\n 消耗Mp:' + NeedMp + '\
 						\n 施放範圍:' + Skills[i].Range + '\
 						\n 描述:\n' + Skills[i].Description + '\
@@ -525,7 +525,7 @@ function battlesys(command,move,target,commander){
 					say += '請輸入 [戰鬥 ' + move +' 對象名(角色,團體)] 確認行動\
 						\n如果想更換其他行動 請輸入 [戰鬥 行動編號]';
 
-					bot.push(info[1],say);
+					bot.push(info[1],say);*/
 
 					return 0;
 					
