@@ -390,7 +390,7 @@ function battlesys(command,move,target,commander){
 			if(UseSkill == Skills[i].Name){
 				
 				for(var NM1 = 0;NM1<WD.length;NM1++){
-					console.log('武器:' + WD[NM1].Name);
+					//console.log('武器:' + WD[NM1].Name);
 					
 					if(info[3][info[9]].EW == WD[NM1].Name){
 						for(var NM2 = 0;NM2< Skills[i].W.length;NM2++){
@@ -481,7 +481,7 @@ function battlesys(command,move,target,commander){
 						say+='我方全體\n\
 							\n以下玩家都會受到影響:\n';
 						for(var i = 0; i < info[3].length;i++){
-							if(info[3][i].Team != info[3][info[9]].Team && info[4][i]>0){
+							if(info[3][i].Team == info[3][info[9]].Team && info[4][i]>0){
 
 								say += '玩家名:' + info[3][i].UName + '\
 								\n角色名:' + info[3][i].CName + '\
