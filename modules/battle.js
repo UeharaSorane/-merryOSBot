@@ -324,7 +324,7 @@ function battlesys(command,move,target,commander){
 			
 			if(info[13] == 1) say = '爆裂解禁中！可以使用夥伴技能還有必殺技！\n';
 			
-			var say += '輪到' + info[3][info[9]].UName + '的行動了！\
+			say += '輪到' + info[3][info[9]].UName + '的行動了！\
 					\n角色名:' + info[3][info[9]].CName; 
 			
 			if(Array.isArray(info[11][info[9]]) == true){
