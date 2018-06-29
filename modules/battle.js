@@ -1031,7 +1031,7 @@ function battlesys(command,move,target,commander){
 		var SayAbs = '';
 		
 		for(var abs1 = 0;abs1<info[3].length;abs1++){
-			if(Array.isArray(info[11][abs1]) = true){
+			if(Array.isArray(info[11][abs1]) == true){
 				if(info[11][abs1][0] == '燃燒'){
 					info[4][abs1] -= Math.floor(info[3][abs1].Hp/10);
 					
