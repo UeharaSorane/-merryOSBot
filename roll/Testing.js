@@ -59,7 +59,7 @@ function SimBattle(UserID,GroupID,UserN){
 	FightInfo[2] = 1;//戰鬥類型
 	
 	FightInfo[3] = [];//戰鬥員情報
-	FightInfo[3][0] = new BattleInfo(UserID,UserN,'測試用玩家','player',50,100,4,10,'無','木劍','無','無','無',['簡單治癒術','水平四方切','斬擊'],'無','無');
+	FightInfo[3][0] = new BattleInfo(UserID,UserN,'測試用玩家','player',50,100,4,10,'無','木劍','無','無','無',['簡單治癒術','水平四方切','火球'],'無','無');
 	FightInfo[3][1] = new BattleInfo('c','電腦','測試用電腦','player',50,200,1,20,'無','木劍','無','無','無',['簡單廣域治癒術','魔力暴風','無'],'無','無','無');
 	FightInfo[3][2] = new BattleInfo('c','電腦2','測試用電腦2','computer',100,20,1,10,'無','木劍','無','無','無',['斬擊','簡單廣域治癒術','無'],'無','無','無');
 	FightInfo[3][3] = new BattleInfo('c','電腦3','測試用電腦3','computer',50,100,4,20,'無','木劍','無','無','無',['簡單治癒術','水平四方切','魔力暴風'],'無','無');
