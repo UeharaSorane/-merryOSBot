@@ -307,8 +307,13 @@ function battlesys(command,move,target,commander){
 			
 		}else{
 			var say = '輪到' + info[3][info[9]].UName + '的行動了！\
-					\n角色名:' + info[3][info[9]].CName+ '\
-					\nHp[';
+					\n角色名:' + info[3][info[9]].CName; 
+			
+			if(Array.isArray(info[11][info[9]]) == true){
+				say += '(' + info[11][info[9]][0] + 'x' + info[11][info[9]][1] + ')';
+			}
+			
+			say+='\nHp[';
 						
 			var HpP = info[4][info[9]]/info[3][info[9]].Hp*20;
 			for(var k = 0; k < HpP;k++){
