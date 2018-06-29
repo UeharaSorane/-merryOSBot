@@ -660,25 +660,24 @@ function battlesys(command,move,target,commander){
 		
 		var spdl = resultA;
 		
-		for(var i =0;i<spdl.length;i++){
+		for(var i =0;i<spdl.length-1;i++){
 			var temp = spdl[i];
-			for(var j =i+1; j<spdl.length;j++){
-				if(spdl[i][3] < spdl[j][3]){
-					spdl[i] = spdl[j];
+			
+			if(spdl[i][3] < spdl[i+1][3]){
+				spdl[i] = spdl[j];
+				spdl[j] = temp;
+			}else if(spdl[i][3] == spdl[i+1][3]){
+				if(spdl[i][2] < spdl[i+1][2]){
+					spdl[i] = spdl[i+1];
 					spdl[j] = temp;
-				}else if(spdl[i][3] == spdl[j][3]){
-					if(spdl[i][2] < spdl[j][2]){
+				}else if(spdl[i][2] == spdl[i+1][2]){
+					var Dic = rollbase.Dice(2);
+					console.log(Dic);
+
+
+					if(Dic == 2){
 						spdl[i] = spdl[j];
-						spdl[j] = temp;
-					}else if(spdl[i][2] == spdl[j][2]){
-						var Dic = rollbase.Dice(2);
-						console.log(Dic);
-						
-						
-						if(Dic == 2){
-							spdl[i] = spdl[j];
-							spdl[j] = temp;
-						}
+						spdl[i+1] = temp;
 					}
 				}
 			}
@@ -820,6 +819,53 @@ function battlesys(command,move,target,commander){
 												}
 												
 												j = Skills.length;
+											}else if(Skills[j].Range == '全體'){
+												
+												SayResult +='\n' +  spdl[i][5] + '使用' + spdl[i][6] + '\n攻擊全體玩家\n';
+												
+												for(var EAll1 = 0;EAll1<spdl[i][4].length;EAll1++){
+													for(var k =0;k<info[3].length;k++){
+														if(info[3][k].UName == spdl[i][4][EAll1]){
+															if(info[4][k]<=0){
+																break;
+															}
+
+															info[4][k]-= spdl[i][1];
+
+															SayResult +=info[3][k].CName + '\n承受' + spdl[i][1] + '點傷害\
+																	\nHp[';
+
+															var HpP = info[4][k]/info[3][k].Hp*20;
+															for(var l = 0; l < HpP;l++){
+																SayResult += '|';
+															}
+															for(var l = 0; l < 20-HpP;l++){
+																SayResult += ' ';
+															}
+
+															SayResult += '](' + info[4][k] + '/' + info[3][k].Hp + ')';
+
+															var KC = battlesys('killCheck','',info[3][k].UName);
+
+
+															SayResult += KC[1] + '\n';
+
+															if(KC[0] == 1){
+																GE = battlesys('DefeatCheck');
+
+																if(GE == 1){
+																	SayResult += '\n--------------------';
+																	bot.push(info[1],SayResult);
+																	battlesys('GameEnd');
+																	return 0;
+
+																}
+															}
+														}
+													}
+												}
+												
+												j = Skills.length;
 											}
 											
 										}
@@ -851,7 +897,39 @@ function battlesys(command,move,target,commander){
 														SayResult += '](' + info[4][k] + '/' + info[3][k].Hp + ')';
 														
 													}
+													j = Skills.length;
 												}
+												
+											}else if(Skills[j].Range == '我方全體'){
+												
+												SayResult +='\n' +  spdl[i][5] + '使用' + spdl[i][6] + '\n治癒我方全體\n';
+												
+												for(var EAll1 = 0;EAll1<spdl[i][4].length;EAll1++){
+													for(var k =0;k<info[3].length;k++){
+														if(info[3][k].UName == spdl[i][4][EAll1]){
+															if(info[4][k]<=0){
+																break;
+															}
+
+															info[4][k]+= spdl[i][1];
+
+															SayResult +=info[3][k].CName + '\n恢復' + spdl[i][1] + '點Hp\
+																	\nHp[';
+
+															var HpP = info[4][k]/info[3][k].Hp*20;
+															for(var l = 0; l < HpP;l++){
+																SayResult += '|';
+															}
+															for(var l = 0; l < 20-HpP;l++){
+																SayResult += ' ';
+															}
+
+															SayResult += '](' + info[4][k] + '/' + info[3][k].Hp + ')';
+														}
+													}
+												}
+												
+												j = Skills.length;
 											}
 										}	
 									}
