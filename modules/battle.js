@@ -669,7 +669,7 @@ function battlesys(command,move,target,commander){
 			}
 		}
 		
-		console.log(resultA);
+		//console.log(resultA);
 		
 		var spdl = resultA;
 		
@@ -678,14 +678,14 @@ function battlesys(command,move,target,commander){
 			
 			if(spdl[i][3] < spdl[i+1][3]){
 				spdl[i] = spdl[j];
-				spdl[j] = temp;
+				spdl[i+1] = temp;
 			}else if(spdl[i][3] == spdl[i+1][3]){
 				if(spdl[i][2] < spdl[i+1][2]){
 					spdl[i] = spdl[i+1];
-					spdl[j] = temp;
+					spdl[i+1] = temp;
 				}else if(spdl[i][2] == spdl[i+1][2]){
 					var Dic = rollbase.Dice(2);
-					console.log(Dic);
+					//console.log(Dic);
 
 
 					if(Dic == 2){
@@ -696,7 +696,7 @@ function battlesys(command,move,target,commander){
 			}
 		}
 		
-		//console.log(spdl);
+		console.log(spdl);
 
 		
 		var SayResult = '戰鬥回合:' + info[6] + '\n--------------------';
