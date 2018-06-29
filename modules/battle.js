@@ -656,6 +656,8 @@ function battlesys(command,move,target,commander){
 			}
 		}
 		
+		console.log(resultA);
+		
 		var spdl = resultA;
 		
 		for(var i =0;i<spdl.length;i++){
