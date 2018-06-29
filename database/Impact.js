@@ -11,7 +11,7 @@ SkillDB.useServiceAccountAuth(creds, function (err) {
  
 	
  // 是先將資料讀進陣列
-	SkillDB.getRows(4 , 
+	SkillDB.getRows(3 , 
 		function (err, rows) {
 			if (err) {
 				console.log( err );
