@@ -39,6 +39,7 @@ info[9] = 0;//輪到誰行動
 info[10] = [];//紀錄行動
 info[11] = [];//異常狀態
 info[12] = [];//攻擊力加成
+info[13] = 0;//爆裂解禁
 
 ////////////////////////
 
@@ -149,6 +150,8 @@ function battlesys(command,move,target,commander){
 		if(info[2] == 1){
 			battle = '[' + info[7] + '] 目前回合:' + info[6] + '\n';
 			
+			if(info[13] == 1) battle += '爆裂解禁！\n';
+			
 			for(var i = 0; i < info[8].length;i++){
 				battle += '---團隊:' + info[8][i]  + '---\n';
 				
@@ -218,6 +221,10 @@ function battlesys(command,move,target,commander){
 				if(info[3][info[9]].Skill[i] != '無') s++;
 			}
 			
+			if(info[13] == 1){
+				if(info[3][info[9]].MS != '無') s++;
+			}	
+			
 			var Cmove = 0;
 			var SD;
 			var w=0;
@@ -233,8 +240,12 @@ function battlesys(command,move,target,commander){
 				
 				if(Cmove == 1){
 					SD = '通常攻擊';
+				}else if(Cmove == s){
+					SD = info[3][info[9]].MS;
 				}else{
 					SD = info[3][info[9]].Skill[Cmove-2];
+					
+					
 				}
 
 				for(var M1 = 0;M1<Skills.length;M1++){
@@ -309,7 +320,11 @@ function battlesys(command,move,target,commander){
 			
 			
 		}else{
-			var say = '輪到' + info[3][info[9]].UName + '的行動了！\
+			var say = '';
+			
+			if(info[13] == 1) say = '爆裂解禁中！可以使用夥伴技能還有必殺技！\n';
+			
+			var say += '輪到' + info[3][info[9]].UName + '的行動了！\
 					\n角色名:' + info[3][info[9]].CName; 
 			
 			if(Array.isArray(info[11][info[9]]) == true){
@@ -347,6 +362,10 @@ function battlesys(command,move,target,commander){
 				}
 			}
 			
+			
+			if(info[13] == 1&&info[3][info[9]].MS!='無') say +='夥伴技能.' + info[3][info[9]].MS + '\n';
+			
+			
 			say += '\n--------------------\
 				\n請輸入 [戰鬥 行動編號] 決定行動\
 				\n或輸入 [戰況] 確認目前情勢';
@@ -381,6 +400,8 @@ function battlesys(command,move,target,commander){
 				
 				return 0;
 			}
+		}else if(move == '夥伴技能'){
+			UseSkill = info[3][info[9]].MS;
 		}else{
 			bot.push(info[1],'錯誤！無效動作');
 				
@@ -1012,6 +1033,7 @@ function battlesys(command,move,target,commander){
 			info[9] = 0;
 			info[10].length = 0;
 			battlesys('battleOn');
+			if(info[13] != 1) battlesys('BurstCheck');
 			setTimeout(function(){battlesys('AbSCheck'); }, 1000);
 			setTimeout(function(){battlesys('MoveRequest'); }, 2000);
 		}
@@ -1037,6 +1059,19 @@ function battlesys(command,move,target,commander){
 				}
 			}
 		}
+	}else if(command == 'BurstCheck'){
+		var SayBurst;
+		
+		if(info[6] >= 5){
+			SayBurst = '爆裂之時已經來臨！借助夥伴及必殺技卡片的力量吧！';
+			info[13] = 1;
+			
+		}else{
+			SayBurst = '距離爆裂解禁還差' + (5 - info[6]) + '回合！';
+		}
+		bot.push(info[1],SayBurst);
+		return 0;
+		
 	}else if(command == 'AbSCheck'){
 		var SayAbs = '';
 		
