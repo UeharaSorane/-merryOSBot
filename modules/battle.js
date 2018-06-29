@@ -1036,9 +1036,7 @@ function battlesys(command,move,target,commander){
 					info[4][abs1] -= Math.floor(info[3][abs1].Hp/10);
 					
 					SayAbs = info[3].CName + '因為燃燒狀態\
-								\n 承受' + Math.floor(info[3][abs1].Hp/10) + '的傷害！\
-					
-								\nHp[';
+								\n 承受' + Math.floor(info[3][abs1].Hp/10) + '的傷害！\nHp[';
 
 					var HpP = info[4][abs1]/info[3][abs1].Hp*20;
 					for(var l = 0; l < HpP;l++){
