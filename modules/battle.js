@@ -733,7 +733,6 @@ function battlesys(command,move,target,commander){
 								if(spdl[i][0] == '傷害'){
 									for(var j = 0;j<Skills.length;j++){
 										if(Skills[j].Name == spdl[i][6]){
-											console.log(Skills[j].Name);
 											if(Skills[j].Range == '敵方單體'){
 												for(var k =0;k<info[3].length;k++){
 													if(info[3][k].UName == spdl[i][4][0]){
@@ -828,6 +827,36 @@ function battlesys(command,move,target,commander){
 										}
 										
 									}	
+								}else if(spdl[i][0] == '回復'){
+									for(var j = 0;j<Skills.length;j++){
+										if(Skills[j].Name == spdl[i][6]){
+											if(Skills[j].Range == '我方單體'){
+												for(var k =0;k<info[3].length;k++){
+													if(info[3][k].UName == spdl[i][4][0]){
+														info[4][k]+= spdl[i][1];
+														
+														if(info[4][k]>info[3][k].Hp) info[4][k] = info[3][k].Hp;
+
+														SayResult +='\n' +  spdl[i][5] + '使用' + spdl[i][6] + '\n治癒' + info[3][k].CName;
+
+														SayResult += '\n恢復' + spdl[i][1] + '點Hp\
+																\nHp[';
+
+														var HpP = info[4][k]/info[3][k].Hp*20;
+														for(var l = 0; l < HpP;l++){
+															SayResult += '|';
+														}
+														for(var l = 0; l < 20-HpP;l++){
+															SayResult += ' ';
+														}
+
+														SayResult += '](' + info[4][k] + '/' + info[3][k].Hp + ')';
+														
+													}
+												}
+											}
+										}	
+									}
 								}
 								
 								
