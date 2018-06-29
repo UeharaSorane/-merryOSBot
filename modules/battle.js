@@ -1046,39 +1046,41 @@ function battlesys(command,move,target,commander){
 					if(info[11][abs1][1] <= 0){
 						info[11][abs1].length = 0;
 					}else{
-						info[4][abs1] -= Math.floor(info[3][abs1].Hp/10);
-					
-						SayAbs = info[3][abs1].CName + '因為燃燒狀態\
-									\n 承受' + Math.floor(info[3][abs1].Hp/10) + '的傷害！\nHp[';
+						if(info[4][abs1]>0){
+							info[4][abs1] -= Math.floor(info[3][abs1].Hp/10);
 
-						var HpP = info[4][abs1]/info[3][abs1].Hp*20;
-						for(var l = 0; l < HpP;l++){
-							SayAbs += '|';
-						}
-						for(var l = 0; l < 20-HpP;l++){
-							SayAbs += ' ';
-						}
+							SayAbs = info[3][abs1].CName + '因為燃燒狀態\
+										\n 承受' + Math.floor(info[3][abs1].Hp/10) + '的傷害！\nHp[';
 
-						SayAbs += '](' + info[4][abs1] + '/' + info[3][abs1].Hp + ')';
-
-						var KC = battlesys('killCheck','',info[3][abs1].UName);
-
-
-						SayAbs += KC[1] + '\n--------------------';
-
-						if(KC[0] == 1){
-							GE = battlesys('DefeatCheck');
-
-							if(GE == 1){
-								SayAbs += '\n--------------------';
-								bot.push(info[1],SayAbs);
-								battlesys('GameEnd');
-								return 0;
-
+							var HpP = info[4][abs1]/info[3][abs1].Hp*20;
+							for(var l = 0; l < HpP;l++){
+								SayAbs += '|';
 							}
+							for(var l = 0; l < 20-HpP;l++){
+								SayAbs += ' ';
+							}
+
+							SayAbs += '](' + info[4][abs1] + '/' + info[3][abs1].Hp + ')';
+
+							var KC = battlesys('killCheck','',info[3][abs1].UName);
+
+
+							SayAbs += KC[1] + '\n--------------------';
+
+							if(KC[0] == 1){
+								GE = battlesys('DefeatCheck');
+
+								if(GE == 1){
+									SayAbs += '\n--------------------';
+									bot.push(info[1],SayAbs);
+									battlesys('GameEnd');
+									return 0;
+
+								}
+							}
+
+							info[11][abs1][1]--;
 						}
-						
-						info[11][abs1][1]--;
 					}
 				}
 			}
