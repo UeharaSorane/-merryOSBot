@@ -21,7 +21,7 @@ var rply = [];
 
 var Skills = Skill.getSkillData();
 var WD = Weapon.getWeaponData();
-var ImpactD = Weapon.getImpactData();
+var ImpactD = Impact.getImpactData();
 ////////////////////////
 var BTon = 0;
 var info = [];
