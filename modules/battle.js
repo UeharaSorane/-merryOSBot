@@ -37,6 +37,8 @@ info[7] = 0;//戰鬥名稱
 info[8] = [];//團隊名稱
 info[9] = 0;//輪到誰行動
 info[10] = [];//紀錄行動
+info[11] = [];//異常狀態
+info[12] = [];//攻擊力加成
 
 ////////////////////////
 
@@ -962,6 +964,21 @@ function battlesys(command,move,target,commander){
 												if(info[5][sm2]>info[3][sm2].Mp) info[5][sm2] = info[3][sm2].Mp;
 												
 											}
+										}else if(Effect1[E1][0] == 'GiveBurn'){
+											if(Effect1[E1][2] == '被命中者'){
+												for(var Burn1 = 0;Burn1<spdl[i][4].length;Burn1++){
+													for(var Burn2 = 0;Burn2<info[3].length;Burn2++){
+														if(info[3][Burn2].UName == spdl[i][4][Burn1]){
+															var GiveB = rollbase.Dice(100);
+															
+															if(GiveB<=Effect1[E1][1]){
+																SayResult +='\n' +  info[3][Burn2].CName + '燃燒起來了！';
+																info[11][Burn2] = ['燃燒',Effect1[E1][3]];
+															}
+														}
+													}
+												}
+											}
 										}
 									}
 								}
@@ -985,6 +1002,7 @@ function battlesys(command,move,target,commander){
 			info[9] = 0;
 			info[10].length = 0;
 			battlesys('battleOn');
+			setTimeout(function(){battlesys('AbSCheck'); }, 1000);
 			setTimeout(function(){battlesys('MoveRequest'); }, 2000);
 		}
 	}else if(command == 'DefeatCheck'){
@@ -1009,6 +1027,52 @@ function battlesys(command,move,target,commander){
 				}
 			}
 		}
+	}else if(command == 'AbSCheck'){
+		var SayAbs;
+		
+		for(var abs1 = 0;abs1<info[3].length;abs1++){
+			if(Array.isArray(info[11][abs1])){
+				if(info[11][abs1][0] == '燃燒'){
+					info[4][abs1] -= Math.floor(info[3].Hp/10);
+					
+					SayAbs = info[3].CName + '因為燃燒狀態\
+								\n 承受' + (Math.floor(info[3].Hp/10)) + '的傷害！\
+					
+								\nHp[';
+
+					var HpP = info[4][abs1]/info[3][abs1].Hp*20;
+					for(var l = 0; l < HpP;l++){
+						SayAbs += '|';
+					}
+					for(var l = 0; l < 20-HpP;l++){
+						SayAbs += ' ';
+					}
+
+					SayAbs += '](' + info[4][abs1] + '/' + info[3][abs1].Hp + ')';
+
+					var KC = battlesys('killCheck','',info[3][abs1].UName);
+
+
+					SayAbs += KC[1] + '\n';
+
+					if(KC[0] == 1){
+						GE = battlesys('DefeatCheck');
+
+						if(GE == 1){
+							SayAbs += '\n--------------------';
+							bot.push(info[1],SayAbs);
+							battlesys('GameEnd');
+							return 0;
+
+						}
+					}
+					
+				}
+			}
+			SayAbs += '\n--------------------';
+		}
+		
+		bot.push(info[1],SayAbs);
 	}else if(command == 'GameEnd'){
 		for(var GE1 = 0;GE1 < info[3].length;GE1++){
 			if(info[4][GE1] > 0){
