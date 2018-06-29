@@ -408,6 +408,8 @@ function battlesys(command,move,target,commander){
 				
 				console.log('NeedMp = ' + NeedMp);
 				
+				console.log(Skills[i]);
+				
 				if(target == null){
 					say = '技能名稱:' + Skills[i].Name + '\
 						\n 消耗Mp:' + NeedMp + '\
