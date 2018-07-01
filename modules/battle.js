@@ -42,6 +42,8 @@ info[10] = [];//紀錄行動
 info[11] = [];//異常狀態
 info[12] = [];//攻擊力加成
 info[13] = 0;//爆裂解禁
+info[14] = [];//是否使用過必殺技
+info[15] = 0;//輪到誰確認必殺技
 
 ////////////////////////
 
@@ -86,6 +88,16 @@ function parseInput(inputStr,UserID,UserN,GroupID) {
 		}
 	}
 	
+	if (trigger.match(/^必殺技$/) != null){
+		if(UserID == info[3][info[15]].ID){
+			battlesys('ImpactMove',mainMsg[1],info[3][info[15]].UName);
+		}else{
+			rply[0] = 'rply';
+			rply[1] = '現在不是你行動喔';
+			return rply;
+		}
+	}
+	
 	if (trigger.match(/^戰況$/) != null){
 			rply[0] = 'rply';
 			rply[1] = battle;
@@ -122,6 +134,7 @@ function battleON(FightInfo){
 	info[8] = FightInfo[5];
 	for(var AB = 0;AB<FightInfo.length;AB++){
 		info[12].push(100);
+		info[14].push(0);
 	}
 	
 	battlesys('battleOn');
@@ -1031,6 +1044,73 @@ function battlesys(command,move,target,commander){
 		
 		if(GE == 0){
 			bot.push(info[1],SayResult);
+			battlesys('ImpactCheck');
+		}
+	}else if(command == 'ImpactCheck'){
+		info[9] = 0;
+		
+		if(info[13] == 1){
+			if(info[3][info[15]].Impact !='無' && info[4][info[15]]>0){
+				for(var Impact1 = 0;Impact1 < ImpactD.length;Impact1++){
+					if(info[3][info[15]].Impact == ImpactD[Impact1].Name){
+						var con = [];
+						var ImpOK = 0;
+
+						var con[0] =  ImpactD[Impact1].con[0].split(',');
+						var con[1] =  ImpactD[Impact1].con[1].split(',');
+						var con[2] =  ImpactD[Impact1].con[2].split(',');
+						
+						for(var Impact3 = 0 Impact3<3;Impact3++){
+							if(con[Impact3][0] != '無'){
+								if(con[Impact3][0] == 'LastE'){
+									var LE = 0;
+									for(var Impact3a = 0; Impact3a<info[3].length;Impact3a++){
+										if(info[3][Impact3a].Team != info[3][[info[15]].Team && info[4][Impact3a]>0) LE++;
+									}
+
+									if(LE<=con[Impact3][1]) ImpOK++;
+								}else if(con[Impact3][0] == 'LowerHpH'){
+									if(info[4][[info[15]] >= con[Impact3][1]) ImpOK++;
+								}else if(con[Impact3][0] == 'LowerHpE'){
+
+									for(var Impact3b = 0; Impact3b<info[3].length;Impact3b++){
+										if(info[3][Impact3b].Team != info[3][[info[15]].Team && info[4][Impact3a] <= con[Impact3][1]) ImpOK++;
+										break;
+									}
+								}
+							}else{
+								ImpOK++;
+							}
+						}
+						
+						if(ImpOK>=3 && info[14][info[15]] == 0){
+							if(info[3][info[15]].ID == 'c'){
+								if(info[5][info[15]] >= ImpactD[Impact1].Mp) battlesys('ImpactMove','施放',info[3][info[15]].UName);
+
+							}else{
+								var SayImp = '玩家' + info[3][info[15]].UName + '達成必殺技所有條件，可以施放必殺技\
+										\n 請問要施放必殺技嗎？\
+										\n--------------------\
+										\n必殺技名稱:' + info[3][info[15]].Impact + '\
+										\n必殺技類型:' + ImpactD[Impact1].Type + '\
+										\n消耗Mp:' + ImpactD[Impact1].Mp + '\
+										\n描述:\n' + ImpactD[Impact1].Description  + '\
+										\n--------------------\
+										\n如果想要施放的話，請輸入[必殺技 施放]\
+										\n反之，請輸入[必殺技 不施放]';
+
+								bot.push(info[1],SayImp);
+							}
+						}
+					}
+				}
+			}
+		}
+	}else if(command == 'ImpactMove'){
+	}else if(command == 'ImpactActive'){
+		
+		
+		if(GE == 0){
 			info[6]++;
 			info[9] = 0;
 			info[10].length = 0;
@@ -1040,7 +1120,6 @@ function battlesys(command,move,target,commander){
 						setTimeout(function(){if(GE == 0) battlesys('MoveRequest'); }, 2000);
 					     }, 1000);
 		}
-	}else if(command == 'ImpactCheck'){
 	}else if(command == 'DefeatCheck'){
 		for(var DC1 = 0;DC1<info[3].length;DC1++){
 			if(info[4][DC1] > 0){
