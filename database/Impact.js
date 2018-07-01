@@ -25,6 +25,7 @@ SkillDB.useServiceAccountAuth(creds, function (err) {
 					Skills[i].Range = rows[i].range;
 					Skills[i].con= [rows[i].con1,rows[i].con2,rows[i].con3];
 					Skills[i].Dmg = Number(rows[i].dmg);
+					Skills[i].SpdM = Number(rows[i].spdm);
 					Skills[i].Effect= rows[i].effect.split(';');
 					Skills[i].Description = rows[i].description;
 					Skills[i].CharLine= rows[i].charline.split('>>');
