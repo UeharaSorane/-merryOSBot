@@ -44,6 +44,8 @@ info[12] = [];//攻擊力加成
 info[13] = 0;//爆裂解禁
 info[14] = [];//是否使用過必殺技
 info[15] = 0;//輪到誰確認必殺技
+info[16] = [];//是否可以使用必殺技
+info[17] = [];//紀錄必殺技
 
 ////////////////////////
 
@@ -135,6 +137,7 @@ function battleON(FightInfo){
 	for(var AB = 0;AB<FightInfo.length;AB++){
 		info[12].push(100);
 		info[14].push(0);
+		info[16].push(0);
 	}
 	
 	battlesys('battleOn');
@@ -1047,7 +1050,6 @@ function battlesys(command,move,target,commander){
 			battlesys('ImpactCheck');
 		}
 	}else if(command == 'ImpactCheck'){
-		info[9] = 0;
 		
 		if(info[13] == 1){
 			if(info[3][info[15]].Impact !='無' && info[4][info[15]]>0){
@@ -1061,13 +1063,15 @@ function battlesys(command,move,target,commander){
 						var con[2] =  ImpactD[Impact1].con[2].split(',');
 						
 						for(var Impact3 = 0 Impact3<3;Impact3++){
+							
 							if(con[Impact3][0] != '無'){
+								
 								if(con[Impact3][0] == 'LastE'){
+									
 									var LE = 0;
 									for(var Impact3a = 0; Impact3a<info[3].length;Impact3a++){
 										if(info[3][Impact3a].Team != info[3][[info[15]].Team && info[4][Impact3a]>0) LE++;
 									}
-
 									if(LE<=con[Impact3][1]) ImpOK++;
 								}else if(con[Impact3][0] == 'LowerHpH'){
 									if(info[4][[info[15]] >= con[Impact3][1]) ImpOK++;
@@ -1083,10 +1087,15 @@ function battlesys(command,move,target,commander){
 							}
 						}
 						
+														     
 						if(ImpOK>=3 && info[14][info[15]] == 0){
+							
+							
+							info[14][info[16]] = 1;
+							
 							if(info[3][info[15]].ID == 'c'){
 								if(info[5][info[15]] >= ImpactD[Impact1].Mp) battlesys('ImpactMove','施放',info[3][info[15]].UName);
-
+								else battlesys('ImpactMove','不施放',info[3][info[15]].UName);
 							}else{
 								var SayImp = '玩家' + info[3][info[15]].UName + '達成必殺技所有條件，可以施放必殺技\
 										\n 請問要施放必殺技嗎？\
@@ -1107,6 +1116,24 @@ function battlesys(command,move,target,commander){
 			}
 		}
 	}else if(command == 'ImpactMove'){
+		if(move == '施放'){
+			for(var IC = 1;IC<ImpactD.length;IC++){
+				if(info[5][info[15]]>=ImpactD[IC].Mp){
+					info[5][info[15]]-=ImpactD[IC].Mp;
+					info[17].push = [ImpactD[IC].Name,ImpactD[IC].Type,info[3][info[15]].UName];
+					break;
+				}else{
+					bot.push(info[1],'錯誤！Mp不足');
+
+					return 0;
+				}
+			}
+		}
+		info[15]++;
+		if(info[15] >= info[3].length) battlesys('ImpactActive');
+		else battlesys('ImpactCheck');
+		
+		
 	}else if(command == 'ImpactActive'){
 		
 		
