@@ -1076,7 +1076,8 @@ function battlesys(command,move,target,commander){
 									}
 									if(LE<=con[Impact3][1]) ImpOK++;
 								}else if(con[Impact3][0] == 'LowerHpH'){
-									if(info[4][[info[15]] >= con[Impact3][1]) ImpOK++;
+									if(info[4][info[15]] >= con[Impact3][1]) ImpOK++;
+									
 								}else if(con[Impact3][0] == 'LowerHpE'){
 
 									for(var Impact3b = 0; Impact3b<info[3].length;Impact3b++){
