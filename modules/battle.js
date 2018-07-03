@@ -1051,8 +1051,6 @@ function battlesys(command,move,target,commander){
 			battlesys('ImpactCheck');
 		}
 	}else if(command == 'ImpactCheck'){
-		
-		
 		if(info[13] == 1){
 			if(info[3][info[15]].Impact !='無' && info[4][info[15]]>0){
 				console.log(1);
@@ -1127,6 +1125,9 @@ function battlesys(command,move,target,commander){
 						}
 					}
 				}
+			}else{
+				console.log(5);
+				battlesys('ImpactMove');
 			}
 		}else{
 			info[6]++;
