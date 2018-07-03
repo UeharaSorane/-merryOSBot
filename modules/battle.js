@@ -1046,6 +1046,7 @@ function battlesys(command,move,target,commander){
 		}
 		
 		if(GE == 0){
+			info[15] = 0;
 			bot.push(info[1],SayResult);
 			battlesys('ImpactCheck');
 		}
@@ -1056,6 +1057,8 @@ function battlesys(command,move,target,commander){
 			if(info[3][info[15]].Impact !='無' && info[4][info[15]]>0){
 				console.log(1);
 				for(var Impact1 = 0;Impact1 < ImpactD.length;Impact1++){
+					console.log(info[3][info[15]].Impact);
+					console.log(ImpactD[Impact1].Name);
 					if(info[3][info[15]].Impact == ImpactD[Impact1].Name){
 						console.log(2);
 						var con = [];
