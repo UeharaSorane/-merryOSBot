@@ -1058,9 +1058,9 @@ function battlesys(command,move,target,commander){
 						var con = [];
 						var ImpOK = 0;
 
-						var con[0] =  ImpactD[Impact1].con[0].split(',');
-						var con[1] =  ImpactD[Impact1].con[1].split(',');
-						var con[2] =  ImpactD[Impact1].con[2].split(',');
+						con[0] =  ImpactD[Impact1].con[0].split(',');
+						con[1] =  ImpactD[Impact1].con[1].split(',');
+						con[2] =  ImpactD[Impact1].con[2].split(',');
 						
 						for(var Impact3 = 0 Impact3<3;Impact3++){
 							
