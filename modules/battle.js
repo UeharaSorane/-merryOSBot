@@ -1159,6 +1159,7 @@ function battlesys(command,move,target,commander){
 		if(info[15] >= info[3].length) battlesys('ImpactActive');
 		else battlesys('ImpactCheck');
 	}else if(command == 'ImpactActive'){
+		console.log(7);
 		var spdl = info[17];
 		
 		for(var i =0;i<spdl.length-1;i++){
@@ -1235,16 +1236,13 @@ function battlesys(command,move,target,commander){
 		}
 		
 		
-		if(GE == 0){
-			info[6]++;
-			info[9] = 0;
-			info[10].length = 0;
-			if(info[13] != 1) battlesys('BurstCheck');
-			battlesys('battleOn');
-			setTimeout(function(){battlesys('AbSCheck'); 
-						setTimeout(function(){if(GE == 0) battlesys('MoveRequest'); }, 2000);
-					     }, 1000);
-		}
+		info[6]++;
+		info[9] = 0;
+		info[10].length = 0;
+		if(info[13] != 1) setTimeout(function(){battlesys('BurstCheck'); }, 500);
+		setTimeout(function(){ battlesys('AbSCheck'); }, 1000);
+		setTimeout(function(){ battlesys('battleOn'); }, 1500);
+		setTimeout(function(){ battlesys('MoveRequest'); }, 2000);
 	}else if(command == 'DefeatCheck'){
 		for(var DC1 = 0;DC1<info[3].length;DC1++){
 			if(info[4][DC1] > 0){
