@@ -1132,7 +1132,6 @@ function battlesys(command,move,target,commander){
 			info[9] = 0;
 			info[10].length = 0;
 			if(info[13] != 1) setTimeout(function(){battlesys('BurstCheck'); }, 500);
-			battlesys('AbSCheck');
 			setTimeout(function(){ battlesys('AbSCheck'); }, 1000);
 			setTimeout(function(){ battlesys('battleOn'); }, 1500);
 			setTimeout(function(){ battlesys('MoveRequest'); }, 2000);
