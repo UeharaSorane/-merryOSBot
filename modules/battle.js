@@ -1070,7 +1070,9 @@ function battlesys(command,move,target,commander){
 									
 									var LE = 0;
 									for(var Impact3a = 0; Impact3a<info[3].length;Impact3a++){
-										if(info[3][Impact3a].Team != info[3][[info[15]].Team && info[4][Impact3a]>0) LE++;
+										if(info[3][Impact3a].Team != info[3][info[15]].Team && info[4][Impact3a]>0){
+											LE++;
+										}
 									}
 									if(LE<=con[Impact3][1]) ImpOK++;
 								}else if(con[Impact3][0] == 'LowerHpH'){
