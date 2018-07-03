@@ -1125,6 +1125,8 @@ function battlesys(command,move,target,commander){
 				}
 			}
 		}else{
+			
+			console.log(info[13]);
 
 			info[6]++;
 			info[9] = 0;
