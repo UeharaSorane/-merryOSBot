@@ -1120,7 +1120,7 @@ function battlesys(command,move,target,commander){
 			for(var IC = 1;IC<ImpactD.length;IC++){
 				if(info[5][info[15]]>=ImpactD[IC].Mp){
 					info[5][info[15]]-=ImpactD[IC].Mp;
-					info[17].push = [ImpactD[IC].Name,ImpactD[IC].Type,info[3][info[15]].UName];
+					info[17].push = [ImpactD[IC].Name,info[3][info[15]].UName,info[3][info[15]].Spd*ImpactD[IC].SpdM,info[3][info[15]].Team];
 					break;
 				}else{
 					bot.push(info[1],'錯誤！Mp不足');
@@ -1135,6 +1135,80 @@ function battlesys(command,move,target,commander){
 		
 		
 	}else if(command == 'ImpactActive'){
+		var spdl = info[17];
+		
+		for(var i =0;i<spdl.length-1;i++){
+			var temp = spdl[i];
+			
+			for(var j = i-1;j>=0;j--){
+				if(spdl[j][2]<spdl[i][2]){
+					spdl[i] = spdl[j];
+					spdl[j] = temp;
+				}else if(spdl[j][2] == spdl[i][2]){
+					var Dic = rollbase.Dice(2);
+					//console.log(Dic);
+					if(Dic == 2){
+						spdl[i] = spdl[j];
+						spdl[j] = temp;
+					}
+				}
+			}
+		}
+		
+		var SayImpA = '';
+		
+		for(var ImpA1 = 0; ImpA1<spdl.length;ImpA1++){
+			for(var ImpA2 = 0;ImpA2<ImpactD.length;ImpA2++){
+				if(spdl[ImpA1][0] == ImpactD[ImpA2].Name){
+					SayImpA = '玩家 ' + spdl[ImpA1][1] + '要施放必殺技了！';
+					bot.push(info[1],SayImpA);
+					
+					for(var ImpA3 = 0; ImpA3<ImpactD[ImpA2].CharLine.length;ImpA3++){
+						setTimeout(function(){bot.push(info[1],ImpactD[ImpA2].CharLine[ImpA3]); }, 500);
+					}
+					
+					if(ImpactD[ImpA2].Type == '強擊'){
+						if(ImpactD[ImpA2].Range == '敵方全體'){
+							for(var ImpA4a = 0;ImpA4a<info[3].length;ImpA4a++){
+								if(info[3][ImpA4a].Team != spdl[ImpA1][3] && info[4][ImpA4a]>0){
+									info[4][ImpA4a]-= ImpactD[ImpA2].Dmg;
+									
+									SayResult +=info[3][ImpA4a].CName + '\n承受' + ImpactD[ImpA2].Dmg + '點傷害\
+													\nHp[';
+									var HpP = info[4][ImpA4a]/info[3][ImpA4a].Hp*20;
+									for(var l = 0; l < HpP;l++){
+										SayResult += '|';
+									}
+									for(var l = 0; l < 20-HpP;l++){
+										SayResult += ' ';
+									}
+
+									SayResult += '](' + info[4][ImpA4a] + '/' + info[3][ImpA4a].Hp + ')';
+
+									var KC = battlesys('killCheck','',info[3][ImpA4a].UName);
+
+
+									SayResult += KC[1] + '\n';
+
+									if(KC[0] == 1){
+										GE = battlesys('DefeatCheck');
+
+										if(GE == 1){
+											SayResult += '\n--------------------';
+											bot.push(info[1],SayResult);
+											battlesys('GameEnd');
+											return 0;
+
+										}
+									}
+								}
+							}
+						}
+					}
+					
+				}
+			}
+		}
 		
 		
 		if(GE == 0){
