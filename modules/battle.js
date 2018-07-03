@@ -1050,8 +1050,11 @@ function battlesys(command,move,target,commander){
 			battlesys('ImpactCheck');
 		}
 	}else if(command == 'ImpactCheck'){
+		console.log(1);
+		
 		
 		if(info[13] == 1){
+			console.log(2);
 			if(info[3][info[15]].Impact !='無' && info[4][info[15]]>0){
 				for(var Impact1 = 0;Impact1 < ImpactD.length;Impact1++){
 					if(info[3][info[15]].Impact == ImpactD[Impact1].Name){
@@ -1122,6 +1125,7 @@ function battlesys(command,move,target,commander){
 				}
 			}
 		}else{
+			console.log(0);
 			if(GE == 0){
 				info[6]++;
 				info[9] = 0;
