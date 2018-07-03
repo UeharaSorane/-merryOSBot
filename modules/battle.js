@@ -1058,7 +1058,6 @@ function battlesys(command,move,target,commander){
 				console.log(1);
 				for(var Impact1 = 0;Impact1 < ImpactD.length;Impact1++){
 					console.log(info[3][info[15]].Impact);
-					console.log(ImpactD[Impact1].Name);
 					if(info[3][info[15]].Impact == ImpactD[Impact1].Name){
 						console.log(2);
 						var con = [];
