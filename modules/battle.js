@@ -1062,7 +1062,7 @@ function battlesys(command,move,target,commander){
 						con[1] =  ImpactD[Impact1].con[1].split(',');
 						con[2] =  ImpactD[Impact1].con[2].split(',');
 						
-						for(var Impact3 = 0 Impact3<3;Impact3++){
+						for(var Impact3 = 0;Impact3<3;Impact3++){
 							
 							if(con[Impact3][0] != '無'){
 								
