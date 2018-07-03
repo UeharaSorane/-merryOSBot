@@ -18,7 +18,6 @@ function BattleInfo(ID,UName,CName,Team,Hp,Mp,Atk,spd,Ability,EW,WS,AS,BS,Skill,
   this.BS = BS;
   this.Skill = Skill;
   this.MS = MS;
-  this.MStype = MStype;
   this.Impact = Impact;
   
 };
