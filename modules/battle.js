@@ -1050,14 +1050,14 @@ function battlesys(command,move,target,commander){
 			battlesys('ImpactCheck');
 		}
 	}else if(command == 'ImpactCheck'){
-		console.log(1);
 		
 		
 		if(info[13] == 1){
-			console.log(2);
 			if(info[3][info[15]].Impact !='無' && info[4][info[15]]>0){
+				console.log(1);
 				for(var Impact1 = 0;Impact1 < ImpactD.length;Impact1++){
 					if(info[3][info[15]].Impact == ImpactD[Impact1].Name){
+						console.log(2);
 						var con = [];
 						var ImpOK = 0;
 
@@ -1068,8 +1068,10 @@ function battlesys(command,move,target,commander){
 						for(var Impact3 = 0;Impact3<3;Impact3++){
 							
 							if(con[Impact3][0] != '無'){
+								console.log(3);
 								
 								if(con[Impact3][0] == 'LastE'){
+									console.log(4);
 									
 									var LE = 0;
 									for(var Impact3a = 0; Impact3a<info[3].length;Impact3a++){
@@ -1125,9 +1127,6 @@ function battlesys(command,move,target,commander){
 				}
 			}
 		}else{
-			
-			console.log(info[13]);
-
 			info[6]++;
 			info[9] = 0;
 			info[10].length = 0;
