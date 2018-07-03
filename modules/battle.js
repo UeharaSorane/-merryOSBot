@@ -1113,6 +1113,10 @@ function battlesys(command,move,target,commander){
 
 								bot.push(info[1],SayImp);
 							}
+						}else{
+							info[15]++;
+							if(info[15] >= info[3].length) battlesys('ImpactActive');
+							else battlesys('ImpactCheck');
 						}
 					}
 				}
@@ -1132,11 +1136,10 @@ function battlesys(command,move,target,commander){
 				}
 			}
 		}
+		
 		info[15]++;
 		if(info[15] >= info[3].length) battlesys('ImpactActive');
 		else battlesys('ImpactCheck');
-		
-		
 	}else if(command == 'ImpactActive'){
 		var spdl = info[17];
 		
