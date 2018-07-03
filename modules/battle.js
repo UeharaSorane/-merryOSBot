@@ -1125,17 +1125,15 @@ function battlesys(command,move,target,commander){
 				}
 			}
 		}else{
-			console.log(GE);
-			if(GE == 0){
-				info[6]++;
-				info[9] = 0;
-				info[10].length = 0;
-				if(info[13] != 1) battlesys('BurstCheck');
-				battlesys('battleOn');
-				setTimeout(function(){battlesys('AbSCheck'); 
-							setTimeout(function(){if(GE == 0) battlesys('MoveRequest'); }, 2000);
-						     }, 1000);
-			}
+
+			info[6]++;
+			info[9] = 0;
+			info[10].length = 0;
+			if(info[13] != 1) battlesys('BurstCheck');
+			battlesys('battleOn');
+			setTimeout(function(){battlesys('AbSCheck'); 
+						setTimeout(function(){if(GE == 0) battlesys('MoveRequest'); }, 2000);
+					     }, 1000);
 			
 		}
 	}else if(command == 'ImpactMove'){
