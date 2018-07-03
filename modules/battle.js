@@ -1097,6 +1097,7 @@ function battlesys(command,move,target,commander){
 							}
 						}
 						
+						console.log('ImpOK: ' + ImpOK);
 														     
 						if(ImpOK>=3 && info[14][info[15]] == 0){
 							
@@ -1121,6 +1122,7 @@ function battlesys(command,move,target,commander){
 								bot.push(info[1],SayImp);
 							}
 						}else{
+							console.log(5);
 							info[15]++;
 							if(info[15] >= info[3].length) battlesys('ImpactActive');
 							else battlesys('ImpactCheck');
