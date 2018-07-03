@@ -1125,7 +1125,7 @@ function battlesys(command,move,target,commander){
 				}
 			}
 		}else{
-			console.log(0);
+			console.log(GE);
 			if(GE == 0){
 				info[6]++;
 				info[9] = 0;
