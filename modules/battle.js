@@ -1097,7 +1097,7 @@ function battlesys(command,move,target,commander){
 							}
 						}
 						
-						console.log('ImpOK: ' + ImpOK);
+						//console.log('ImpOK: ' + ImpOK);
 														     
 						if(ImpOK>=3 && info[14][info[15]] == 0){
 							
@@ -1123,9 +1123,7 @@ function battlesys(command,move,target,commander){
 							}
 						}else{
 							console.log(5);
-							info[15]++;
-							if(info[15] >= info[3].length) battlesys('ImpactActive');
-							else battlesys('ImpactCheck');
+							battlesys('ImpactMove');
 						}
 					}
 				}
@@ -1141,6 +1139,8 @@ function battlesys(command,move,target,commander){
 			
 		}
 	}else if(command == 'ImpactMove'){
+		console.log(6);
+		
 		if(move == '施放'){
 			for(var IC = 1;IC<ImpactD.length;IC++){
 				if(info[5][info[15]]>=ImpactD[IC].Mp){
