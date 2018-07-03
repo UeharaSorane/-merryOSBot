@@ -1131,11 +1131,11 @@ function battlesys(command,move,target,commander){
 			info[6]++;
 			info[9] = 0;
 			info[10].length = 0;
-			if(info[13] != 1) battlesys('BurstCheck');
-			battlesys('battleOn');
-			setTimeout(function(){battlesys('AbSCheck'); 
-						setTimeout(function(){if(GE == 0) battlesys('MoveRequest'); }, 2000);
-					     }, 1000);
+			if(info[13] != 1) setTimeout(function(){battlesys('BurstCheck'); }, 500);
+			battlesys('AbSCheck');
+			setTimeout(function(){ battlesys('AbSCheck'); }, 1000);
+			setTimeout(function(){ battlesys('battleOn'); }, 1500);
+			setTimeout(function(){ battlesys('MoveRequest'); }, 2000);
 			
 		}
 	}else if(command == 'ImpactMove'){
