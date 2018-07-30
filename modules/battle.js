@@ -1247,13 +1247,13 @@ function battlesys(command,move,target,commander){
 								SayImpA = '玩家 ' + spdl[ImpA1][1] + '要施放必殺技了！';
 								bot.push(info[1],SayImpA);
 							
-								console.log(ImpactD[ImpA2].CharLine);
+								//console.log(ImpactD[ImpA2].CharLine);
 								
-								/*for(var ImpA3 = 0; ImpA3<ImpactD[ImpA2].CharLine.length;ImpA3++){
+								for(var ImpA3 = 0; ImpA3<ImpactD[ImpA2].CharLine.length;ImpA3++){
 									setTimeout(function(){bot.push(info[1],ImpactD[ImpA2].CharLine[ImpA3]); }, 500);
-								}*/
+								}
 								
-								reslove(1);
+								resolve(1);
 							
 							
 							});
