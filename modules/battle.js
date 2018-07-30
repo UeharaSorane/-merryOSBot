@@ -90,9 +90,9 @@ function parseInput(inputStr,UserID,UserN,GroupID) {
 		}
 	}
 	
-	if (trigger.match(/^必殺技$/) != null){
+	if (trigger.match(/^必殺技$/) != null &&info[9] == info[3].length){
 		if(UserID == info[3][info[15]].ID){
-			battlesys('ImpactMove',mainMsg[1],info[3][info[15]].UName);
+			battlesys('ImpactMove',mainMsg[1],mainMsg[2],info[3][info[15]].UName);
 		}else{
 			rply[0] = 'rply';
 			rply[1] = '現在不是你行動喔';
@@ -1052,12 +1052,9 @@ function battlesys(command,move,target,commander){
 		}
 	}else if(command == 'ImpactCheck'){
 		if(info[13] == 1){
-			if(info[3][info[15]].Impact !='無' && info[4][info[15]]>0){
-				console.log(1);
+			if(info[3][info[15]].Impact !='無'){
 				for(var Impact1 = 0;Impact1 < ImpactD.length;Impact1++){
-					//console.log(info[3][info[15]]);
 					if(info[3][info[15]].Impact == ImpactD[Impact1].Name){
-						console.log(2);
 						var con = [];
 						var ImpOK = 0;
 
@@ -1081,53 +1078,77 @@ function battlesys(command,move,target,commander){
 									}
 									if(LE<=con[Impact3][1]) ImpOK++;
 								}else if(con[Impact3][0] == 'LowerHpH'){
-									if(info[4][info[15]] >= con[Impact3][1]) ImpOK++;
+									
+									if(info[4][info[15]] <= con[Impact3][1]) ImpOK++;
 									
 								}else if(con[Impact3][0] == 'LowerHpE'){
+									if(ImpactD[Impact1].Range == '敵方全體'){
+										ImpOK++
 
-									for(var Impact3b = 0; Impact3b<info[3].length;Impact3b++){
-										if(info[3][Impact3b].Team != info[3][info[15]].Team && info[4][Impact3a] <= con[Impact3][1]) ImpOK++;
-										break;
+										for(var Impact3b = 0; Impact3b<info[3].length;Impact3b++){
+											if(info[3][Impact3b].Team != info[3][info[15]].Team && info[4][Impact3a] >= con[Impact3][1]){
+												ImpOK--;
+												break;
+											}
+										}
 									}
 								}
 							}else{
 								ImpOK++;
 							}
 						}
-						
-						console.log('ImpOK: ' + ImpOK);
-														     
 						if(ImpOK>=3 && info[14][info[15]] == 0){
-							
-							
-							info[14][info[16]] = 1;
-							
 							if(info[3][info[15]].ID == 'c'){
-								if(info[5][info[15]] >= ImpactD[Impact1].Mp) battlesys('ImpactMove','施放',info[3][info[15]].UName);
-								else battlesys('ImpactMove','不施放',info[3][info[15]].UName);
+								if(ImpactD[Impact1].Range == '敵方全體'){
+									if(info[5][info[15]] >= ImpactD[Impact1].Mp) battlesys('ImpactMove','施放','敵方全體',info[3][info[15]].UName);
+									else battlesys('ImpactMove','不施放');
+								}
+							
 							}else{
-								var SayImp = '玩家' + info[3][info[15]].UName + '達成必殺技所有條件，可以施放必殺技\
+								var SayImp = '玩家' + info[3][info[15]].UName + '滿足必殺技施放條件\
 										\n 請問要施放必殺技嗎？\
 										\n--------------------\
 										\n必殺技名稱:' + info[3][info[15]].Impact + '\
 										\n必殺技類型:' + ImpactD[Impact1].Type + '\
 										\n消耗Mp:' + ImpactD[Impact1].Mp + '\
 										\n描述:\n' + ImpactD[Impact1].Description  + '\
-										\n--------------------\
-										\n如果想要施放的話，請輸入[必殺技 施放]\
+										\n--------------------\';
+
+								if(ImpactD[Impact1].Range == '敵方全體'){
+									SayImp += '\n可選擇的對象有:敵方全體\
+										\n 以下玩家將受到影響\n';
+
+									for(var i = 0; i < info[3].length;i++){
+										if(info[3][i].Team != info[3][info[9]].Team && info[4][i]>0){
+
+											SayImp += '玩家名:' + info[3][i].UName + '\
+											\n角色名:' + info[3][i].CName + '\
+											\nHp[';
+
+											var HpP = info[4][i]/info[3][i].Hp*20;
+											for(var k = 0; k < HpP;k++){
+												SayImp += '|';
+											}
+											for(var k = 0; k < 20-HpP;k++){
+												SayImp += ' ';
+											}
+
+											SayImp += '](' + info[4][i] + '/' + info[3][i].Hp + ')\n\n';
+
+										}
+									}
+								}
+
+								SayImp += '\n如果想要施放的話，請輸入[必殺技 施放 對象]\
 										\n反之，請輸入[必殺技 不施放]';
 
 								bot.push(info[1],SayImp);
+								
+								return 0;
 							}
-						}else{
-							console.log(5);
-							battlesys('ImpactMove');
 						}
 					}
 				}
-			}else{
-				console.log(5);
-				battlesys('ImpactMove');
 			}
 		}else{
 			info[6]++;
@@ -1144,14 +1165,26 @@ function battlesys(command,move,target,commander){
 		
 		if(move == '施放'){
 			for(var IC = 1;IC<ImpactD.length;IC++){
-				if(info[5][info[15]]>=ImpactD[IC].Mp){
-					info[5][info[15]]-=ImpactD[IC].Mp;
-					info[17].push = [ImpactD[IC].Name,info[3][info[15]].UName,info[3][info[15]].Spd*ImpactD[IC].SpdM,info[3][info[15]].Team];
-					break;
-				}else{
-					bot.push(info[1],'錯誤！Mp不足');
+				if(ImpactD[IC].Name == info[3][info[15]].Impact){
+					if(ImpactD[IC].Range == '敵方全體'){
+							if(target != '敵方全體'){
+								console.log(target);
+								
+								bot.push(info[1],'錯誤！無效對象');
 
-					return 0;
+								return 0;
+							}
+					}
+					
+					if(info[5][info[15]]>=ImpactD[IC].Mp){
+						info[5][info[15]]-=ImpactD[IC].Mp;
+						info[17].push = [ImpactD[IC].Name,info[3][info[15]].UName,info[3][info[15]].Spd*ImpactD[IC].SpdM,info[3][info[15]].Team];
+						break;
+					}else{
+						bot.push(info[1],'錯誤！Mp不足');
+
+						return 0;
+					}
 				}
 			}
 		}
