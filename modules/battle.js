@@ -1190,7 +1190,7 @@ function battlesys(command,move,target,commander){
 					
 					if(info[5][info[15]]>=ImpactD[IC].Mp){
 						info[5][info[15]]-=ImpactD[IC].Mp;
-						info[17].push = [ImpactD[IC].Name,info[3][info[15]].UName,info[3][info[15]].Spd*ImpactD[IC].SpdM,info[3][info[15]].Team];
+						info[17].push([ImpactD[IC].Name,info[3][info[15]].UName,info[3][info[15]].Spd*ImpactD[IC].SpdM,info[3][info[15]].Team]);
 						break;
 					}else{
 						bot.push(info[1],'錯誤！Mp不足');
