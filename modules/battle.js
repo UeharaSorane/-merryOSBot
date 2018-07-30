@@ -669,10 +669,6 @@ function battlesys(command,move,target,commander){
 
 								return 0;
 							}
-						}else{
-							bot.push(info[1],'錯誤！無效對象');
-
-							return 0;
 						}
 					}
 				}
