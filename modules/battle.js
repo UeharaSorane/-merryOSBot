@@ -1072,6 +1072,7 @@ function battlesys(command,move,target,commander){
 									
 									var LE = 0;
 									for(var Impact3a = 0; Impact3a<info[3].length;Impact3a++){
+										console.log(info[3][Impact3a].Team);
 										if(info[3][Impact3a].Team != info[3][info[15]].Team && info[4][Impact3a]>0){
 											LE++;
 										}
