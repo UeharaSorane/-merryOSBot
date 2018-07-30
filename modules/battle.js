@@ -1208,6 +1208,7 @@ function battlesys(command,move,target,commander){
 		else battlesys('ImpactCheck');
 	}else if(command == 'ImpactActive'){
 		console.log(7);
+		console.log(info[17]);
 		var spdl = info[17];
 		
 		if(spdl.length >0){
@@ -1228,7 +1229,7 @@ function battlesys(command,move,target,commander){
 					}
 				}
 			}
-			console.log(spdl);
+			//console.log(spdl);
 
 			var SayImpA = '';
 
