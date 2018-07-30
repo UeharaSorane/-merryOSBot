@@ -1255,7 +1255,7 @@ function battlesys(command,move,target,commander){
 									setTimeout(function(){bot.push(info[1],CharLine[ImpA3]); }, 500);
 								}
 								
-								resolve(1);
+								resolve(ImpA2);
 							
 							
 							});
