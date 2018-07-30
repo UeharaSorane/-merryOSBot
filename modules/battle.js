@@ -1148,6 +1148,10 @@ function battlesys(command,move,target,commander){
 								
 								return 0;
 							}
+						}else{
+							info[15]++;
+							if(info[15] >= info[3].length) battlesys('ImpactActive');
+							else battlesys('ImpactCheck');
 						}
 					}
 				}
