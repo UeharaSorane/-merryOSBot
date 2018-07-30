@@ -1114,7 +1114,7 @@ function battlesys(command,move,target,commander){
 										\n必殺技類型:' + ImpactD[Impact1].Type + '\
 										\n消耗Mp:' + ImpactD[Impact1].Mp + '\
 										\n描述:\n' + ImpactD[Impact1].Description  + '\
-										\n--------------------\';
+										\n--------------------';
 
 								if(ImpactD[Impact1].Range == '敵方全體'){
 									SayImp += '\n可選擇的對象有:敵方全體\
