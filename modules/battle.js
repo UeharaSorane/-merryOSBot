@@ -1228,6 +1228,7 @@ function battlesys(command,move,target,commander){
 					}
 				}
 			}
+			console.log(spdl);
 
 			var SayImpA = '';
 
