@@ -1237,52 +1237,62 @@ function battlesys(command,move,target,commander){
 
 				for(var ImpA2 = 0;ImpA2<ImpactD.length;ImpA2++){
 					if(spdl[ImpA1][0] == ImpactD[ImpA2].Name){
-						SayImpA = '玩家 ' + spdl[ImpA1][1] + '要施放必殺技了！';
-						bot.push(info[1],SayImpA);
+						
+						var compImp = new promise(function(resolve, reject) {
+								SayImpA = '玩家 ' + spdl[ImpA1][1] + '要施放必殺技了！';
+								bot.push(info[1],SayImpA);
+							
+								
+								for(var ImpA3 = 0; ImpA3<ImpactD[ImpA2].CharLine.length;ImpA3++){
+									setTimeout(function(){bot.push(info[1],ImpactD[ImpA2].CharLine[ImpA3]); }, 500);
+								}
+								
+								reslove(1);
+							
+							
+							});
+						
+						compImp.then(function{
+								if(ImpactD[ImpA2].Type == '強擊'){
+									if(ImpactD[ImpA2].Range == '敵方全體'){
+										for(var ImpA4a = 0;ImpA4a<info[3].length;ImpA4a++){
+											if(info[3][ImpA4a].Team != spdl[ImpA1][3] && info[4][ImpA4a]>0){
+												info[4][ImpA4a]-= ImpactD[ImpA2].Dmg;
 
-						for(var ImpA3 = 0; ImpA3<ImpactD[ImpA2].CharLine.length;ImpA3++){
-							setTimeout(function(){bot.push(info[1],ImpactD[ImpA2].CharLine[ImpA3]); }, 500);
-						}
+												SayResult +=info[3][ImpA4a].CName + '\n承受' + ImpactD[ImpA2].Dmg + '點傷害\
+																\nHp[';
+												var HpP = info[4][ImpA4a]/info[3][ImpA4a].Hp*20;
+												for(var l = 0; l < HpP;l++){
+													SayResult += '|';
+												}
+												for(var l = 0; l < 20-HpP;l++){
+													SayResult += ' ';
+												}
 
-						if(ImpactD[ImpA2].Type == '強擊'){
-							if(ImpactD[ImpA2].Range == '敵方全體'){
-								for(var ImpA4a = 0;ImpA4a<info[3].length;ImpA4a++){
-									if(info[3][ImpA4a].Team != spdl[ImpA1][3] && info[4][ImpA4a]>0){
-										info[4][ImpA4a]-= ImpactD[ImpA2].Dmg;
+												SayResult += '](' + info[4][ImpA4a] + '/' + info[3][ImpA4a].Hp + ')';
 
-										SayResult +=info[3][ImpA4a].CName + '\n承受' + ImpactD[ImpA2].Dmg + '點傷害\
-														\nHp[';
-										var HpP = info[4][ImpA4a]/info[3][ImpA4a].Hp*20;
-										for(var l = 0; l < HpP;l++){
-											SayResult += '|';
-										}
-										for(var l = 0; l < 20-HpP;l++){
-											SayResult += ' ';
-										}
-
-										SayResult += '](' + info[4][ImpA4a] + '/' + info[3][ImpA4a].Hp + ')';
-
-										var KC = battlesys('killCheck','',info[3][ImpA4a].UName);
+												var KC = battlesys('killCheck','',info[3][ImpA4a].UName);
 
 
-										SayResult += KC[1] + '\n';
+												SayResult += KC[1] + '\n';
 
-										if(KC[0] == 1){
-											GE = battlesys('DefeatCheck');
+												if(KC[0] == 1){
+													GE = battlesys('DefeatCheck');
 
-											if(GE == 1){
-												SayResult += '\n--------------------';
-												bot.push(info[1],SayResult);
-												battlesys('GameEnd');
-												return 0;
+													if(GE == 1){
+														SayResult += '\n--------------------';
+														bot.push(info[1],SayResult);
+														battlesys('GameEnd');
+														return 0;
 
+													}
+												}
 											}
 										}
 									}
 								}
-							}
-						}
-
+							     
+							});
 					}
 				}
 			}
