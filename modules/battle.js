@@ -1079,7 +1079,9 @@ function battlesys(command,move,target,commander){
 									if(LE<=con[Impact3][1]) ImpOK++;
 								}else if(con[Impact3][0] == 'LowerHpH'){
 									
-									if(info[4][info[15]] <= con[Impact3][1]) ImpOK++;
+									if(info[4][info[15]] <= con[Impact3][1]){
+										ImpOK++;
+									}
 									
 								}else if(con[Impact3][0] == 'LowerHpE'){
 									if(ImpactD[Impact1].Range == '敵方全體'){
