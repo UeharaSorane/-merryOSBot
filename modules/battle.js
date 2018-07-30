@@ -1176,7 +1176,7 @@ function battlesys(command,move,target,commander){
 		console.log(6);
 		
 		if(move == '施放'){
-			for(var IC = 1;IC<ImpactD.length;IC++){
+			for(var IC = 0;IC<ImpactD.length;IC++){
 				if(ImpactD[IC].Name == info[3][info[15]].Impact){
 					if(ImpactD[IC].Range == '敵方全體'){
 							if(target != '敵方全體'){
