@@ -1048,7 +1048,7 @@ function battlesys(command,move,target,commander){
 		if(GE == 0){
 			info[15] = 0;
 			bot.push(info[1],SayResult);
-			battlesys('ImpactCheck');
+			setTimeout(function(){ battlesys('ImpactCheck'); }, 1000);
 		}
 	}else if(command == 'ImpactCheck'){
 		if(info[13] == 1){
@@ -1088,7 +1088,7 @@ function battlesys(command,move,target,commander){
 										ImpOK++
 
 										for(var Impact3b = 0; Impact3b<info[3].length;Impact3b++){
-											if(info[3][Impact3b].Team != info[3][info[15]].Team && info[4][Impact3a] >= con[Impact3][1]){
+											if(info[3][Impact3b].Team != info[3][info[15]].Team && info[4][Impact3b] >= con[Impact3][1]){
 												ImpOK--;
 												break;
 											}
@@ -1189,6 +1189,8 @@ function battlesys(command,move,target,commander){
 					}
 				}
 			}
+		}else if(move == '不施放'){
+			
 		}
 		
 		info[15]++;
