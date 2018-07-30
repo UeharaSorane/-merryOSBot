@@ -1248,9 +1248,11 @@ function battlesys(command,move,target,commander){
 								bot.push(info[1],SayImpA);
 							
 								//console.log(ImpactD[ImpA2].CharLine);
+							
+								var CharLine = ImpactD[ImpA2].CharLine;
 								
-								for(var ImpA3 = 0; ImpA3<ImpactD[ImpA2].CharLine.length;ImpA3++){
-									setTimeout(function(){bot.push(info[1],ImpactD[ImpA2].CharLine[ImpA3]); }, 500);
+								for(var ImpA3 = 0; ImpA3<CharLine.length;ImpA3++){
+									setTimeout(function(){bot.push(info[1],CharLine[ImpA3]); }, 500);
 								}
 								
 								resolve(1);
