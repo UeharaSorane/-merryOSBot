@@ -1156,6 +1156,11 @@ function battlesys(command,move,target,commander){
 						}
 					}
 				}
+			}else{
+				console.log(4);
+				info[15]++;
+				if(info[15] >= info[3].length) battlesys('ImpactActive');
+				else battlesys('ImpactCheck');
 			}
 		}else{
 			info[6]++;
