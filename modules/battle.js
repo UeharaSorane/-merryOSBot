@@ -1068,7 +1068,6 @@ function battlesys(command,move,target,commander){
 								console.log(3);
 								
 								if(con[Impact3][0] == 'LastE'){
-									console.log(4);
 									
 									var LE = 0;
 									for(var Impact3a = 0; Impact3a<info[3].length;Impact3a++){
@@ -1099,6 +1098,7 @@ function battlesys(command,move,target,commander){
 								ImpOK++;
 							}
 						}
+						console.log(ImpOK);
 						if(ImpOK>=3 && info[14][info[15]] == 0){
 							if(info[3][info[15]].ID == 'c'){
 								if(ImpactD[Impact1].Range == '敵方全體'){
@@ -1149,6 +1149,7 @@ function battlesys(command,move,target,commander){
 								return 0;
 							}
 						}else{
+							console.log(4);
 							info[15]++;
 							if(info[15] >= info[3].length) battlesys('ImpactActive');
 							else battlesys('ImpactCheck');
