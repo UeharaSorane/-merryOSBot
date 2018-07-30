@@ -1252,7 +1252,7 @@ function battlesys(command,move,target,commander){
 							
 							});
 						
-						compImp.then(function{
+						compImp.then(function(){
 								if(ImpactD[ImpA2].Type == '強擊'){
 									if(ImpactD[ImpA2].Range == '敵方全體'){
 										for(var ImpA4a = 0;ImpA4a<info[3].length;ImpA4a++){
