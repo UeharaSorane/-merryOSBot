@@ -1095,7 +1095,7 @@ function battlesys(command,move,target,commander){
 							}
 						}
 						
-						//console.log('ImpOK: ' + ImpOK);
+						console.log('ImpOK: ' + ImpOK);
 														     
 						if(ImpOK>=3 && info[14][info[15]] == 0){
 							
