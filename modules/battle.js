@@ -1072,7 +1072,6 @@ function battlesys(command,move,target,commander){
 									
 									var LE = 0;
 									for(var Impact3a = 0; Impact3a<info[3].length;Impact3a++){
-										console.log(info[3][Impact3a].Team);
 										if(info[3][Impact3a].Team != info[3][info[15]].Team && info[4][Impact3a]>0){
 											LE++;
 										}
@@ -1122,7 +1121,7 @@ function battlesys(command,move,target,commander){
 										\n 以下玩家將受到影響\n';
 
 									for(var i = 0; i < info[3].length;i++){
-										if(info[3][i].Team != info[3][info[9]].Team && info[4][i]>0){
+										if(info[3][i].Team != info[3][info[15]].Team && info[4][i]>0){
 
 											SayImp += '玩家名:' + info[3][i].UName + '\
 											\n角色名:' + info[3][i].CName + '\
