@@ -1247,7 +1247,7 @@ function battlesys(command,move,target,commander){
 						bot.push(info[1],SayImpA);
 						
 						//setTimeout(function(){battlesys('ImpactLine',ImpactD[ImpA2].CharLine); }, 1000);
-						setTimeout(function(){console.log(ImpactD[ImpA2].CharLine); }, 1000);
+						setTimeout(function(){console.log(ImpactD[ImpA2]); }, 1000);
 						
 						setTimeout(function(){
 							if(ImpactD[ImpA2].Type == '強擊'){
