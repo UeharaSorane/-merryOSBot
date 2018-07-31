@@ -1244,6 +1244,12 @@ function battlesys(command,move,target,commander){
 					if(spdl[ImpA1][0] == ImpactD[ImpA2].Name){
 						
 						SayImpA = '玩家 ' + spdl[ImpA1][1] + '要施放必殺技了！';
+						var CL = ImpactD[ImpA2].CharLine;
+						
+						for(var ImpL = 0; ImpL<move.length;ImpL++){
+							setTimeout(battlesys('ImpactLine',CL[ImpL]), 1000);
+						}
+						
 						bot.push(info[1],SayImpA);
 						//battlesys('ImpactLine',ImpactD[ImpA2].CharLine);
 						if(ImpactD[ImpA2].Type == '強擊'){
@@ -1252,7 +1258,7 @@ function battlesys(command,move,target,commander){
 										if(info[3][ImpA4a].Team != spdl[ImpA1][3] && info[4][ImpA4a]>0){
 											info[4][ImpA4a]-= ImpactD[ImpA2].Dmg;
 
-											SayResult +=info[3][ImpA4a].CName + '\n承受' + ImpactD[ImpA2].Dmg + '點傷害\
+											SayResult = info[3][ImpA4a].CName + '\n承受' + ImpactD[ImpA2].Dmg + '點傷害\
 															\nHp[';
 											var HpP = info[4][ImpA4a]/info[3][ImpA4a].Hp*20;
 											for(var l = 0; l < HpP;l++){
@@ -1298,11 +1304,7 @@ function battlesys(command,move,target,commander){
 		setTimeout(function(){ battlesys('battleOn'); }, 1500);
 		setTimeout(function(){ battlesys('MoveRequest'); }, 2000);
 	}else if(command == 'ImpactLine'){
-		for(var ImpL = 0; ImpL<move.length;ImpL++){
-			setTimeout(function(){bot.push(info[1],move[ImpL]); }, 1000);
-		}
-		
-		
+		bot.push(info[1],move);
 	}else if(command == 'DefeatCheck'){
 		for(var DC1 = 0;DC1<info[3].length;DC1++){
 			if(info[4][DC1] > 0){
