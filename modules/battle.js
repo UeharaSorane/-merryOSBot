@@ -1245,11 +1245,9 @@ function battlesys(command,move,target,commander){
 						
 						SayImpA = '玩家 ' + spdl[ImpA1][1] + '要施放必殺技了！';
 						bot.push(info[1],SayImpA);
+						battlesys('ImpactLine',ImpactD[ImpA2].CharLine);
 						
-						//setTimeout(function(){battlesys('ImpactLine',ImpactD[ImpA2].CharLine); }, 1000);
-						setTimeout(function(){console.log(ImpactD[ImpA2]); }, 1000);
-						
-						setTimeout(function(){
+						setTimeout(function(ImpA2){
 							if(ImpactD[ImpA2].Type == '強擊'){
 									if(ImpactD[ImpA2].Range == '敵方全體'){
 										for(var ImpA4a = 0;ImpA4a<info[3].length;ImpA4a++){
