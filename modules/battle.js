@@ -1246,9 +1246,9 @@ function battlesys(command,move,target,commander){
 						SayImpA = '玩家 ' + spdl[ImpA1][1] + '要施放必殺技了！';
 						var CL = ImpactD[ImpA2].CharLine;
 						
-						for(var ImpL = 0; ImpL<CL.length;ImpL++){
+						/*for(var ImpL = 0; ImpL<CL.length;ImpL++){
 							setTimeout(battlesys('ImpactLine',CL[ImpL]), 1000);
-						}
+						}*/
 						
 						bot.push(info[1],SayImpA);
 						//battlesys('ImpactLine',ImpactD[ImpA2].CharLine);
