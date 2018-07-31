@@ -1252,7 +1252,7 @@ function battlesys(command,move,target,commander){
 								var CharLine = ImpactD[ImpA2].CharLine;
 								
 								for(var ImpA3 = 0; ImpA3<CharLine.length;ImpA3++){
-									setTimeout(function(){bot.push(info[1],CharLine[ImpA3]); }, 500);
+									setTimeout(function(){bot.push(info[1],'台詞'); }, 500);
 								}
 								
 								//resolve(ImpA2);
