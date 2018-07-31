@@ -1243,25 +1243,13 @@ function battlesys(command,move,target,commander){
 				for(var ImpA2 = 0;ImpA2<ImpactD.length;ImpA2++){
 					if(spdl[ImpA1][0] == ImpactD[ImpA2].Name){
 						
-						var compImp = new Promise(function(resolve, reject) {
-								SayImpA = '玩家 ' + spdl[ImpA1][1] + '要施放必殺技了！';
-								bot.push(info[1],SayImpA);
-							
-								//console.log(ImpactD[ImpA2].CharLine);
-							
-								var CharLine = ImpactD[ImpA2].CharLine;
-								
-								for(var ImpA3 = 0; ImpA3<CharLine.length;ImpA3++){
-									setTimeout(function(){bot.push(info[1],'台詞'); }, 500);
-								}
-								
-								//resolve(ImpA2);
-							
-							
-							});
+						SayImpA = '玩家 ' + spdl[ImpA1][1] + '要施放必殺技了！';
+						bot.push(info[1],SayImpA);
 						
-						compImp.then(function(ImpA2){
-								if(ImpactD[ImpA2].Type == '強擊'){
+						setTimeout(function(){battlesys('ImpactLine',ImpactD[ImpA2].CharLine); }, 1000);
+						
+						setTimeout(function(){
+							if(ImpactD[ImpA2].Type == '強擊'){
 									if(ImpactD[ImpA2].Range == '敵方全體'){
 										for(var ImpA4a = 0;ImpA4a<info[3].length;ImpA4a++){
 											if(info[3][ImpA4a].Team != spdl[ImpA1][3] && info[4][ImpA4a]>0){
@@ -1299,8 +1287,7 @@ function battlesys(command,move,target,commander){
 										}
 									}
 								}
-							     
-							});
+						}, 2000);
 					}
 				}
 			}
@@ -1314,6 +1301,12 @@ function battlesys(command,move,target,commander){
 		setTimeout(function(){ battlesys('AbSCheck'); }, 1000);
 		setTimeout(function(){ battlesys('battleOn'); }, 1500);
 		setTimeout(function(){ battlesys('MoveRequest'); }, 2000);
+	}else if(command == 'ImpactLine'){
+		for(var ImpL = 0; ImpL<move.length;ImpL++){
+			setTimeout(function(){bot.push(info[1],move[ImpL]); }, 1000);
+		}
+		
+		
 	}else if(command == 'DefeatCheck'){
 		for(var DC1 = 0;DC1<info[3].length;DC1++){
 			if(info[4][DC1] > 0){
