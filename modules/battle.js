@@ -1250,7 +1250,8 @@ function battlesys(command,move,target,commander){
 						
 						for(var ImpL = 0; ImpL<CL.length;ImpL++){
 							let Charl = CL[ImpL];
-							setTimeout(() => bot.push(info[1],ImpL), 750);
+							console.log(ImpL);
+							setTimeout(() => bot.push(info[1],Charl), 1500);
 						}
 						
 						if(ImpactD[ImpA2].Type == '強擊'){
