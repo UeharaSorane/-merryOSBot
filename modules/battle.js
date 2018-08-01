@@ -1249,7 +1249,7 @@ function battlesys(command,move,target,commander){
 						bot.push(info[1],SayImpA);
 						
 						for(var ImpL = 0; ImpL<CL.length;ImpL++){
-							setTimeout(() => SpeakImp(CL[ImpL]), 1000);
+							SpeakImp(CL[ImpL]);
 						}
 						
 						if(ImpactD[ImpA2].Type == '強擊'){
