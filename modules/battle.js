@@ -1251,49 +1251,50 @@ function battlesys(command,move,target,commander){
 						for(var ImpL = 0; ImpL<CL.length;ImpL++){
 							setTimeout(() => SpeakImp(CL[ImpL]), 1000);
 						}
-						//battlesys('ImpactLine',ImpactD[ImpA2].CharLine);
+						
 						if(ImpactD[ImpA2].Type == '強擊'){
-								if(ImpactD[ImpA2].Range == '敵方全體'){
-									for(var ImpA4a = 0;ImpA4a<info[3].length;ImpA4a++){
-										if(info[3][ImpA4a].Team != spdl[ImpA1][3] && info[4][ImpA4a]>0){
-											info[4][ImpA4a]-= ImpactD[ImpA2].Dmg;
+							if(ImpactD[ImpA2].Range == '敵方全體'){
+								for(var ImpA4a = 0;ImpA4a<info[3].length;ImpA4a++){
+									if(info[3][ImpA4a].Team != spdl[ImpA1][3] && info[4][ImpA4a]>0){
+										info[4][ImpA4a]-= ImpactD[ImpA2].Dmg;
 
-											SayResult = info[3][ImpA4a].CName + '\n承受' + ImpactD[ImpA2].Dmg + '點傷害\
-															\nHp[';
-											var HpP = info[4][ImpA4a]/info[3][ImpA4a].Hp*20;
-											for(var l = 0; l < HpP;l++){
-												SayResult += '|';
-											}
-											for(var l = 0; l < 20-HpP;l++){
-												SayResult += ' ';
-											}
+										SayResult = info[3][ImpA4a].CName + '\n承受' + ImpactD[ImpA2].Dmg + '點傷害\
+														\nHp[';
+										var HpP = info[4][ImpA4a]/info[3][ImpA4a].Hp*20;
+										for(var l = 0; l < HpP;l++){
+											SayResult += '|';
+										}
+										for(var l = 0; l < 20-HpP;l++){
+											SayResult += ' ';
+										}
 
-											SayResult += '](' + info[4][ImpA4a] + '/' + info[3][ImpA4a].Hp + ')';
+										SayResult += '](' + info[4][ImpA4a] + '/' + info[3][ImpA4a].Hp + ')';
 
-											var KC = battlesys('killCheck','',info[3][ImpA4a].UName);
+										var KC = battlesys('killCheck','',info[3][ImpA4a].UName);
 
 
-											SayResult += KC[1] + '\n';
+										SayResult += KC[1] + '\n';
 
-											if(KC[0] == 1){
-												GE = battlesys('DefeatCheck');
+										if(KC[0] == 1){
+											GE = battlesys('DefeatCheck');
+											
+											SayResult += '\n--------------------';
+											
+											setTimeout(() => bot.push(info[1],SayResult), 10000);
 
-												if(GE == 1){
-													SayResult += '\n--------------------';
-													bot.push(info[1],SayResult);
-													battlesys('GameEnd');
-													return 0;
+											if(GE == 1){
+												setTimeout(() => battlesys('GameEnd'), 12000);
+												return 0;
 
-												}
 											}
 										}
 									}
 								}
 							}
+						}
 					}
 				}
 			}
-			
 		}
 
 		info[6]++;
