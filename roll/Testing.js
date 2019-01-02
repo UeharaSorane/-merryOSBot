@@ -27,7 +27,7 @@ function ReplyTest(UserN,myText) {
 }
 
 
-function SecretTalk(UserID,myTexy) {
+function SecretTalk(UserID,myText) {
 	///匿名淦話
 	rply[0] = 'push';
 	
