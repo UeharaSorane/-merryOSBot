@@ -29,9 +29,11 @@ function ReplyTest(UserN,myText) {
 
 function SecretTalk(UserID,myTexy) {
 	///匿名淦話
-	rply[0] = 'groupRply';
+	rply[0] = 'push';
 	
-	rply[1] = myText;
+	bot.push('Ca06e35d5eefc0162348764ce8bdb52b5',myText);
+	
+	//rply[1] = myText;
 	///
 	
 	return rply;
