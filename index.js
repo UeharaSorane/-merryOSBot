@@ -25,9 +25,9 @@ var server = app.listen(process.env.PORT || 8080, function() {
 });
 
 bot.on('message', function(event) {
-        console.log(event.message);
+        console.log(event);
 	
-	var msg = event.message.text;
+	//var msg = event.message.text;
 	/*var rply = ['text',''];
 	
 		if(event.message.type == 'text'){
