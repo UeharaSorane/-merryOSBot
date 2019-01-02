@@ -31,6 +31,17 @@ function PushTest(UserID,GroupID) {
 	///確認系統push功能沒問題用
 	rply[0] = 'push';
 	
+	rply[1] = myText;
+	///
+	
+	return rply;
+
+}
+
+function SecretTalk(UserID,myText) {
+	///匿名淦話
+	rply[0] = 'groupRply';
+	
 	if(GroupID != null){
 		bot.push(GroupID,'你在大聲什麼啦？');
 	}else{
