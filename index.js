@@ -28,7 +28,7 @@ bot.on('message', function(event) {
         console.log(event.message);
 	
 	var msg = event.message.text;
-	var rply = ['text',''];
+	/*var rply = ['text',''];
 	
 		if(event.message.type == 'text'){
 			event.source.profile().then(function (profile) {
@@ -44,5 +44,5 @@ bot.on('message', function(event) {
 				
 			});
 			
-		}
+		}*/
 });
