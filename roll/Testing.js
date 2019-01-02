@@ -27,9 +27,9 @@ function ReplyTest(UserN,myText) {
 }
 
 
-function PushTest(UserID,GroupID) {
-	///確認系統push功能沒問題用
-	rply[0] = 'push';
+function SecretTalk(UserID,myTexy) {
+	///匿名淦話
+	rply[0] = 'groupRply';
 	
 	rply[1] = myText;
 	///
@@ -38,9 +38,9 @@ function PushTest(UserID,GroupID) {
 
 }
 
-function SecretTalk(UserID,myText) {
-	///匿名淦話
-	rply[0] = 'groupRply';
+function PushTest(UserID,GroupID) {
+	///確認系統push功能沒問題
+	rply[0] = 'push';
 	
 	if(GroupID != null){
 		bot.push(GroupID,'你在大聲什麼啦？');
