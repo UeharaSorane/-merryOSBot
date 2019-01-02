@@ -89,5 +89,6 @@ function SimBattle(UserID,GroupID,UserN){
 module.exports = {
 	ReplyTest,
 	PushTest,
-	SimBattle
+	SimBattle,
+	SecretTalk
 };
