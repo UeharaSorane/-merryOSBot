@@ -27,14 +27,16 @@ var server = app.listen(process.env.PORT || 8080, function() {
 bot.on('message', function(event) {
         console.log(event);
 	
-	//var msg = event.message.text;
-	/*var rply = ['text',''];
+	var msg = event.message;
+	var rply = ['text',''];
 	
 		if(event.message.type == 'text'){
 			event.source.profile().then(function (profile) {
 				rply = exports.battle.parseInput(msg, event.source.userId, profile.displayName, event.source.groupId);
-
-				if(rply[0] == 'rply'){
+				if(rply[0] == 'none'){
+				}else if(rply[0] == 'groupRply'){
+					bot.push('Ca06e35d5eefc0162348764ce8bdb52b5',rply[1]);
+				}else if(rply[0] == 'rply'){
 					event.reply(rply[1]).then(function (data) {
 					  // success
 					}).catch(function (error) {
@@ -44,5 +46,5 @@ bot.on('message', function(event) {
 				
 			});
 			
-		}*/
+		}
 });
